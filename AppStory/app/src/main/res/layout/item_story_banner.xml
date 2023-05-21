@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/backgroup_home"
+        android:padding="15dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#40000000"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintDimensionRatio="3:4"
+            app:layout_constraintRight_toLeftOf="@id/tv_nameStory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/im_story"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/anh_gai_xinh" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_nameStory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Kiếm Động Cửu Thiên"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/cv_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cv_image" />
+        <!--    <RatingBar-->
+        <!--        android:id="@+id/ratingBar2"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_gravity="center_horizontal"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/tv_nameStory"-->
+        <!--        app:layout_constraintLeft_toLeftOf="@+id/tv_nameStory"-->
+        <!--        android:stepSize="0.2"-->
+        <!--        android:rating="5" />-->
+        <TextView
+            android:id="@+id/tv_star"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:text="star"
+            android:textSize="12sp"
+
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_nameStory"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nameStory" />
+
+        <TextView
+            android:id="@+id/tv_nameAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Tác giả: "
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_nameStory"
+
+            app:layout_constraintLeft_toRightOf="@+id/cv_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_star" />
+
+        <TextView
+            android:id="@+id/tv_nameCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+
+            android:text="Thể loại: "
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_nameStory"
+            app:layout_constraintLeft_toRightOf="@+id/cv_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nameAuthor" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
