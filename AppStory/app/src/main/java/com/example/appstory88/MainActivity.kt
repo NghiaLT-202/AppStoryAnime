@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.adapter.StoryBanerAdapter
 import com.example.appstory88.databinding.HomeActivityBinding
@@ -110,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             listStory.add(story4)
             listStory.add(story5)
             listStory.add(story6)
+
             listStory.shuffle()
 
             setListStoryBanner(listStory)
@@ -142,7 +144,13 @@ class MainActivity : AppCompatActivity() {
         }
         storyAdapter = StoryAdapter().apply {
             binding.rcItemGoodPassion.adapter = this
+
+
+
+            val itemCountLimit = 10 // Số lượng mục giới hạn bạn muốn hiển thị
+
             listStory.shuffle()
+
 
             setListStory(listStory)
         }

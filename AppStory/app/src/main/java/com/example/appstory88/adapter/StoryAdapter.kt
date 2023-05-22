@@ -8,7 +8,7 @@ import com.example.appstory88.model.Story
 
 class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
     private val listStory: ArrayList<Story> = ArrayList<Story>()
-    private lateinit var onItemClickListener: ItemClickListener
+    lateinit var onItemClickListener: ItemClickListener
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -26,7 +26,6 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
         holder.binding.tvNameCategory.text = listStory[position].nameCategory
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(holder.adapterPosition)
-
         }
     }
 
@@ -36,7 +35,12 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
     }
 
     override fun getSizeItem(): Int {
-        return listStory.size
+        if(listStory.size>10){
+            return 10
+        } else{
+            return  listStory.size
+        }
+
     }
 
     interface ItemClickListener {

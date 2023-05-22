@@ -10,6 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@drawable/custom_bg_search"
         android:layout_height="match_parent">
 
         <ImageView
@@ -28,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="@string/app_story"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/im_menu"
             app:layout_constraintLeft_toRightOf="@+id/im_menu"
@@ -60,6 +61,8 @@
             android:layout_marginTop="30dp"
             android:background="#40000000"
             app:cardCornerRadius="12dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
             app:layout_constraintDimensionRatio="3.3:4"
             app:layout_constraintLeft_toLeftOf="@+id/im_menu"
             app:layout_constraintRight_toLeftOf="@id/tv_nameStory"
@@ -83,7 +86,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Kiếm Động Cửu Thiên"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/cv_image"
             app:layout_constraintRight_toRightOf="parent"
@@ -116,7 +119,7 @@
             android:id="@+id/view_top_story"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/custom_boder_top_detai_story"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +129,8 @@
             android:id="@+id/tv_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
             android:text="@string/view"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -249,7 +253,7 @@
             android:layout_width="0dp"
             android:layout_height="0.6dp"
             android:layout_marginTop="10dp"
-            android:background="@color/black"
+            android:background="#767777"
             app:layout_constraintLeft_toLeftOf="@+id/tv_view"
             app:layout_constraintRight_toRightOf="@+id/tv_read_story"
             app:layout_constraintTop_toBottomOf="@+id/tv_describe" />
