@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">AppStory88</string>
+    <string name="app_story">App Story</string>
+    <string name="search">Search</string>
+    <string name="read_next">Read next</string>
+    <string name="category">Category</string>
+    <string name="new_story_updated">NEW STORY UPDATED</string>
+    <string name="story_full">STORY FULL</string>
+    <string name="good_fairy_tale">good fairy tale</string>
+    <string name="good_love_language">good love language</string>
+    <string name="good_passion">good passion</string>
+    <string name="newly_updated_story">Newly updated story</string>
+    <string name="view">View</string>
+    <string name="chapter_number">Chapter number</string>
+    <string name="athur">Athur</string>
+    <string name="category_r">Category</string>
+    <string name="status">Status</string>
+    <string name="status_s">Status</string>
+    <string name="describe">Describe</string>
+    <string name="read_story">Read story</string>
+
+
 </resources>

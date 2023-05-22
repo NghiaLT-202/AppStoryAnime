@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/im_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_bg_search"
+            android:padding="10dp"
+            android:src="@drawable/icon_menu_72"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/app_story"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/im_menu"
+            app:layout_constraintLeft_toRightOf="@+id/im_menu"
+            app:layout_constraintTop_toTopOf="@+id/im_menu" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/custom_bg_search"
+            android:drawableLeft="@drawable/icon_search_20"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:paddingVertical="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:text="@string/search"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/im_menu"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/im_menu" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/im_menu">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_item_story_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintDimensionRatio="4:2.8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_story_banner" />
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/category"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rc_item_story_banner" />
+
+                <View
+                    android:id="@+id/view_top_story"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custom_boder_top_story"
+                    app:layout_constraintDimensionRatio="5:3"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_category"
+                    app:layout_constraintRight_toLeftOf="@+id/view_rating"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_category" />
+
+                <TextView
+                    android:id="@+id/tv_top_story"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TOP TRUYỆN"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/view_top_story"
+                    app:layout_constraintLeft_toLeftOf="@id/view_top_story"
+                    app:layout_constraintRight_toRightOf="@+id/view_top_story"
+                    app:layout_constraintTop_toTopOf="@+id/view_top_story" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="# TRUYỆN HAY"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_top_story"
+                    app:layout_constraintRight_toRightOf="@id/tv_top_story"
+                    app:layout_constraintTop_toBottomOf="@id/tv_top_story" />
+
+                <View
+                    android:id="@+id/view_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/custom_boder_rate"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_top_story"
+                    app:layout_constraintLeft_toRightOf="@+id/view_top_story"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/view_top_story" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="XẾP HẠNG"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/view_rating"
+                    app:layout_constraintLeft_toLeftOf="@id/view_rating"
+                    app:layout_constraintRight_toRightOf="@+id/view_rating"
+                    app:layout_constraintTop_toTopOf="@+id/view_rating" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="# TRUYỆN HAY"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_rating"
+                    app:layout_constraintRight_toRightOf="@id/tv_rating"
+                    app:layout_constraintTop_toBottomOf="@id/tv_rating" />
+
+                <View
+                    android:id="@+id/view_category"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custom_boder_category"
+                    app:layout_constraintDimensionRatio="5:3"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_category"
+                    app:layout_constraintRight_toLeftOf="@+id/view_bookmark"
+                    app:layout_constraintTop_toBottomOf="@+id/view_top_story" />
+
+                <TextView
+                    android:id="@+id/tv_list_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="THỂ LOẠI"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/view_category"
+                    app:layout_constraintLeft_toLeftOf="@id/view_category"
+                    app:layout_constraintRight_toRightOf="@+id/view_category"
+                    app:layout_constraintTop_toTopOf="@+id/view_category" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="# TRUYỆN HAY"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_list_category"
+                    app:layout_constraintRight_toRightOf="@id/tv_list_category"
+                    app:layout_constraintTop_toBottomOf="@id/tv_list_category" />
+
+                <View
+                    android:id="@+id/view_bookmark"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/custom_boder_bookmark"
+                    app:layout_constraintBottom_toBottomOf="@id/view_category"
+                    app:layout_constraintLeft_toRightOf="@id/view_category"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view_category" />
+
+                <TextView
+                    android:id="@+id/tv_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="BOOKMARK"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/view_bookmark"
+                    app:layout_constraintLeft_toLeftOf="@id/view_bookmark"
+                    app:layout_constraintRight_toRightOf="@+id/view_bookmark"
+                    app:layout_constraintTop_toTopOf="@+id/view_bookmark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="# TRUYỆN HAY"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_bookmark"
+                    app:layout_constraintRight_toRightOf="@id/tv_bookmark"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bookmark" />
+
+                <TextView
+                    android:id="@+id/tv_new_story_updated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/new_story_updated"
+                    android:textColor="@color/black"
+
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/view_category"
+                    app:layout_constraintTop_toBottomOf="@+id/view_category"
+
+                    />
+                <ImageView
+                    android:id="@+id/im_view_more_new_story_updated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="@id/view_rating"
+                    android:src="@drawable/icon_back_reverse_72"
+                    app:layout_constraintTop_toTopOf="@+id/tv_new_story_updated"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_new_story_updated"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_item_story"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_story_updated"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_story" />
+
+                <TextView
+                    android:id="@+id/tv_story_full"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/story_full"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/view_category"
+                    app:layout_constraintTop_toBottomOf="@+id/rc_item_story"
+
+                    />
+                <ImageView
+                    android:id="@+id/im_view_more_story_full"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="@id/view_rating"
+                    android:src="@drawable/icon_back_reverse_72"
+                    app:layout_constraintTop_toTopOf="@+id/tv_story_full"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_story_full"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_item_story_full"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_story_full"
+                    tools:itemCount="6"
+
+                    tools:listitem="@layout/item_story" />
+
+                <TextView
+                    android:id="@+id/tv_good_love_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/good_love_language"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/view_category"
+                    app:layout_constraintTop_toBottomOf="@+id/rc_item_story_full"
+
+                    />
+                <ImageView
+                    android:id="@+id/im_view_more_good_love_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="@id/view_rating"
+                    android:src="@drawable/icon_back_reverse_72"
+                    app:layout_constraintTop_toTopOf="@+id/tv_good_love_language"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_good_love_language"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_item_good_love_language"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/tv_good_love_language"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_story" />
+
+                <TextView
+                    android:id="@+id/tv_good_fairy_tale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/good_fairy_tale"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/view_category"
+                    app:layout_constraintTop_toBottomOf="@+id/rc_item_good_love_language"
+
+                    />
+                <ImageView
+                    android:id="@+id/im_view_more_good_fairy_tale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="@id/view_rating"
+                    android:src="@drawable/icon_back_reverse_72"
+                    app:layout_constraintTop_toTopOf="@+id/tv_good_fairy_tale"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_good_fairy_tale"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_item_good_fairy_tale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/tv_good_fairy_tale"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_story" />
+
+                <TextView
+                    android:id="@+id/tv_good_passion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/good_passion"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/view_category"
+                    app:layout_constraintTop_toBottomOf="@+id/rc_item_good_fairy_tale"
+
+                    />
+                <ImageView
+                    android:id="@+id/im_view_more_good_passion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="@id/view_rating"
+                    android:src="@drawable/icon_back_reverse_72"
+                    app:layout_constraintTop_toTopOf="@+id/tv_good_passion"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_good_passion"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_item_good_passion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/tv_good_passion"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_story" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

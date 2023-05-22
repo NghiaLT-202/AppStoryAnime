@@ -8,15 +8,15 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_image"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="0dp"
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintDimensionRatio="2:2.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -29,7 +29,7 @@
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/anh_gai_xinh" />
+                android:src="@drawable/anime" />
 
 
         </androidx.cardview.widget.CardView>
@@ -41,9 +41,9 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:padding="5dp"
-            android:text="Hoa Hồng Đen Tìm Lại Tình YêuTình Yêu Tìm Lại Tình YêuTình Yêu Tìm Lại Tình "
-            android:textColor="#00B0FF"
-            android:textSize="24sp"
+            tools:text="Hoa Hồng Đen Tìm Lại Tình  Tìm Lại Tình "
+            android:textColor="#48B0E3"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/cv_image"
             app:layout_constraintRight_toRightOf="@id/cv_image"
@@ -53,23 +53,25 @@
             android:id="@+id/tv_nameCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
             android:textColor="@color/black"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="18sp"
-            app:layout_constraintLeft_toLeftOf="@id/cv_image"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toLeftOf="@id/tv_nameStory"
             app:layout_constraintRight_toRightOf="@id/cv_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_nameStory"
-            android:text="Hoa Hồng Đen Tìm Lại Tình Yêu" />
+            tools:text="Hoa Hồng Đen Tìm Lại Tình Yêu" />
 
         <com.example.appstory2.ui.ViewStar
             android:id="@+id/view_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="13dp"
             app:layout_constraintLeft_toLeftOf="@id/tv_nameStory"
             app:layout_constraintTop_toBottomOf="@id/tv_nameCategory"
             app:numberStar="4" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
