@@ -17,9 +17,10 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:background="@drawable/custom_bg_search"
-            android:padding="10dp"
-            android:src="@drawable/icon_menu_72"
+            android:paddingVertical="5dp"
+            android:paddingRight="5dp"
+
+            android:src="@drawable/baseline_menu_24"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

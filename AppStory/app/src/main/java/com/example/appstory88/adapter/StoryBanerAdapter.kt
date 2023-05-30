@@ -8,6 +8,7 @@ import com.example.appstory88.model.Story
 
 class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
     private val listStory: ArrayList<Story> = ArrayList<Story>()
+    lateinit var iclick:Iclick
     @SuppressLint("NotifyDataSetChanged")
     fun setListStoryBanner(lisSing: List<Story>?) {
         this.listStory.clear()
@@ -22,6 +23,7 @@ class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
         holder.binding.tvNameCategory.text="Category: "+listStory[position].nameCategory
         holder.binding.viewStar.numberStar=listStory[position].numberStar
         holder.itemView.setOnClickListener {
+            iclick.clickItem(holder.adapterPosition)
 
         }
 
@@ -33,6 +35,9 @@ class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
 
     override fun getSizeItem(): Int {
        return listStory.size
+    }
+    interface Iclick{
+     fun   clickItem(position: Int)
     }
 
 }

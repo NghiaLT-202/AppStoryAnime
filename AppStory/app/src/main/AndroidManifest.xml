@@ -23,13 +23,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewMoreStoryActivity"
+            android:name=".ui.morestory.ViewMoreStoryActivity"
 
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".ViewDescribeStory"
+            android:name=".ui.describestory.ViewDescribeStoryFragment"
+
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".ui.detailstory.DetailStoryActivity"
 
             android:exported="true">
 

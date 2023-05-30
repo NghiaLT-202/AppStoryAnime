@@ -24,6 +24,8 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
         holder.binding.tvNameStory.text = listStory[position].nameStory
         holder.binding.viewStar.numberStar = listStory[position].numberStar
         holder.binding.tvNameCategory.text = listStory[position].nameCategory
+        val item = listStory[position]
+
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(holder.adapterPosition)
         }

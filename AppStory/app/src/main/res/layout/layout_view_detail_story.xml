@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/im_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_nameStory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Cô gái đến từ đam mê"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/im_back"
+            app:layout_constraintLeft_toRightOf="@+id/im_back"
+
+            app:layout_constraintRight_toLeftOf="@+id/im_menu"
+            app:layout_constraintTop_toTopOf="@+id/im_back" />
+
+        <ImageView
+            android:id="@+id/im_setting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@drawable/baseline_settings_24"
+            app:layout_constraintBottom_toBottomOf="@+id/im_back"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/im_back" />
+
+        <ImageView
+            android:id="@+id/im_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@drawable/baseline_menu_24"
+            app:layout_constraintBottom_toBottomOf="@+id/im_back"
+            app:layout_constraintRight_toLeftOf="@+id/im_setting"
+            app:layout_constraintTop_toTopOf="@+id/im_back" />
+
+        <TextView
+            android:id="@+id/tv_namechapter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Cô gái đến từ đam mê"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/im_back"
+            app:layout_constraintRight_toRightOf="@id/im_setting"
+
+            app:layout_constraintTop_toBottomOf="@+id/im_back" />
+
+        <TextView
+            android:id="@+id/tv_contentStory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20sp"
+            android:text="Dừng lại một chút và hãy cùng khám phá một loại giấy in đặc biệt, giấy in nhiệt! Bạn có tin rằng chỉ cần tiếp xúc với nhiệt độ, nội dung trên giấy sẽ xuất hiện trước mắt một cách kỳ diệu? Hãy tưởng tượng bạn viết một thông điệp ngọt ngào trên một tờ giấy trắng ngày hôm nay, và rồi ngay sau khi nắp bút, nội dung ấy biến mất nhưng lại tái hiện khi bạn tiếp xúc giấy với nguồn nhiệt. Đó là phép màu của giấy in nhiệt!
+
+Với khả năng tạo ra sự hài hước và tò mò, giấy in nhiệt không chỉ giới hạn trong việc in ấn thông thường. Bạn có thể tạo ra trò chơi, câu đố hay thậm chí một bức tranh sống động. Điều tuyệt vời là bạn có thể gợi mở sự tò mò của người đọc bằng cách để họ khám phá nội dung ẩn trong các bức tranh hay thông điệp hài hước."
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:lineSpacingExtra="10dp"
+            app:layout_constraintLeft_toLeftOf="@id/im_back"
+            app:layout_constraintRight_toRightOf="@id/im_setting"
+
+            app:layout_constraintTop_toBottomOf="@+id/tv_namechapter"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
