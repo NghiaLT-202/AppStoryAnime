@@ -9,5 +9,6 @@ import com.example.appstory88.model.Story
 @Database(entities = [User::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    //ngha
 
 }
