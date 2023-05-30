@@ -24,7 +24,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
 
         storyAdapter = StoryAdapter().apply {
             binding.rcListStory.adapter = this
-            val story = Story(
+            val story = Story(0,
                 R.drawable.anime5,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 2,
@@ -37,7 +37,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
                         "\n" +
                         "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
             )
-            val story1 = Story(
+            val story1 = Story(1,
                 R.drawable.anime4,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 0,
@@ -50,7 +50,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
                         "\n" +
                         "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
             )
-            val story2 = Story(
+            val story2 = Story(2,
                 R.drawable.anime3,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 4,
@@ -63,7 +63,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
                         "\n" +
                         "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
             )
-            val story3 = Story(
+            val story3 = Story(3,
                 R.drawable.anime2,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 5,
@@ -76,7 +76,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
                         "\n" +
                         "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
             )
-            val story4 = Story(
+            val story4 = Story(4,
                 R.drawable.anime1,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 2,
@@ -89,7 +89,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
                         "\n" +
                         "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
             )
-            val story5 = Story(
+            val story5 = Story(5,
                 R.drawable.anime5,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 3,
@@ -102,7 +102,7 @@ class ViewMoreStoryActivity : AppCompatActivity() {
                         "\n" +
                         "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
             )
-            val story6 = Story(
+            val story6 = Story(6,
                 R.drawable.anime4,
                 "Tiếu ngạo giang hồ lồ tồ qua sông",
                 1,
