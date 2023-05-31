@@ -8,7 +8,7 @@ import com.example.appstory88.R
 import com.example.appstory88.databinding.LayoutViewDescribeStoryBinding
 import com.example.appstory88.ui.detailstory.DetailStoryActivity
 
-class ViewDescribeStoryFragment : AppCompatActivity(){
+class ViewDescribeStoryActivity : AppCompatActivity(){
     lateinit var binding:LayoutViewDescribeStoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

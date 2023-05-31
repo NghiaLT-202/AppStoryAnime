@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Story(
-    @PrimaryKey(autoGenerate = true) var idStory: Int,
     @ColumnInfo var imageStory: Int,
     @ColumnInfo var nameStory: String,
     @ColumnInfo var numberStar: Int,
@@ -15,4 +14,7 @@ class Story(
     @ColumnInfo var numberView: Long,
     @ColumnInfo var status: Boolean,
     @ColumnInfo var describe: String
-)
+){
+    @PrimaryKey(autoGenerate = true) var idStory: Int=0
+
+}

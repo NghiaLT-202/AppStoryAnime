@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_nameStory"
             tools:text="Hoa Hồng Đen Tìm Lại Tình Yêu" />
 
-        <com.example.appstory2.ui.ViewStar
+        <com.example.appstory88.customview.ViewStar
             android:id="@+id/view_star"
             android:layout_width="80dp"
             android:layout_height="13dp"

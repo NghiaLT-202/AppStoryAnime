@@ -1,163 +1,26 @@
-package com.example.appstory88
+package com.example.appstory88.ui
 
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.room.Room
-import com.example.appstory88.adapter.StoryAdapter
-import com.example.appstory88.adapter.StoryBanerAdapter
-import com.example.appstory88.database.AppDatabase
-import com.example.appstory88.databinding.HomeActivityBinding
+import androidx.lifecycle.MutableLiveData
+import com.example.appstory88.R
+import com.example.appstory88.base.BaseViewModel
 import com.example.appstory88.model.Story
-import com.example.appstory88.model.User
-import com.example.appstory88.ui.describestory.ViewDescribeStoryFragment
-import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: HomeActivityBinding
-    private val listStory: ArrayList<Story> = ArrayList<Story>()
-    var storyAdapter: StoryAdapter? = null
-    var storyBannerAdapter: StoryBanerAdapter? = null
+class MainViewModel : BaseViewModel() {
+    var listStoryLiveData = MutableLiveData<MutableList<Story>>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.home_activity)
+    var storyList: MutableList<Story> = mutableListOf()
 
-        val appDatabase = Room.databaseBuilder(
-            this, AppDatabase::class.java, "app-database"
-        ).allowMainThreadQueries().build()
-        val userDao = appDatabase.userDao()
-        val newUser = User("John Doe")
-        userDao.insertUser(newUser)
-        initAdapter()
-        initListener()
+    override fun onCleared() {
+        super.onCleared()
     }
 
-    private fun initListener() {
-
-        binding.imViewMoreStoryFull.setOnClickListener {
-            var intent = Intent(this, ViewMoreStoryActivity::class.java)
-
-            startActivity(intent)
-        }
-        binding.imViewMoreGoodPassion.setOnClickListener {
-            var intent = Intent(this, ViewMoreStoryActivity::class.java)
-
-            startActivity(intent)
-        }
-        binding.imViewMoreGoodFairyTale.setOnClickListener {
-            var intent = Intent(this, ViewMoreStoryActivity::class.java)
-
-            startActivity(intent)
-        }
-        binding.imViewMoreGoodLoveLanguage.setOnClickListener {
-            var intent = Intent(this, ViewMoreStoryActivity::class.java)
-            Log.e("tnghia", "hhh")
-            startActivity(intent)
-        }
-        binding.imViewMoreNewStoryUpdated.setOnClickListener {
-            var intent = Intent(this, ViewMoreStoryActivity::class.java)
-
-            startActivity(intent)
-        }
-    }
-
-    private fun initAdapter() {
-        storyBannerAdapter = StoryBanerAdapter().apply {
-            binding.rcItemStoryBanner.adapter = this
-            initData()
-            listStory.shuffle()
-            setListStoryBanner(listStory)
-        }
-        storyBannerAdapter?.iclick = object : StoryBanerAdapter.Iclick {
-            override fun clickItem(position: Int) {
-                val intent = Intent(this@MainActivity, ViewDescribeStoryFragment::class.java)
-                val bundle = Bundle()
-                bundle.putString("key", "value")
-                var name = listStory[position].nameStory
-                var numberStar = listStory[position].numberStar
-                var view = listStory[position].numberView
-                var authur = listStory[position].nameAuthur
-                var category = listStory[position].nameCategory
-                var describe = listStory[position].describe
-                intent.putExtra("", bundle)
-                startActivity(intent)
-            }
-
-
-        }
-        storyAdapter = StoryAdapter().apply {
-            binding.rcItemStory.adapter = this
-            listStory.shuffle()
-            setListStory(listStory)
-        }
-        storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                val intent = Intent(this@MainActivity, ViewDescribeStoryFragment::class.java)
-                startActivity(intent)
-            }
-
-        }
-
-
-        storyAdapter = StoryAdapter().apply {
-            binding.rcItemStoryFull.adapter = this
-            listStory.reverse()
-            setListStory(listStory)
-        }
-        storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                var intent = Intent(this@MainActivity, ViewDescribeStoryFragment::class.java)
-                startActivity(intent)
-            }
-
-        }
-        storyAdapter = StoryAdapter().apply {
-            binding.rcItemGoodLoveLanguage.adapter = this
-            listStory.shuffle()
-            setListStory(listStory)
-        }
-        storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                var intent = Intent(this@MainActivity, ViewDescribeStoryFragment::class.java)
-                startActivity(intent)
-            }
-
-        }
-        storyAdapter = StoryAdapter().apply {
-            binding.rcItemGoodFairyTale.adapter = this
-            listStory.reverse()
-            listStory.shuffle()
-            setListStory(listStory)
-        }
-        storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                var intent = Intent(this@MainActivity, ViewDescribeStoryFragment::class.java)
-                startActivity(intent)
-            }
-
-        }
-        storyAdapter = StoryAdapter().apply {
-            binding.rcItemGoodPassion.adapter = this
-            listStory.shuffle()
-            setListStory(listStory)
-        }
-        storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                var intent = Intent(this@MainActivity, ViewDescribeStoryFragment::class.java)
-                startActivity(intent)
-            }
-
-        }
-
+    fun getAllListStory() {
+        listStoryLiveData.postValue(storyList)
 
     }
 
-
-    private fun initData() {
-        val story = Story(0,
+    fun initData() {
+        val story = Story(
             R.drawable.anime5,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             2,
@@ -174,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
         story.nameAuthur = ""
-        val story1 = Story(1,
+        val story1 = Story(
             R.drawable.anime4,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             0,
@@ -190,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
-        val story2 = Story(2,
+        val story2 = Story(
             R.drawable.anime3,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             4,
@@ -206,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
-        val story3 = Story(3,
+        val story3 = Story(
             R.drawable.anime2,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             5,
@@ -222,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
-        val story4 = Story(4,
+        val story4 = Story(
             R.drawable.anime1,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             2,
@@ -238,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
-        val story5 = Story(5,
+        val story5 = Story(
             R.drawable.anime5,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             3,
@@ -254,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
-        val story6 = Story(6,
+        val story6 = Story(
             R.drawable.anime4,
             "Tiếu ngạo giang hồ lồ tồ qua sông",
             1,
@@ -270,14 +133,14 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!"
         )
-        listStory.add(story)
-        listStory.add(story1)
-        listStory.add(story2)
-        listStory.add(story3)
-        listStory.add(story4)
-        listStory.add(story5)
-        listStory.add(story6)
+        storyList.add(story)
+        storyList.add(story1)
+        storyList.add(story2)
+        storyList.add(story3)
+        storyList.add(story4)
+        storyList.add(story5)
+        storyList.add(story6)
+
+
     }
-
-
 }
