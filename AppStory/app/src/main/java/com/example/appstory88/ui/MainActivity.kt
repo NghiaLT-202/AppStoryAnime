@@ -15,11 +15,10 @@ import com.example.appstory88.model.Story
 import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
 import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
-@Suppress("NAME_SHADOWING")
 class MainActivity : AppCompatActivity() {
     lateinit var binding: HomeActivityBinding
     private val listStory: MutableList<Story> = mutableListOf()
-    lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MainViewModel
     private var storyGoodPassionAdapter: StoryAdapter? = null
     private var storyNewUpdateAdapter: StoryAdapter? = null
     private var storyGoodLoveLanguageAdapter: StoryAdapter? = null
@@ -32,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.home_activity)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
         initAdapter()
         initListener()
         initData()
@@ -94,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun storyGoodPassionAdapter(rcItem: RecyclerView) {
+    private fun storyGoodPassionAdapter(rcItem: RecyclerView) {
         storyGoodPassionAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
@@ -103,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun storyNewUpdateAdapter(rcItem: RecyclerView) {
+    private fun storyNewUpdateAdapter(rcItem: RecyclerView) {
         storyNewUpdateAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
@@ -111,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun storyGoodLoveLanguageAdapter(rcItem: RecyclerView) {
+    private fun storyGoodLoveLanguageAdapter(rcItem: RecyclerView) {
         storyGoodLoveLanguageAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
@@ -119,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun storyGoodFairyTaleAdapter(rcItem: RecyclerView) {
+    private fun storyGoodFairyTaleAdapter(rcItem: RecyclerView) {
         storyGoodFairyTaleAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
@@ -128,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun storyFullAdapter(rcItem: RecyclerView) {
+    private fun storyFullAdapter(rcItem: RecyclerView) {
         storyFullAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
@@ -136,31 +134,28 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun onClickItemStoryAdapter(adapter: StoryAdapter) {
+    private fun onClickItemStoryAdapter(adapter: StoryAdapter) {
         adapter.onItemClickListener = object : StoryAdapter.ItemClickListener {
             override fun onItemClick(position: Int) {
-                intentActivity(ViewDescribeStoryActivity::class.java)
-
+                val intent = Intent(this@MainActivity, ViewDescribeStoryActivity::class.java)
+                startActivity(intent)
             }
 
         }
     }
 
-    fun onclickBanerAdapter(adapter: StoryBanerAdapter) {
+    private fun onclickBanerAdapter(adapter: StoryBanerAdapter) {
         adapter.iclick = object : StoryBanerAdapter.Iclick {
             override fun clickItem(position: Int) {
-                intentActivity(ViewDescribeStoryActivity::class.java)
+                val intent = Intent(this@MainActivity, ViewDescribeStoryActivity::class.java)
+                startActivity(intent)
             }
 
 
         }
     }
 
-    fun intentActivity(activityClass: Class<*>) {
-        var intent = Intent(this@MainActivity, activityClass::class.java)
 
-        startActivity(intent)
-    }
 
 
 }
