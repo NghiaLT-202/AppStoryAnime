@@ -18,7 +18,6 @@ class ViewStar : LinearLayout {
 
     init {
         binding = LayoutViewStarBinding.inflate(LayoutInflater.from(context), this, true)
-        Log.e("tnghia", "numebr star: " + numberStar)
 
 
         layout(0, 0, WRAP_CONTENT, WRAP_CONTENT)
@@ -28,7 +27,6 @@ class ViewStar : LinearLayout {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs){
         val typeArrray = context.theme.obtainStyledAttributes(attrs, R.styleable.ViewStar, 0, 0)
         numberStar = typeArrray.getInteger(R.styleable.ViewStar_numberStar, 0)
-        Log.e("tnghia", "numebr star1: " + numberStar)
         when (numberStar) {
             1 -> {
                 binding.imStar1.setImageResource(R.drawable.icon_star_48)

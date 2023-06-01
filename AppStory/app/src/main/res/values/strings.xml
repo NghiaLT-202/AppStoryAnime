@@ -18,6 +18,11 @@
     <string name="status_s">Status</string>
     <string name="describe">Describe</string>
     <string name="read_story">Read story</string>
+    <string name="top_story">TOP STORY</string>
+    <string name="describe_story">Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!</string>
+    <string name="view_story">View: </string>
+    <string name="rate_story">Rate Story</string>
+    <string name="most_read_stories_of_the_month">Most read stories of the month</string>
 
 
 </resources>

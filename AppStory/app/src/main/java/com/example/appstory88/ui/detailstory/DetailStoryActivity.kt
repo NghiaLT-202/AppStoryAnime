@@ -1,41 +1,39 @@
 package com.example.appstory88.ui.detailstory
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import android.util.Log
 import com.example.appstory88.R
+import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.databinding.LayoutViewDetailStoryBinding
 import com.example.appstory88.model.Story
 
-class DetailStoryActivity : AppCompatActivity() {
-    lateinit var binding: LayoutViewDetailStoryBinding
+class DetailStoryActivity :
+    BaseBindingActivity<LayoutViewDetailStoryBinding, DetailStoryViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
-    lateinit var viewModel: DetailStoryViewModel
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.layout_view_detail_story)
-        viewModel = ViewModelProvider(this)[DetailStoryViewModel::class.java]
-        initData()
+    override fun getLayoutId(): Int {
+       return R.layout.layout_view_detail_story
+    }
 
-
-
+    override fun setupView(savedInstanceState: Bundle?) {
 
 
     }
 
-    private fun initData() {
-        viewModel.initData()
-        viewModel.getAllListStory()
+    override fun setupData() {
+        initData()
+    }
 
-        viewModel.listStoryLiveData.observe(this) { story ->
-            listStory.addAll(story)
-            binding.tvNameStory.text = listStory[0].nameStory
-            binding.tvContentStory.text = listStory[0].describe
-            binding.tvNamechapter.text = "Chương 1 "
-        }
+    override fun getViewModel(): Class<DetailStoryViewModel> {
+        return DetailStoryViewModel::class.java
+    }
+
+    private fun initData() {
+        Log.e("tnghia",""+listStory.size    )
+        binding.tvNameStory.text=intent.getStringExtra("nameStory")
+        binding.tvDescribeStory.text=intent.getStringExtra("describeStory")
+        binding.tvNamechapter.text=intent.getStringExtra("chapter")
 
 
     }

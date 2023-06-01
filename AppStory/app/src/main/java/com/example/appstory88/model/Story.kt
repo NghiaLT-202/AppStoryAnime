@@ -13,7 +13,9 @@ class Story(
     @ColumnInfo var nameCategory: String,
     @ColumnInfo var numberView: Long,
     @ColumnInfo var status: Boolean,
-    @ColumnInfo var describe: String
+    @ColumnInfo var describe: String,
+    @ColumnInfo var chapter: String,
+    @ColumnInfo var chapterSum: Int
 ){
     @PrimaryKey(autoGenerate = true) var idStory: Int=0
 

@@ -37,6 +37,13 @@
         <activity
             android:name=".ui.detailstory.DetailStoryActivity"
 
+
+            android:exported="true">
+
+        </activity> <activity
+            android:name=".ui.home.ratestory.RateStoryActivity"
+
+
             android:exported="true">
 
         </activity>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/im_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:paddingVertical="5dp"
+            android:paddingRight="5dp"
+            android:background="@drawable/custom_ripple"
+            android:src="@drawable/baseline_menu_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/rate_story"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/im_menu"
+            app:layout_constraintLeft_toRightOf="@+id/im_menu"
+            app:layout_constraintTop_toTopOf="@+id/im_menu" />
+
+        <TextView
+            android:id="@+id/tv_rate_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/most_read_stories_of_the_month"
+            android:textColor="#205C8F"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/im_menu"
+            app:layout_constraintTop_toBottomOf="@+id/im_menu" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_item_story"
+            android:layout_width="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="32dp"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:listitem="@layout/item_rate_story"
+            app:layout_constraintTop_toBottomOf="@id/tv_rate_story"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_rate_story"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="20dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
