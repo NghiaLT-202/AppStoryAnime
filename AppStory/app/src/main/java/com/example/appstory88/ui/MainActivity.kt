@@ -1,8 +1,10 @@
 package com.example.appstory88.ui
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appstory88.R
@@ -46,7 +48,7 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     }
 
     private fun initData() {
-        viewModel.initData()
+        viewModel.initData(this)
         viewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStory.addAll(story)
@@ -60,6 +62,9 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     }
 
     private fun initListener() {
+        binding.imMenu.setOnClickListener {
+            Log.e("tnghia",""+R.string.describe_story)
+        }
         binding.viewRating.setOnClickListener {
             intentActivity(RateStoryActivity::class.java)
         }

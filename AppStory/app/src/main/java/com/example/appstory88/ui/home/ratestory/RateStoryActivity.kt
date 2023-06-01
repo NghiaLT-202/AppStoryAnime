@@ -24,7 +24,7 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
     override fun setupView(savedInstanceState: Bundle?) {
         initAdapter()
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.initData()
+        mainViewModel.initData(this)
         mainViewModel.listStoryLiveData.observe(this) { story ->
             rateStoryAdapter.setListStory(story)
             listStory.addAll(story)

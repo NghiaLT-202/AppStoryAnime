@@ -34,7 +34,7 @@ class ViewMoreStoryActivity :
 
     private fun initData() {
 
-        mainViewModel.initData()
+        mainViewModel.initData(this)
         mainViewModel.listStoryLiveData.observe(this) { story ->
             listStory.addAll(story)
             storyAdapter?.setListStory(listStory)
