@@ -7,6 +7,7 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.RateStoryAdapter
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
+import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.RateActivityBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
@@ -58,17 +59,16 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
     }
     private fun intentActivityAndData(activityClass: Class<*>,position: Int) {
         val intent = Intent(this, activityClass)
-        intent.putExtra("Image",listStory[position].imageStory)
-        intent.putExtra("nameStory",listStory[position].nameStory)
-        intent.putExtra("nameAuthur",listStory[position].nameAuthur)
-        intent.putExtra("numberstar",listStory[position].numberStar)
-        intent.putExtra("numberView",listStory[position].numberView)
-        intent.putExtra("status",listStory[position].status)
-        intent.putExtra("category",listStory[position].nameCategory)
-        intent.putExtra("describe",listStory[position].describe)
-        intent.putExtra("chapter",listStory[position].chapter)
-
-        intent.putExtra("chapterSum",listStory[position].chapterSum)
+        intent.putExtra(Constant.IMAGE_STORY,listStory[position].imageStory)
+        intent.putExtra(Constant.NAME_STORY,listStory[position].nameStory)
+        intent.putExtra(Constant.NAME_AUTHUR_STORY,listStory[position].nameAuthur)
+        intent.putExtra(Constant.NUMBER_STAR_STORY,listStory[position].numberStar)
+        intent.putExtra(Constant.NUMBER_VIEW_STORY,listStory[position].numberView)
+        intent.putExtra(Constant.STATUS_STORY,listStory[position].status)
+        intent.putExtra(Constant.CATEGORY_STORY,listStory[position].nameCategory)
+        intent.putExtra(Constant.DESCRIBE_STORY,listStory[position].describe)
+        intent.putExtra(Constant.CHAPTER_STORY,listStory[position].chapter)
+        intent.putExtra(Constant.CHAPTER_SUM_STORY,listStory[position].chapterSum)
         startActivity(intent)
 
     }

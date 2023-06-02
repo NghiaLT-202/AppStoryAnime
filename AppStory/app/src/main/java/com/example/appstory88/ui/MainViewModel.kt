@@ -26,11 +26,11 @@ class MainViewModel : BaseViewModel() {
             R.drawable.anime1,
         )
         val listNameStory = arrayOf(
-            "Tiếu ngạo giang hồ lồ tồ qua sông",
-            "Quan vân trường",
-            "Hoàng hậu thái y tiền truyện",
-            "Một kiếm phong sương",
-            "Thế giới anh và em",
+            context.getString(R.string.ti_u_ng_o_giang_h_l_t_qua_s_ng),
+            context.getString(R.string.quan_v_n_tr_ng),
+            context.getString(R.string.ho_ng_h_u_th_i_y_ti_n_truy_n),
+            context.getString(R.string.m_t_ki_m_phong_s_ng),
+            context.getString(R.string.th_gi_i_anh_v_em),
         )
         val listNumberStar = intArrayOf(
             2,
@@ -40,18 +40,18 @@ class MainViewModel : BaseViewModel() {
             1,
         )
         val listNameAuthur = arrayOf(
-            "Tuấn Nghĩa",
-            "Tuấn Linh",
-            "Tuấn Sơn",
-            "Tuấn Hồng",
-            "Tuấn Dũng",
+            context.getString(R.string.tu_n_ngh_a),
+            context.getString(R.string.tu_n_linh),
+            context.getString(R.string.tu_n_s_n),
+            context.getString(R.string.tu_n_h_ng),
+            context.getString(R.string.tu_n_d_ng),
         )
         val listNameCategory = arrayOf(
-            "Kiếm hiệp",
-            "Tình cảm",
-            "Đam mỹ",
-            "Học sinh",
-            "Cổ tích",
+            context.getString(R.string.truy_n_m_i),
+            context.getString(R.string.truy_n_full),
+            context.getString(R.string.ng_n_t_nh),
+            context.getString(R.string.ti_n_hi_p),
+            context.getString(R.string.am_m),
         )
         val listView = longArrayOf(
             1000000,
@@ -76,11 +76,11 @@ class MainViewModel : BaseViewModel() {
 
         )
         val listChapter= arrayOf(
-            "Chương 1",
-            "Chương 2",
-            "Chương 3",
-            "Chương 4",
-            "Chương 5",
+            context.getString(R.string.ch_ng_1),
+            context.getString(R.string.ch_ng_2),
+            context.getString(R.string.ch_ng_3),
+            context.getString(R.string.ch_ng_4),
+            context.getString(R.string.ch_ng_5),
         )
         val listChapterSum = arrayOf(
             20,

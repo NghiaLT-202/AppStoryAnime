@@ -7,12 +7,12 @@ import com.example.appstory88.databinding.ItemStoryBinding
 import com.example.appstory88.model.Story
 
 class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
-    private val listStory: ArrayList<Story> = ArrayList<Story>()
-    lateinit var onItemClickListener: ItemClickListener
+    private val listStory: MutableList<Story> = arrayListOf()
+     var onItemClickListener: ItemClickListener?=null
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setListStory(lisSing: List<Story>?) {
+    fun setListStory(lisSing: MutableList<Story>?) {
         this.listStory.clear()
         this.listStory.addAll(lisSing!!)
         notifyDataSetChanged()
@@ -24,10 +24,9 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
         holder.binding.tvNameStory.text = listStory[position].nameStory
         holder.binding.viewStar.numberStar = listStory[position].numberStar
         holder.binding.tvNameCategory.text = listStory[position].nameCategory
-        val item = listStory[position]
 
         holder.itemView.setOnClickListener {
-            onItemClickListener.onItemClick(holder.adapterPosition)
+            onItemClickListener?.onItemClick(holder.adapterPosition)
         }
     }
 
@@ -37,10 +36,10 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
     }
 
     override fun getSizeItem(): Int {
-        if(listStory.size>10){
-            return 10
+        return if(listStory.size>10){
+            10
         } else{
-            return  listStory.size
+            listStory.size
         }
 
     }

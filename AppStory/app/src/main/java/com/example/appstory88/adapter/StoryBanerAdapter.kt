@@ -7,10 +7,10 @@ import com.example.appstory88.databinding.ItemStoryBannerBinding
 import com.example.appstory88.model.Story
 
 class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
-    private val listStory: ArrayList<Story> = ArrayList<Story>()
-    lateinit var iclick:Iclick
+    private val listStory: MutableList<Story> = arrayListOf()
+     var iclick:Iclick?=null
     @SuppressLint("NotifyDataSetChanged")
-    fun setListStoryBanner(lisSing: List<Story>?) {
+    fun setListStoryBanner(lisSing: MutableList<Story>?) {
         this.listStory.clear()
         this.listStory.addAll(lisSing!!)
         notifyDataSetChanged()
@@ -19,11 +19,11 @@ class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBannerBinding>, position: Int) {
         holder.binding.imStory.setImageResource(listStory[position].imageStory)
         holder.binding.tvNameStory.text=listStory[position].nameStory
-        holder.binding.tvNameAuthor.text="Authur: "+listStory[position].nameAuthur
-        holder.binding.tvNameCategory.text="Category: "+listStory[position].nameCategory
+        holder.binding.tvValueNameAuthor.text=listStory[position].nameAuthur
+        holder.binding.tvValueNameCategory.text=listStory[position].nameCategory
         holder.binding.viewStar.numberStar=listStory[position].numberStar
         holder.itemView.setOnClickListener {
-            iclick.clickItem(holder.adapterPosition)
+            iclick?.clickItem(holder.adapterPosition)
 
         }
 

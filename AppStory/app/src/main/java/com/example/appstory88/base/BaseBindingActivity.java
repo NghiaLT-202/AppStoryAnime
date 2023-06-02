@@ -26,9 +26,12 @@ public abstract class BaseBindingActivity<B extends ViewDataBinding, T extends B
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, getLayoutId());
         viewModel = new ViewModelProvider(this).get(getViewModel());
-        setupData();
         setupView(savedInstanceState);
+        setupData();
+
     }
+
+
 
     @Override
     protected void attachBaseContext(Context newBase) {

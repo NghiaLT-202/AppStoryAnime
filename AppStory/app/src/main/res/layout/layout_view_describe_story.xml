@@ -2,7 +2,8 @@
 
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -27,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:text="@string/app_story"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -85,7 +86,7 @@
             android:layout_marginLeft="15dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Kiếm Động Cửu Thiên"
+            tools:text="Kiếm Động Cửu Thiên"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/cv_image"
@@ -141,7 +142,7 @@
             android:id="@+id/tv_value_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1001"
+            tools:text="1001"
             android:textColor="@color/black"
             android:textSize="16sp"
 
@@ -163,7 +164,7 @@
             android:id="@+id/tv_value_chapter_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10"
+            tools:text="10"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintLeft_toRightOf="@+id/tv_chapter_number"
@@ -186,7 +187,7 @@
             android:id="@+id/tv_value_authur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mck"
+            tools:text="Mck"
             android:textColor="@color/black"
             android:textSize="16sp"
 
@@ -208,7 +209,7 @@
             android:id="@+id/tv_value_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đam mỹ"
+            tools:text="Đam mỹ"
             android:textColor="@color/black"
             android:textSize="16sp"
 
@@ -230,7 +231,7 @@
             android:id="@+id/tv_value_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đang ra"
+            tools:text="Đang ra"
             android:textColor="@color/black"
             android:textSize="16sp"
 
@@ -263,8 +264,7 @@
             android:layout_width="0dp"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
-            android:text="Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn
-Phát triển trong nghịch cảnh, cầu sinh nơi tuyệt địa, bất khuất không buông tha, mới có thể có thể phá võ chi cực đạo.
+            tools:text="Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn
 Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo."
             app:layout_constraintLeft_toLeftOf="@+id/tv_view"
             app:layout_constraintRight_toRightOf="@+id/tv_read_story"

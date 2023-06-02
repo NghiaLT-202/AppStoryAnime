@@ -9,6 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
+        android:background="@drawable/custom_ripple_view"
+        android:paddingBottom="5dp"
+
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
@@ -39,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:padding="5dp"
             tools:text="Hoa Hồng Đen Tìm Lại Tình  Tìm Lại Tình "
             android:textColor="#48B0E3"
@@ -70,6 +73,7 @@
             android:layout_height="13dp"
             app:layout_constraintLeft_toLeftOf="@id/tv_nameStory"
             app:layout_constraintTop_toBottomOf="@id/tv_nameCategory"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:numberStar="4" />
 
 

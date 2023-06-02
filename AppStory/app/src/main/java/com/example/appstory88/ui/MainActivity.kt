@@ -1,22 +1,20 @@
 package com.example.appstory88.ui
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.adapter.StoryBanerAdapter
 import com.example.appstory88.base.BaseBindingActivity
+import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.HomeActivityBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
+import com.example.appstory88.ui.home.category.CategoryStoryActicity
 import com.example.appstory88.ui.home.ratestory.RateStoryActivity
+import com.example.appstory88.ui.home.topstory.TopStoryActivity
 import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
-import java.text.FieldPosition
 
 class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
@@ -62,36 +60,40 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     }
 
     private fun initListener() {
-        binding.imMenu.setOnClickListener {
-            Log.e("tnghia",""+R.string.describe_story)
+        binding.viewTopStory.setOnClickListener {
+            intentActivity(TopStoryActivity::class.java, 0)
+
+        }
+        binding.viewCategory.setOnClickListener {
+            intentActivity(CategoryStoryActicity::class.java,0)
         }
         binding.viewRating.setOnClickListener {
-            intentActivity(RateStoryActivity::class.java)
+            intentActivity(RateStoryActivity::class.java, 0)
         }
+        binding.imViewMoreNewStoryUpdated.setOnClickListener {
+            intentActivity(ViewMoreStoryActivity::class.java, 0)
 
+        }
         binding.imViewMoreStoryFull.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java)
-
-        }
-        binding.imViewMoreGoodPassion.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java)
-
-        }
-        binding.imViewMoreGoodFairyTale.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java)
+            intentActivity(ViewMoreStoryActivity::class.java, 1)
 
         }
         binding.imViewMoreGoodLoveLanguage.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java)
+            intentActivity(ViewMoreStoryActivity::class.java, 2)
 
         }
-        binding.imViewMoreNewStoryUpdated.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java)
+
+        binding.imViewMoreGoodFairyTale.setOnClickListener {
+            intentActivity(ViewMoreStoryActivity::class.java, 3)
 
         }
+        binding.imViewMoreGoodPassion.setOnClickListener {
+            intentActivity(ViewMoreStoryActivity::class.java, 4)
+
+        }
+
 
     }
-
 
 
     private fun initAdapter() {
@@ -162,7 +164,7 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private fun onClickItemStoryAdapter(adapter: StoryAdapter) {
         adapter.onItemClickListener = object : StoryAdapter.ItemClickListener {
             override fun onItemClick(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java,position)
+                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
 
             }
 
@@ -172,32 +174,37 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private fun onclickBanerAdapter(adapter: StoryBanerAdapter) {
         adapter.iclick = object : StoryBanerAdapter.Iclick {
             override fun clickItem(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java,position)
+                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
             }
 
 
         }
     }
-    private fun intentActivityAndData(activityClass: Class<*>,position: Int) {
-        val intent = Intent(this, activityClass)
-        intent.putExtra("Image",listStory[position].imageStory)
-        intent.putExtra("nameStory",listStory[position].nameStory)
-        intent.putExtra("nameAuthur",listStory[position].nameAuthur)
-        intent.putExtra("numberstar",listStory[position].numberStar)
-        intent.putExtra("numberView",listStory[position].numberView)
-        intent.putExtra("status",listStory[position].status)
-        intent.putExtra("category",listStory[position].nameCategory)
-        intent.putExtra("describe",listStory[position].describe)
-        intent.putExtra("chapter",listStory[position].chapter)
 
-        intent.putExtra("chapterSum",listStory[position].chapterSum)
+    private fun intentActivityAndData(activityClass: Class<*>, position: Int) {
+        val intent = Intent(this, activityClass)
+        intent.putExtra(Constant.IMAGE_STORY, listStory[position].imageStory)
+        intent.putExtra(Constant.NAME_STORY, listStory[position].nameStory)
+        intent.putExtra(Constant.NAME_AUTHUR_STORY, listStory[position].nameAuthur)
+        intent.putExtra(Constant.NUMBER_STAR_STORY, listStory[position].numberStar)
+        intent.putExtra(Constant.NUMBER_VIEW_STORY, listStory[position].numberView)
+        intent.putExtra(Constant.STATUS_STORY, listStory[position].status)
+        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory)
+        intent.putExtra(Constant.DESCRIBE_STORY, listStory[position].describe)
+        intent.putExtra(Constant.CHAPTER_STORY, listStory[position].chapter)
+        intent.putExtra(Constant.CHAPTER_SUM_STORY, listStory[position].chapterSum)
         startActivity(intent)
 
-    } private fun intentActivity(activityClass: Class<*>) {
+    }
+
+    private fun intentActivity(activityClass: Class<*>, position: Int) {
         val intent = Intent(this, activityClass)
+        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory)
         startActivity(intent)
 
     }
 
 
 }
+
+

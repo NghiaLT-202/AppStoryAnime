@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,18 +9,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_ripple_view"
+
         android:layout_height="wrap_content">
-<!--        <View-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            -->
-<!--            />-->
+
+
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_nameCategory"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Truyện mới cập nhật"
+            tools:text="Truyện mới cập nhật"
+            android:ellipsize="end"
+            app:layout_constraintDimensionRatio="3:0.7"
+            android:maxLines="1"
+            android:background="@drawable/custom_bg_tv_top_story"
+            android:textColor="@color/white"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp"
             app:layout_constraintLeft_toLeftOf="parent"
+            />
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_nameCategory"
+            app:layout_constraintBottom_toBottomOf="@id/tv_nameCategory"
+            android:background="@drawable/custom_bg_line"
+
+            app:layout_constraintLeft_toLeftOf="@id/tv_nameCategory"
             />
 
 

@@ -29,6 +29,34 @@
     <string name="view_story">View: </string>
     <string name="rate_story">Rate Story</string>
     <string name="most_read_stories_of_the_month">Most read stories of the month</string>
+    <string name="t_c_gi">Tác giả: </string>
+    <string name="th_lo_i">Thể loại: </string>
+    <string name="truy_n_hay"># TRUYỆN HAY</string>
+    <string name="x_p_h_ng">XẾP HẠNG</string>
+    <string name="bookmark">BOOKMARK</string>
+    <string name="ti_u_ng_o_giang_h_l_t_qua_s_ng">Tiếu ngạo giang hồ lồ tồ qua sông</string>
+    <string name="quan_v_n_tr_ng">Quan vân trường</string>
+    <string name="ho_ng_h_u_th_i_y_ti_n_truy_n">Hoàng hậu thái y tiền truyện</string>
+    <string name="m_t_ki_m_phong_s_ng">Một kiếm phong sương</string>
+    <string name="th_gi_i_anh_v_em">Thế giới anh và em</string>
+    <string name="tu_n_ngh_a">Tuấn Nghĩa</string>
+    <string name="tu_n_linh">Tuấn Linh</string>
+    <string name="tu_n_s_n">Tuấn Sơn</string>
+    <string name="tu_n_h_ng">Tuấn Hồng</string>
+    <string name="tu_n_d_ng">Tuấn Dũng</string>
+    <string name="ch_ng_1">Chương 1</string>
+    <string name="ch_ng_2">Chương 2</string>
+    <string name="ch_ng_3">Chương 3</string>
+    <string name="ch_ng_4">Chương 4</string>
+    <string name="ch_ng_5">Chương 5</string>
+    <string name="truy_n_m_i">Truyện mới</string>
+    <string name="truy_n_full">Truyện full</string>
+    <string name="ng_n_t_nh">Ngôn tình</string>
+    <string name="ti_n_hi_p">Tiên hiệp</string>
+    <string name="am_m">Đam mỹ</string>
+    <string name="top_story_full">Top story</string>
+    <string name="truy_n">truyện</string>
+    <string name="_1000">1000</string>
 
 
 </resources>

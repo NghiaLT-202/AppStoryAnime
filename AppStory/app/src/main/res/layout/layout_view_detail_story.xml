@@ -29,7 +29,6 @@
             android:layout_marginRight="10dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="hhh"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/im_back"
