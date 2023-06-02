@@ -74,7 +74,7 @@
             app:layout_constraintLeft_toLeftOf="@id/tv_nameStory"
             app:layout_constraintTop_toBottomOf="@id/tv_nameCategory"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:numberStar="4" />
+            />
 
 
 

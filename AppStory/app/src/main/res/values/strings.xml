@@ -19,13 +19,15 @@
     <string name="describe">Describe</string>
     <string name="read_story">Read story</string>
     <string name="top_story">TOP STORY</string>
-    <string name="describe_story"> "Hãy bước vào thế giới kỳ diệu của giấy in nhiệt, nơi mà sự hài hước và sự tò mò gặp gỡ để tạo nên những trải nghiệm độc đáo. Có ai đó đã nghĩ ra ý tưởng tuyệt vời này: viết nội dung trên giấy, rồi chờ đợi một phép màu xảy ra.\n" +
-                    "\n" +
-                    "Chỉ cần áp dụng nhiệt độ, những gì đã viết trên giấy sẽ xuất hiện trước mắt bạn một cách thần kỳ.  "Chỉ cần áp dụng nhiệt độ, những gì đã viết trên giấy sẽ xuất hiện trước mắt bạn một cách thần kỳ. "Chỉ cần áp dụng nhiệt độ, những gì đã viết trên giấy sẽ xuất hiện trước mắt bạn một cách thần kỳ. "Chỉ cần áp dụng nhiệt độ, những gì đã viết trên giấy sẽ xuất hiện trước mắt bạn một cách thần kỳ.Đó là những lúc mà bạn như một nhà pháp sư đang triệu hồi sự sống vào giấy trắng, và ngay lập tức sự tò mò của bạn được kích thích.\n" +
-                    "\n" +
-                    "Không chỉ dừng lại ở việc in ấn thông thường, giấy in nhiệt còn mang đến cho bạn khả năng sáng tạo vô tận. Bạn có thể tạo ra trò chơi, câu đố hay những bức tranh độc đáo. Và dù bạn là người viết hay là người đọc, sự hài hước và tò mò luôn luôn theo kịp bạn.\n" +
-                    "\n" +
-                    "Hãy để giấy in nhiệt làm cho cuộc sống thêm màu sắc, mang đến những trải nghiệm bất ngờ và cười thả ga. Hãy đắm chìm trong thế giới của giấy in nhiệt, nơi sự hài hước, tò mò và sáng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!",áng tạo gặp gỡ. Hãy để phép màu của giấy in nhiệt thổi bay đi những căng thẳng và mang đến niềm vui cho cuộc sống của bạn!</string>
+    <string name="describe_story"> Câu chuyện dưới đây kể về một anh chàng trẻ tuổi tên là Lâm Thanh, sống trong một ngôi làng nhỏ nằm ở miền quê xa xôi. Từ nhỏ, Lâm Thanh đã đam mê kiếm hiệp và luôn mơ ước trở thành một võ sĩ vĩ đại. Ông nội của Lâm Thanh, một cựu kiếm khách nổi tiếng, đã truyền lại cho cậu những kỹ năng võ thuật tuyệt vời và tri thức về võ học./n
+
+Một ngày, Lâm Thanh nghe tin rằng ngôi làng của mình đang gặp nguy hiểm do bọn cướp xâm nhập và áp bức người dân. Không thể đứng nhìn thị trấn của mình chìm trong sự bất ổn, Lâm Thanh quyết định lên đường tìm kiếm công lý và bảo vệ người dân yếu đuối.
+
+Hành trình của Lâm Thanh đưa anh tới nhiều nơi xa lạ, gặp gỡ những người bạn và kẻ thù mới. Anh đã trải qua nhiều cuộc phiêu lưu, đối đầu với các võ sĩ giang hồ và giải cứu những người bị bắt cóc.
+
+Trong suốt quá trình hành hiệp, Lâm Thanh không chỉ trở thành một võ sĩ giỏi mà còn học được nhiều bài học quý giá về tình yêu, tình bạn và lòng trung thành. Anh nhận ra rằng mạnh mẽ không chỉ đến từ sức mạnh võ thuật mà còn từ lòng can đảm và lòng nhân ái.
+
+Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành một người hùng trong mắt những người dân. Những bọn cướp bị tiêu diệt và ngôi làng được bình yên trở lại. Lâm Thanh nhận ra rằng vai trò của mình không chỉ là một người bảo vệ, mà còn là một người lãnh đạo có khả năng thay đổi cuộc sống của mọi người xung quanh.</string>
     <string name="view_story">View: </string>
     <string name="rate_story">Rate Story</string>
     <string name="most_read_stories_of_the_month">Most read stories of the month</string>

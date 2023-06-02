@@ -1,6 +1,7 @@
 package com.example.appstory88.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemStoryBinding
@@ -17,14 +18,12 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
         this.listStory.addAll(lisSing!!)
         notifyDataSetChanged()
     }
-
-
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBinding>, position: Int) {
         holder.binding.imStory.setImageResource(listStory[position].imageStory)
         holder.binding.tvNameStory.text = listStory[position].nameStory
         holder.binding.viewStar.numberStar = listStory[position].numberStar
-        holder.binding.tvNameCategory.text = listStory[position].nameCategory
 
+        holder.binding.tvNameCategory.text = listStory[position].nameCategory
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

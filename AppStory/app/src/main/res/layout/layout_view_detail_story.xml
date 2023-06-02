@@ -59,41 +59,50 @@
             app:layout_constraintRight_toLeftOf="@+id/im_setting"
             app:layout_constraintTop_toTopOf="@+id/im_back" />
 
-        <TextView
-            android:id="@+id/tv_namechapter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/im_back"
-            app:layout_constraintRight_toRightOf="@id/im_setting"
-            app:layout_constraintTop_toBottomOf="@+id/im_back"
-
-            tools:text="Cô gái đến từ đam mê" />
-
-        <TextView
-            android:id="@+id/tv_describeStory"
-            android:layout_width="0dp"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20sp"
-            android:lineSpacingExtra="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/im_back"
             app:layout_constraintRight_toRightOf="@id/im_setting"
 
-            app:layout_constraintTop_toBottomOf="@+id/tv_namechapter"
-            tools:text="Dừng lại một chút và hãy cùng khám phá một loại giấy in đặc biệt, giấy in nhiệt! Bạn có tin rằng chỉ cần tiếp xúc với nhiệt độ, nội dung trên giấy sẽ xuất hiện trước mắt một cách kỳ diệu? Hãy tưởng tượng bạn viết một thông điệp ngọt ngào trên một tờ giấy trắng ngày hôm nay, và rồi ngay sau khi nắp bút, nội dung ấy biến mất nhưng lại tái hiện khi bạn tiếp xúc giấy với nguồn nhiệt. Đó là phép màu của giấy in nhiệt!
+            app:layout_constraintTop_toBottomOf="@+id/im_back">
 
-Với khả năng tạo ra sự hài hước và tò mò, giấy in nhiệt không chỉ giới hạn trong việc in ấn thông thường. Bạn có thể tạo ra trò chơi, câu đố hay thậm chí một bức tranh sống động. Điều tuyệt vời là bạn có thể gợi mở sự tò mò của người đọc bằng cách để họ khám phá nội dung ẩn trong các bức tranh hay thông điệp hài hước." />
-
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_namechapter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Cô gái đến từ đam mê" />
+                <TextView
+                    android:id="@+id/tv_describeStory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="20sp"
+                    android:lineSpacingExtra="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_namechapter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:paddingBottom="20dp"
+                     />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

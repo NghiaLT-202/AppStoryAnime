@@ -2,6 +2,7 @@ package com.example.appstory88.ui
 
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel

@@ -24,6 +24,7 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private var storyGoodFairyTaleAdapter: StoryAdapter? = null
     private var storyFullAdapter: StoryAdapter? = null
 
+
     private var storyBannerAdapter: StoryBanerAdapter? = null
 
 
@@ -38,7 +39,6 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
 
     override fun setupData() {
         initData()
-
     }
 
     override fun getViewModel(): Class<MainViewModel> {
@@ -65,7 +65,7 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
 
         }
         binding.viewCategory.setOnClickListener {
-            intentActivity(CategoryStoryActicity::class.java,0)
+            intentActivity(CategoryStoryActicity::class.java, 0)
         }
         binding.viewRating.setOnClickListener {
             intentActivity(RateStoryActivity::class.java, 0)
@@ -80,12 +80,10 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         }
         binding.imViewMoreGoodLoveLanguage.setOnClickListener {
             intentActivity(ViewMoreStoryActivity::class.java, 2)
-
         }
 
         binding.imViewMoreGoodFairyTale.setOnClickListener {
             intentActivity(ViewMoreStoryActivity::class.java, 3)
-
         }
         binding.imViewMoreGoodPassion.setOnClickListener {
             intentActivity(ViewMoreStoryActivity::class.java, 4)
@@ -97,8 +95,7 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
 
 
     private fun initAdapter() {
-
-        eventAdapterBanner()
+        storyBannerAdapter()
         storyNewUpdateAdapter(binding.rcItemStoryUpdateNew)
         storyFullAdapter(binding.rcItemStoryFull)
         storyGoodLoveLanguageAdapter(binding.rcItemGoodLoveLanguage)
@@ -108,14 +105,17 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
 
     }
 
-    private fun eventAdapterBanner() {
+    private fun storyBannerAdapter() {
         storyBannerAdapter = StoryBanerAdapter().apply {
             binding.rcItemStoryBanner.adapter = this
             listStory.shuffle()
             setListStoryBanner(listStory)
         }
-        onclickBanerAdapter(storyBannerAdapter!!)
-
+        storyBannerAdapter?.iclick = object : StoryBanerAdapter.Iclick {
+            override fun clickItem(position: Int) {
+                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+            }
+        }
 
     }
 
@@ -124,7 +124,13 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         storyGoodPassionAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
-        onClickItemStoryAdapter(storyGoodPassionAdapter!!)
+        storyGoodPassionAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(position: Int) {
+                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+
+            }
+
+        }
 
 
     }
@@ -133,7 +139,13 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         storyNewUpdateAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
-        onClickItemStoryAdapter(storyNewUpdateAdapter!!)
+        storyNewUpdateAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(position: Int) {
+                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+
+            }
+
+        }
 
     }
 
@@ -141,15 +153,27 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         storyGoodLoveLanguageAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
-        onClickItemStoryAdapter(storyGoodLoveLanguageAdapter!!)
+        storyGoodLoveLanguageAdapter?.onItemClickListener =
+            object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+
+                }
+
+            }
     }
 
     private fun storyGoodFairyTaleAdapter(rcItem: RecyclerView) {
         storyGoodFairyTaleAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
-        onClickItemStoryAdapter(storyGoodFairyTaleAdapter!!)
+        storyGoodFairyTaleAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(position: Int) {
+                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
 
+            }
+
+        }
 
     }
 
@@ -157,29 +181,16 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         storyFullAdapter = StoryAdapter().apply {
             rcItem.adapter = this
         }
-        onClickItemStoryAdapter(storyFullAdapter!!)
-
-    }
-
-    private fun onClickItemStoryAdapter(adapter: StoryAdapter) {
-        adapter.onItemClickListener = object : StoryAdapter.ItemClickListener {
+        storyFullAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
             override fun onItemClick(position: Int) {
                 intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
 
             }
 
         }
+
     }
 
-    private fun onclickBanerAdapter(adapter: StoryBanerAdapter) {
-        adapter.iclick = object : StoryBanerAdapter.Iclick {
-            override fun clickItem(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
-            }
-
-
-        }
-    }
 
     private fun intentActivityAndData(activityClass: Class<*>, position: Int) {
         val intent = Intent(this, activityClass)
