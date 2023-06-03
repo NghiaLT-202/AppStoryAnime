@@ -34,6 +34,7 @@ class ViewMoreStoryActivity :
 
     override fun setupData() {
         val category=intent.getStringExtra(Constant.CATEGORY_STORY)
+        binding.nameCategory.text=category
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initData(this)
         mainViewModel.listStoryLiveData.observe(this) { story ->
