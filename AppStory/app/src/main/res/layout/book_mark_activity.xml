@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:paddingHorizontal="10dp"
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/im_menu"
@@ -51,10 +52,11 @@
             android:layout_marginStart="5dp"
             android:text="@string/delete_bookmark"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:background="@drawable/custom_bg_item_bookmark_story"
             android:textSize="12sp"
-            android:paddingVertical="5dp"
-            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="15dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_rate_story"
             app:layout_constraintBottom_toBottomOf="@id/tv_rate_story"/>

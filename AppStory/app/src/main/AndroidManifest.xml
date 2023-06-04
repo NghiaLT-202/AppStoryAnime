@@ -60,6 +60,12 @@
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".ui.home.bookmark.BookmarkActivity"
+
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

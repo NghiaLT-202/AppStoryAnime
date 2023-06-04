@@ -12,6 +12,7 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.HomeActivityBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
+import com.example.appstory88.ui.home.bookmark.BookmarkActivity
 import com.example.appstory88.ui.home.category.CategoryStoryActicity
 import com.example.appstory88.ui.home.ratestory.RateStoryActivity
 import com.example.appstory88.ui.home.topstory.TopStoryActivity
@@ -114,6 +115,10 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         }
         binding.viewRating.setOnClickListener {
             intentActivity(RateStoryActivity::class.java, 0)
+        }
+        binding.viewBookmark.setOnClickListener {
+            intentActivity(BookmarkActivity::class.java, 0)
+
         }
         binding.imViewMoreNewStoryUpdated.setOnClickListener {
             intentActivity(ViewMoreStoryActivity::class.java, 0)
