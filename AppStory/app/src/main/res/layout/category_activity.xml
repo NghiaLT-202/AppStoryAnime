@@ -27,23 +27,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="@string/top_story_full"
+            android:text="@string/category"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/im_menu"
             app:layout_constraintLeft_toRightOf="@+id/im_menu"
             app:layout_constraintTop_toTopOf="@+id/im_menu" />
 
-        <TextView
-            android:id="@+id/tv_top_story"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/most_read_stories_of_the_month"
-            android:textColor="#205C8F"
-            android:textSize="18sp"
-            android:layout_marginStart="5dp"
-            app:layout_constraintLeft_toLeftOf="@id/im_menu"
-            app:layout_constraintTop_toBottomOf="@+id/im_menu" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_item_story"
@@ -52,8 +43,8 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_category_story"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_story"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_top_story"
+            app:layout_constraintLeft_toLeftOf="@id/im_menu"
+            app:layout_constraintTop_toBottomOf="@+id/im_menu"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />

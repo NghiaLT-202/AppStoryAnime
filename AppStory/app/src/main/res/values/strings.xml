@@ -39,7 +39,7 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="th_lo_i">Thể loại: </string>
     <string name="truy_n_hay"># TRUYỆN HAY</string>
     <string name="x_p_h_ng">XẾP HẠNG</string>
-    <string name="bookmark">BOOKMARK</string>
+    <string name="bookmark">Bookmark</string>
     <string name="ti_u_ng_o_giang_h_l_t_qua_s_ng">Tiếu ngạo giang hồ lồ tồ qua sông</string>
     <string name="quan_v_n_tr_ng">Quan vân trường</string>
     <string name="ho_ng_h_u_th_i_y_ti_n_truy_n">Hoàng hậu thái y tiền truyện</string>
@@ -63,6 +63,8 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="top_story_full">Top story</string>
     <string name="truy_n">truyện</string>
     <string name="_1000">1000</string>
+    <string name="story_saved">Story Saved</string>
+    <string name="delete_bookmark">Delete bookmark</string>
 
 
 </resources>

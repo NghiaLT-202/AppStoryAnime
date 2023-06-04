@@ -41,7 +41,7 @@ class CategoryStoryActicity : BaseBindingActivity<CategoryActivityBinding, Categ
         }
         itemCategoryStoryAdapter?.onItemClickListener=object : ItemCategoryStoryAdapter.ItemClickListener{
             override fun onItemClick(position: Int) {
-                intentActivity(ViewMoreStoryActivity::class.java,position)
+                intentActivity(listStory[position])
 
             }
         }
@@ -49,9 +49,9 @@ class CategoryStoryActicity : BaseBindingActivity<CategoryActivityBinding, Categ
     override fun getViewModel(): Class<CategoryStoryViewModel> {
         return CategoryStoryViewModel::class.java
     }
-    private fun intentActivity(activityClass: Class<*>, position: Int) {
-        val intent = Intent(this, activityClass)
-        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory)
+    private fun intentActivity( story: Story) {
+        val intent = Intent(this, ViewMoreStoryActivity::class.java)
+        intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
         startActivity(intent)
 
     }

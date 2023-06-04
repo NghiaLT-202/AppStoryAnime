@@ -2,6 +2,7 @@ package com.example.appstory88.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
@@ -18,14 +19,23 @@ import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
 class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
-    private var storyGoodPassionAdapter: StoryAdapter? = null
     private var storyNewUpdateAdapter: StoryAdapter? = null
-    private var storyGoodLoveLanguageAdapter: StoryAdapter? = null
-    private var storyGoodFairyTaleAdapter: StoryAdapter? = null
-    private var storyFullAdapter: StoryAdapter? = null
+    private val listStoryNewUpdate: MutableList<Story> = mutableListOf()
 
+    private var storyFullAdapter: StoryAdapter? = null
+    private val listStoryFull: MutableList<Story> = mutableListOf()
+
+    private var storyGoodLoveLanguageAdapter: StoryAdapter? = null
+    private val listStoryGoodLoveLanguage: MutableList<Story> = mutableListOf()
+
+    private var storyGoodFairyTaleAdapter: StoryAdapter? = null
+    private val listStoryGoodFairyTale: MutableList<Story> = mutableListOf()
+
+    private var storyGoodPassionAdapter: StoryAdapter? = null
+    private val listStoryGoodPassion: MutableList<Story> = mutableListOf()
 
     private var storyBannerAdapter: StoryBanerAdapter? = null
+    private val listStoryBanner: MutableList<Story> = mutableListOf()
 
 
     override fun getLayoutId(): Int {
@@ -49,15 +59,50 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         viewModel.initData(this)
         viewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
+            listStoryBanner.clear()
+
             listStory.addAll(story)
-            storyGoodPassionAdapter?.setListStory(story)
-            storyNewUpdateAdapter?.setListStory(story)
-            storyGoodLoveLanguageAdapter?.setListStory(story)
-            storyGoodFairyTaleAdapter?.setListStory(story)
-            storyFullAdapter?.setListStory(story)
+            listStoryBanner.addAll(story)
+
+            viewModel.initlistStoryNewUpdateLiveData(listStory, this)
+            viewModel.initlistStoryFullAdapterLiveData(listStory, this)
+            viewModel.initlistStoryGoodLoveLanguageLiveData(listStory, this)
+            viewModel.initlistStoryGoodFairyTaleLiveData(listStory, this)
+            viewModel.initlistStoryGoodPassionLiveData(listStory, this)
             storyBannerAdapter?.setListStoryBanner(story)
         }
+        viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
+            listStoryNewUpdate.clear()
+            listStoryNewUpdate.addAll(newUpdate)
+            storyNewUpdateAdapter?.setListStory(newUpdate)
+        }
+        viewModel.listStoryFullAdapterLiveData.observe(this) { storyFull ->
+            listStoryFull.clear()
+            listStoryFull.addAll(storyFull)
+
+            storyFullAdapter?.setListStory(storyFull)
+
+        }
+        viewModel.listStoryGoodLoveLanguageLiveData.observe(this) { goodLove ->
+            listStoryGoodLoveLanguage.clear()
+            listStoryGoodLoveLanguage.addAll(goodLove)
+
+            storyGoodLoveLanguageAdapter?.setListStory(goodLove)
+        }
+        viewModel.listStoryGoodFairyTaleLiveData.observe(this) { goodFairyTale ->
+            listStoryGoodFairyTale.clear()
+            listStoryGoodFairyTale.addAll(goodFairyTale)
+            storyGoodFairyTaleAdapter?.setListStory(goodFairyTale)
+
+        }
+        viewModel . listStoryGoodPassionLiveData . observe (this) { goodPassion ->
+            listStoryGoodPassion.clear()
+            listStoryGoodPassion.addAll(goodPassion)
+            storyGoodPassionAdapter?.setListStory(goodPassion)
+
+        }
     }
+
 
     private fun initListener() {
         binding.viewTopStory.setOnClickListener {
@@ -108,41 +153,38 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private fun storyBannerAdapter() {
         storyBannerAdapter = StoryBanerAdapter().apply {
             binding.rcItemStoryBanner.adapter = this
-            listStory.shuffle()
-            setListStoryBanner(listStory)
-        }
-        storyBannerAdapter?.iclick = object : StoryBanerAdapter.Iclick {
-            override fun clickItem(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+            iclick = object : StoryBanerAdapter.Iclick {
+                override fun clickItem(position: Int) {
+                    intentActivityAndData(listStory[position])
+                }
             }
         }
 
     }
 
 
-    private fun storyGoodPassionAdapter(rcItem: RecyclerView) {
-        storyGoodPassionAdapter = StoryAdapter().apply {
-            rcItem.adapter = this
-        }
-        storyGoodPassionAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
 
-            }
-
-        }
-
-
-    }
 
     private fun storyNewUpdateAdapter(rcItem: RecyclerView) {
         storyNewUpdateAdapter = StoryAdapter().apply {
             rcItem.adapter = this
-        }
-        storyNewUpdateAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+            onItemClickListener = object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(listStoryNewUpdate[position])
 
+                }
+
+            }
+        }
+
+    }
+    private fun storyFullAdapter(rcItem: RecyclerView) {
+        storyFullAdapter = StoryAdapter().apply {
+            rcItem.adapter = this
+            onItemClickListener = object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(listStoryFull[position])
+                }
             }
 
         }
@@ -152,58 +194,61 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private fun storyGoodLoveLanguageAdapter(rcItem: RecyclerView) {
         storyGoodLoveLanguageAdapter = StoryAdapter().apply {
             rcItem.adapter = this
-        }
-        storyGoodLoveLanguageAdapter?.onItemClickListener =
-            object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(position: Int) {
-                    intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+            onItemClickListener =
+                object : StoryAdapter.ItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        intentActivityAndData(listStoryGoodLoveLanguage[position])
+
+                    }
 
                 }
-
-            }
+        }
     }
 
     private fun storyGoodFairyTaleAdapter(rcItem: RecyclerView) {
         storyGoodFairyTaleAdapter = StoryAdapter().apply {
             rcItem.adapter = this
-        }
-        storyGoodFairyTaleAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
 
+            onItemClickListener = object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(listStoryGoodFairyTale[position])
+
+                }
             }
 
         }
 
     }
 
-    private fun storyFullAdapter(rcItem: RecyclerView) {
-        storyFullAdapter = StoryAdapter().apply {
+
+    private fun storyGoodPassionAdapter(rcItem: RecyclerView) {
+        storyGoodPassionAdapter = StoryAdapter().apply {
             rcItem.adapter = this
-        }
-        storyFullAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                intentActivityAndData(ViewDescribeStoryActivity::class.java, position)
+            onItemClickListener = object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(listStoryGoodPassion[position])
 
+                }
             }
 
         }
 
+
     }
 
 
-    private fun intentActivityAndData(activityClass: Class<*>, position: Int) {
-        val intent = Intent(this, activityClass)
-        intent.putExtra(Constant.IMAGE_STORY, listStory[position].imageStory)
-        intent.putExtra(Constant.NAME_STORY, listStory[position].nameStory)
-        intent.putExtra(Constant.NAME_AUTHUR_STORY, listStory[position].nameAuthur)
-        intent.putExtra(Constant.NUMBER_STAR_STORY, listStory[position].numberStar)
-        intent.putExtra(Constant.NUMBER_VIEW_STORY, listStory[position].numberView)
-        intent.putExtra(Constant.STATUS_STORY, listStory[position].status)
-        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory)
-        intent.putExtra(Constant.DESCRIBE_STORY, listStory[position].describe)
-        intent.putExtra(Constant.CHAPTER_STORY, listStory[position].chapter)
-        intent.putExtra(Constant.CHAPTER_SUM_STORY, listStory[position].chapterSum)
+    private fun intentActivityAndData(story: Story) {
+        val intent = Intent(this, ViewDescribeStoryActivity::class.java)
+        intent.putExtra(Constant.IMAGE_STORY, story.imageStory)
+        intent.putExtra(Constant.NAME_STORY, story.nameStory)
+        intent.putExtra(Constant.NAME_AUTHUR_STORY, story.nameAuthur)
+        intent.putExtra(Constant.NUMBER_STAR_STORY, story.numberStar)
+        intent.putExtra(Constant.NUMBER_VIEW_STORY, story.numberView)
+        intent.putExtra(Constant.STATUS_STORY, story.status)
+        intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
+        intent.putExtra(Constant.DESCRIBE_STORY, story.describe)
+        intent.putExtra(Constant.CHAPTER_STORY, story.chapter)
+        intent.putExtra(Constant.CHAPTER_SUM_STORY, story.chapterSum)
         startActivity(intent)
 
     }
