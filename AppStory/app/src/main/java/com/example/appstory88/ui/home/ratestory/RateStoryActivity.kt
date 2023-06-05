@@ -16,7 +16,7 @@ import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
 class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
     private var mainViewModel: MainViewModel?=null
-    private lateinit var rateStoryAdapter: RateStoryAdapter
+    private  var rateStoryAdapter: RateStoryAdapter?=null
     override fun getLayoutId(): Int {
         return R.layout.rate_activity
     }
@@ -31,9 +31,7 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
         mainViewModel?.initData(this)
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
-            listStory.clear()
-            listStory.addAll(story)
-            rateStoryAdapter.listStory =listStory
+            rateStoryAdapter?.listStory =story
 
         }
 
@@ -42,12 +40,12 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
     private fun initAdapter() {
         rateStoryAdapter = RateStoryAdapter().apply {
             binding.rcItemStory.adapter = this
-        }
-        rateStoryAdapter.onItemClickListener = object : RateStoryAdapter.ItemClickListener {
+        onItemClickListener = object : RateStoryAdapter.ItemClickListener {
             override fun onItemClick(position: Int) {
                 intentActivityAndData(listStory[position])
 
             }
+        }
 
         }
     }

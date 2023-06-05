@@ -73,8 +73,6 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
             listStoryNewUpdate.clear()
             listStoryNewUpdate.addAll(newUpdate)
-            Log.e("tnghia",""+listStoryNewUpdate.size)
-
             storyNewUpdateAdapter?.listStory=newUpdate
         }
         viewModel.listStoryFullAdapterLiveData.observe(this) { storyFull ->
