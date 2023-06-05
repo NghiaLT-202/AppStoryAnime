@@ -24,6 +24,7 @@ class ViewMoreStoryActivity :
     override fun getLayoutId(): Int {
         return R.layout.layout_view_list_more_story
     }
+
     override fun setupView(savedInstanceState: Bundle?) {
         binding.imBack.setOnClickListener {
             finish()
@@ -37,14 +38,10 @@ class ViewMoreStoryActivity :
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel?.initData(this)
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
+            listStory.clear()
             listStory.addAll(story)
-            listStory = listStory.filter {
-                it.nameCategory.equals(
-                    category,
-                    ignoreCase = true
-                )
-            } as MutableList<Story>
-            storyAdapter?.setListStory(listStory)
+            category?.let { mainViewModel?.initlistStoryLiveData(listStory, it) }
+            storyAdapter?.listStory = listStory
         }
     }
 
@@ -59,8 +56,8 @@ class ViewMoreStoryActivity :
             binding.rcListStory.adapter = this
         }
         storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                intentActivityAndData(listStory[position])
+            override fun onItemClick(story: Story, position: Int) {
+                intentActivityAndData(story)
             }
 
         }
@@ -69,7 +66,6 @@ class ViewMoreStoryActivity :
 
     private fun intentActivityAndData(story: Story) {
         val intent = Intent(this, ViewDescribeStoryActivity::class.java)
-        Log.e("tnghia",""+story.nameStory)
         intent.putExtra(Constant.IMAGE_STORY, story.imageStory)
         intent.putExtra(Constant.NAME_STORY, story.nameStory)
         intent.putExtra(Constant.NAME_AUTHUR_STORY, story.nameAuthur)

@@ -2,6 +2,7 @@ package com.example.appstory88.ui.home.ratestory
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.RateStoryAdapter
@@ -14,7 +15,6 @@ import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
 
 class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
-
     private var mainViewModel: MainViewModel?=null
     private lateinit var rateStoryAdapter: RateStoryAdapter
     override fun getLayoutId(): Int {
@@ -22,17 +22,20 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
     }
     override fun setupView(savedInstanceState: Bundle?) {
         initAdapter()
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel?.initData(this)
-        mainViewModel?.listStoryLiveData?.observe(this) { story ->
-            rateStoryAdapter.setListStory(story)
-            listStory.addAll(story)
-        }
+
 
     }
 
     override fun setupData() {
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mainViewModel?.initData(this)
+        mainViewModel?.listStoryLiveData?.observe(this) { story ->
+            mainViewModel?.initListRateStoryLiveData(story)
+            listStory.clear()
+            listStory.addAll(story)
+            rateStoryAdapter.listStory =listStory
 
+        }
 
     }
 

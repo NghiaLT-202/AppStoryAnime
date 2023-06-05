@@ -8,24 +8,26 @@ import com.example.appstory88.databinding.ItemStoryBinding
 import com.example.appstory88.model.Story
 
 class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
-    private val listStory: MutableList<Story> = arrayListOf()
-     var onItemClickListener: ItemClickListener?=null
+    var listStory: MutableList<Story> = mutableListOf()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
+
+    var onItemClickListener: ItemClickListener?=null
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setListStory(lisSing: MutableList<Story>?) {
-        this.listStory.clear()
-        this.listStory.addAll(lisSing!!)
-        notifyDataSetChanged()
-    }
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBinding>, position: Int) {
-        holder.binding.imStory.setImageResource(listStory[position].imageStory)
-        holder.binding.tvNameStory.text = listStory[position].nameStory
-        holder.binding.viewStar.numberStar = listStory[position].numberStar
+        val story:Story= listStory[position]
 
-        holder.binding.tvNameCategory.text = listStory[position].nameCategory
+        holder.binding.imStory.setImageResource( story.imageStory)
+        holder.binding.tvNameStory.text =  story.nameStory
+        holder.binding.viewStar.numberStar =  story.numberStar
+
+        holder.binding.tvNameCategory.text =  story.nameCategory
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(holder.adapterPosition)
+            onItemClickListener?.onItemClick(story,holder.adapterPosition)
         }
     }
 
@@ -44,6 +46,6 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
     }
 
     interface ItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(story: Story,position: Int)
     }
 }

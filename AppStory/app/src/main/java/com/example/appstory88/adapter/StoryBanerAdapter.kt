@@ -7,23 +7,24 @@ import com.example.appstory88.databinding.ItemStoryBannerBinding
 import com.example.appstory88.model.Story
 
 class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
-    private val listStory: MutableList<Story> = arrayListOf()
+    var listStory: MutableList<Story> = mutableListOf()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
      var iclick:Iclick?=null
-    @SuppressLint("NotifyDataSetChanged")
-    fun setListStoryBanner(lisSing: MutableList<Story>?) {
-        this.listStory.clear()
-        this.listStory.addAll(lisSing!!)
-        notifyDataSetChanged()
-    }
+
 
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBannerBinding>, position: Int) {
-        holder.binding.imStory.setImageResource(listStory[position].imageStory)
-        holder.binding.tvNameStory.text=listStory[position].nameStory
-        holder.binding.tvValueNameAuthor.text=listStory[position].nameAuthur
-        holder.binding.tvValueNameCategory.text=listStory[position].nameCategory
-        holder.binding.viewStar.numberStar=listStory[position].numberStar
+        val story:Story=listStory[position]
+        holder.binding.imStory.setImageResource( story.imageStory)
+        holder.binding.tvNameStory.text= story.nameStory
+        holder.binding.tvValueNameAuthor.text= story.nameAuthur
+        holder.binding.tvValueNameCategory.text= story.nameCategory
+        holder.binding.viewStar.numberStar= story.numberStar
         holder.itemView.setOnClickListener {
-            iclick?.clickItem(holder.adapterPosition)
+            iclick?.clickItem(story,holder.adapterPosition)
 
         }
 
@@ -37,7 +38,7 @@ class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
        return listStory.size
     }
     interface Iclick{
-     fun   clickItem(position: Int)
+     fun   clickItem(story: Story,position: Int)
     }
 
 }

@@ -15,7 +15,7 @@ class Story(
     @ColumnInfo var status: Boolean,
     @ColumnInfo var describe: String,
     @ColumnInfo var chapter: String,
-    @ColumnInfo var chapterSum: Int
+    @ColumnInfo var chapterSum: Int,
 ){
     @PrimaryKey(autoGenerate = true) var idStory: Int=0
 

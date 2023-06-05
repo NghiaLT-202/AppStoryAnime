@@ -34,8 +34,9 @@ class TopStoryActivity : BaseBindingActivity<TopStoryActivityBinding, TopStoryVi
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initData(this)
         mainViewModel.listStoryLiveData.observe(this) { story ->
+            listStory.clear()
             listStory.addAll(story)
-            itemTopStoryAdapter?.setListStory(story)
+            itemTopStoryAdapter?.listStory=story
         }
     }
 

@@ -7,19 +7,21 @@ import com.example.appstory88.databinding.ItemTopStoryBinding
 import com.example.appstory88.model.Story
 
 class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
-    private val listStory: MutableList<Story> = arrayListOf()
+     var listStory: MutableList<Story> = mutableListOf()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
     var onItemClickListener: ItemClickListener? = null
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setListStory(lisSing: MutableList<Story>?) {
-        this.listStory.clear()
-        this.listStory.addAll(lisSing!!)
-        notifyDataSetChanged()
-    }
+
 
 
     override fun onBindViewHolderBase(holder: BaseHolder<ItemTopStoryBinding>, position: Int) {
-        holder.binding.tvNameCategory.text = listStory[position].nameCategory
+        val story:Story= listStory[position]
+
+        holder.binding.tvNameCategory.text = story.nameCategory
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

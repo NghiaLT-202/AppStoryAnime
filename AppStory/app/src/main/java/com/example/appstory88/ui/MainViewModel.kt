@@ -5,14 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
 import com.example.appstory88.model.Story
+import java.util.Random
 
 class MainViewModel : BaseViewModel() {
-    var listStoryLiveData = MutableLiveData<MutableList<Story>>()
-    var listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
-    var listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
-    var listStoryGoodLoveLanguageLiveData = MutableLiveData<MutableList<Story>>()
-    var listStoryGoodFairyTaleLiveData = MutableLiveData<MutableList<Story>>()
-    var listStoryGoodPassionLiveData = MutableLiveData<MutableList<Story>>()
+    val TYPE_NEW_STORY="New story updated"
+    val TYPE_FULL_STORY="Story full"
+    val TYPE_GOOD_LOVE_STORY="Good love language"
+    val TYPE_FAIRY_TALE_STORY="Good fairy tale"
+    val TYPE_GOOD_PASSION_STORY="Good passion"
+    val listStoryLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryGoodLoveLanguageLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryGoodFairyTaleLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryGoodPassionLiveData = MutableLiveData<MutableList<Story>>()
 
 
     override fun onCleared() {
@@ -20,43 +26,46 @@ class MainViewModel : BaseViewModel() {
     }
 
 
-    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>, context: Context) {
+    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>) {
 
 
-        listStoryNewUpdateLiveData.postValue(list.filter { it.nameCategory == context.getString(R.string.truy_n_m_i) }
+        listStoryNewUpdateLiveData.postValue(list.filter { it.nameCategory == TYPE_NEW_STORY }
             .toMutableList())
 
 
     }
 
-    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>, context: Context) {
-        listStoryFullAdapterLiveData.postValue(list.filter { it.nameCategory == context.getString(R.string.truy_n_full) }
+    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>) {
+        listStoryFullAdapterLiveData.postValue(list.filter {  it.nameCategory == TYPE_FULL_STORY}
             .toMutableList())
     }
 
-    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>, context: Context) {
+    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story> ) {
         listStoryGoodLoveLanguageLiveData.postValue(list.filter {
-            it.nameCategory == context.getString(
-                R.string.ng_n_t_nh
-            )
+            it.nameCategory == TYPE_GOOD_LOVE_STORY
         }
             .toMutableList())
     }
 
-    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>, context: Context) {
+    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story> ) {
         listStoryGoodFairyTaleLiveData.postValue(list.filter {
-            it.nameCategory == context.getString(
-                R.string.ti_n_hi_p
-            )
+            it.nameCategory == TYPE_FAIRY_TALE_STORY
         }
             .toMutableList())
     }
 
-    fun initlistStoryGoodPassionLiveData(list: MutableList<Story>, context: Context) {
-        listStoryGoodPassionLiveData.postValue(list.filter { it.nameCategory == context.getString(R.string.am_m) }
-            .toMutableList())
+    fun initlistStoryGoodPassionLiveData(list: MutableList<Story> ) {
+        listStoryGoodPassionLiveData.postValue(list.filter {             it.nameCategory == TYPE_GOOD_PASSION_STORY
+        }.toMutableList())
     }
-
+    fun initlistStoryLiveData(list: MutableList<Story>, type:String) {
+        listStoryLiveData.postValue(list.filter {             it.nameCategory == type
+        }.toMutableList())
+    }
+    fun initListRateStoryLiveData(list: MutableList<Story>) {
+        list.sortWith(compareByDescending(Story::numberView))
+        listStoryLiveData.postValue(list)
+    }
 
     fun initData(context: Context) {
         val storyList: MutableList<Story> = mutableListOf()
@@ -149,34 +158,33 @@ class MainViewModel : BaseViewModel() {
             context.getString(R.string.tu_n_d_ng),
         )
         val listNameCategory = arrayOf(
-            context.getString(R.string.truy_n_m_i),
-            context.getString(R.string.truy_n_full),
-            context.getString(R.string.ng_n_t_nh),
-            context.getString(R.string.ti_n_hi_p),
-            context.getString(R.string.am_m),
-            context.getString(R.string.ng_n_t_nh),
+            context.getString(R.string.new_story_updated),
+            context.getString(R.string.story_full),
+            context.getString(R.string.good_love_language),
+            context.getString(R.string.good_fairy_tale),
+            context.getString(R.string.good_passion),
 
-            context.getString(R.string.am_m),
-            context.getString(R.string.ti_n_hi_p),
-            context.getString(R.string.truy_n_full),
+            context.getString(R.string.story_full),
+            context.getString(R.string.new_story_updated),
+            context.getString(R.string.good_passion),
+            context.getString(R.string.good_love_language),
+            context.getString(R.string.good_fairy_tale),
 
-            context.getString(R.string.truy_n_m_i),
+            context.getString(R.string.good_love_language),
+            context.getString(R.string.new_story_updated),
 
-            context.getString(R.string.truy_n_full),
-            context.getString(R.string.am_m),
+            context.getString(R.string.good_fairy_tale),
+            context.getString(R.string.good_passion),
+            context.getString(R.string.story_full),
 
-            context.getString(R.string.ti_n_hi_p),
-            context.getString(R.string.truy_n_m_i),
+            context.getString(R.string.good_love_language),
+            context.getString(R.string.good_passion),
 
-
-            context.getString(R.string.ng_n_t_nh), context.getString(R.string.truy_n_full),
-            context.getString(R.string.am_m),
-
-            context.getString(R.string.ti_n_hi_p),
-            context.getString(R.string.truy_n_m_i),
+            context.getString(R.string.story_full),
+            context.getString(R.string.good_fairy_tale),
+            context.getString(R.string.new_story_updated),
 
 
-            context.getString(R.string.ng_n_t_nh),
 
 
             )
@@ -277,6 +285,9 @@ class MainViewModel : BaseViewModel() {
             36,
             9,
         )
+
+
+
         for (i in listNameStory.indices) {
             val story = Story(
                 listImage[i],
@@ -289,6 +300,7 @@ class MainViewModel : BaseViewModel() {
                 listDescibe[i],
                 listChapter[i],
                 listChapterSum[i]
+
             )
             storyList.add(story)
         }

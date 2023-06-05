@@ -1,29 +1,41 @@
 package com.example.appstory88.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.drawable.GradientDrawable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemRateStoryBinding
 import com.example.appstory88.model.Story
 
 class RateStoryAdapter : BaseBindingAdapter<ItemRateStoryBinding>() {
-    private val listStory: MutableList<Story> = arrayListOf()
+    var listStory: MutableList<Story> = mutableListOf()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
      var onItemClickListener: ItemClickListener?=null
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setListStory(lisSing: MutableList<Story>?) {
-        this.listStory.clear()
-        this.listStory.addAll(lisSing!!)
-        notifyDataSetChanged()
-    }
+
 
 
     override fun onBindViewHolderBase(holder: BaseHolder<ItemRateStoryBinding>, position: Int) {
-        holder.binding.imStory.setImageResource(listStory[position].imageStory)
-        holder.binding.tvNameStory.text = listStory[position].nameStory
-        holder.binding.tvNumberView.text = listStory[position].numberView.toString()
-        holder.binding.viewStar.numberStar = listStory[position].numberStar
+//        val context:Context
+        val story:Story= listStory[position]
+        val drawable = GradientDrawable()
+
+//        drawable.setColor(ContextCompat.getColor( R.color.black))
+
+
+        holder.binding.imStory.setImageResource( story.imageStory)
+        holder.binding.tvNameStory.text =  story.nameStory
+        holder.binding.tvNumberView.text =  story.numberView.toString()
+        holder.binding.viewStar.numberStar =  story.numberStar
+//        holder.binding.view.
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

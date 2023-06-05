@@ -61,45 +61,45 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         viewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStoryBanner.clear()
-
             listStory.addAll(story)
             listStoryBanner.addAll(story)
-
-            viewModel.initlistStoryNewUpdateLiveData(listStory, this)
-            viewModel.initlistStoryFullAdapterLiveData(listStory, this)
-            viewModel.initlistStoryGoodLoveLanguageLiveData(listStory, this)
-            viewModel.initlistStoryGoodFairyTaleLiveData(listStory, this)
-            viewModel.initlistStoryGoodPassionLiveData(listStory, this)
-            storyBannerAdapter?.setListStoryBanner(story)
+            viewModel.initlistStoryNewUpdateLiveData(listStory)
+            viewModel.initlistStoryFullAdapterLiveData(listStory)
+            viewModel.initlistStoryGoodLoveLanguageLiveData(listStory)
+            viewModel.initlistStoryGoodFairyTaleLiveData(listStory)
+            viewModel.initlistStoryGoodPassionLiveData(listStory)
+            storyBannerAdapter?.listStory=listStory
         }
         viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
             listStoryNewUpdate.clear()
             listStoryNewUpdate.addAll(newUpdate)
-            storyNewUpdateAdapter?.setListStory(newUpdate)
+            Log.e("tnghia",""+listStoryNewUpdate.size)
+
+            storyNewUpdateAdapter?.listStory=newUpdate
         }
         viewModel.listStoryFullAdapterLiveData.observe(this) { storyFull ->
             listStoryFull.clear()
             listStoryFull.addAll(storyFull)
 
-            storyFullAdapter?.setListStory(storyFull)
+            storyFullAdapter?.listStory=storyFull
 
         }
         viewModel.listStoryGoodLoveLanguageLiveData.observe(this) { goodLove ->
             listStoryGoodLoveLanguage.clear()
             listStoryGoodLoveLanguage.addAll(goodLove)
 
-            storyGoodLoveLanguageAdapter?.setListStory(goodLove)
+            storyGoodLoveLanguageAdapter?.listStory=goodLove
         }
         viewModel.listStoryGoodFairyTaleLiveData.observe(this) { goodFairyTale ->
             listStoryGoodFairyTale.clear()
             listStoryGoodFairyTale.addAll(goodFairyTale)
-            storyGoodFairyTaleAdapter?.setListStory(goodFairyTale)
+            storyGoodFairyTaleAdapter?.listStory=goodFairyTale
 
         }
-        viewModel . listStoryGoodPassionLiveData . observe (this) { goodPassion ->
+        viewModel.listStoryGoodPassionLiveData.observe(this) { goodPassion ->
             listStoryGoodPassion.clear()
             listStoryGoodPassion.addAll(goodPassion)
-            storyGoodPassionAdapter?.setListStory(goodPassion)
+            storyGoodPassionAdapter?.listStory=goodPassion
 
         }
     }
@@ -159,36 +159,39 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         storyBannerAdapter = StoryBanerAdapter().apply {
             binding.rcItemStoryBanner.adapter = this
             iclick = object : StoryBanerAdapter.Iclick {
-                override fun clickItem(position: Int) {
-                    intentActivityAndData(listStory[position])
+
+
+                override fun clickItem(story: Story, position: Int) {
+                    intentActivityAndData(story)
                 }
             }
         }
 
     }
-
-
-
 
     private fun storyNewUpdateAdapter(rcItem: RecyclerView) {
         storyNewUpdateAdapter = StoryAdapter().apply {
             rcItem.adapter = this
             onItemClickListener = object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(position: Int) {
-                    intentActivityAndData(listStoryNewUpdate[position])
 
+
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story)
                 }
 
             }
         }
 
     }
+
     private fun storyFullAdapter(rcItem: RecyclerView) {
         storyFullAdapter = StoryAdapter().apply {
             rcItem.adapter = this
             onItemClickListener = object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(position: Int) {
-                    intentActivityAndData(listStoryFull[position])
+
+
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story)
                 }
             }
 
@@ -201,9 +204,10 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
             rcItem.adapter = this
             onItemClickListener =
                 object : StoryAdapter.ItemClickListener {
-                    override fun onItemClick(position: Int) {
-                        intentActivityAndData(listStoryGoodLoveLanguage[position])
 
+
+                    override fun onItemClick(story: Story, position: Int) {
+                        intentActivityAndData(story)
                     }
 
                 }
@@ -215,9 +219,9 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
             rcItem.adapter = this
 
             onItemClickListener = object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(position: Int) {
-                    intentActivityAndData(listStoryGoodFairyTale[position])
 
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story)
                 }
             }
 
@@ -230,9 +234,10 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
         storyGoodPassionAdapter = StoryAdapter().apply {
             rcItem.adapter = this
             onItemClickListener = object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(position: Int) {
-                    intentActivityAndData(listStoryGoodPassion[position])
 
+
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story)
                 }
             }
 
