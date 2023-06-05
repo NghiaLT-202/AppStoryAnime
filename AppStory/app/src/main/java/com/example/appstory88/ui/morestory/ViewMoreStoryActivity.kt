@@ -54,12 +54,11 @@ class ViewMoreStoryActivity :
     private fun initAdapter() {
         storyAdapter = StoryAdapter().apply {
             binding.rcListStory.adapter = this
-        }
-        storyAdapter?.onItemClickListener = object : StoryAdapter.ItemClickListener {
+        onItemClickListener = object : StoryAdapter.ItemClickListener {
             override fun onItemClick(story: Story, position: Int) {
                 intentActivityAndData(story)
             }
-
+        }
         }
 
     }

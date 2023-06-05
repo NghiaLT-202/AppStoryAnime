@@ -2,7 +2,6 @@ package com.example.appstory88.ui.home.ratestory
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.RateStoryAdapter
@@ -15,11 +14,12 @@ import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
 
 class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
-    private var mainViewModel: MainViewModel?=null
-    private  var rateStoryAdapter: RateStoryAdapter?=null
+    private var mainViewModel: MainViewModel? = null
+    private var rateStoryAdapter: RateStoryAdapter? = null
     override fun getLayoutId(): Int {
         return R.layout.rate_activity
     }
+
     override fun setupView(savedInstanceState: Bundle?) {
         initAdapter()
 
@@ -31,7 +31,7 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
         mainViewModel?.initData(this)
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
-            rateStoryAdapter?.listStory =story
+            rateStoryAdapter?.listStory = story
 
         }
 
@@ -40,12 +40,12 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
     private fun initAdapter() {
         rateStoryAdapter = RateStoryAdapter().apply {
             binding.rcItemStory.adapter = this
-        onItemClickListener = object : RateStoryAdapter.ItemClickListener {
-            override fun onItemClick(position: Int) {
-                intentActivityAndData(listStory[position])
+            onItemClickListener = object : RateStoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(listStory[position])
 
+                }
             }
-        }
 
         }
     }

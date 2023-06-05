@@ -43,11 +43,11 @@ class TopStoryActivity : BaseBindingActivity<TopStoryActivityBinding, TopStoryVi
     private fun initAdapter() {
         itemTopStoryAdapter = ItemTopStoryAdapter().apply {
             binding.rcItemStory.adapter = this
-        }
-        itemTopStoryAdapter?.onItemClickListener = object : ItemTopStoryAdapter.ItemClickListener {
+        onItemClickListener = object : ItemTopStoryAdapter.ItemClickListener {
             override fun onItemClick(position: Int) {
                 intentActivity(listStory[position])
             }
+        }
         }
     }
 
