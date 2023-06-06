@@ -11,59 +11,57 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/custom_bg_search"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_bg_describe">
 
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/im_back"
             app:layout_constraintRight_toRightOf="parent"
 
-            app:layout_constraintTop_toTopOf="@id/im_back"
-            >
+            app:layout_constraintTop_toTopOf="@id/im_back">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
 
                 >
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="@+id/tv_search"
                     android:background="@drawable/custom_bg_bookmark"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_search"
                     app:layout_constraintLeft_toLeftOf="@+id/im_dowload"
 
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_search"
                     app:layout_constraintRight_toRightOf="@id/tv_search"
-                    />
+                    app:layout_constraintTop_toTopOf="@+id/tv_search" />
+
                 <ImageView
                     android:id="@id/im_dowload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
                     android:layout_marginRight="20dp"
+                    android:paddingLeft="10dp"
                     android:src="@drawable/icon_downloading_updates_72"
-                    app:layout_constraintRight_toLeftOf="@+id/tv_search"
-                    app:layout_constraintTop_toTopOf="@id/tv_search"
-
                     app:layout_constraintBottom_toBottomOf="@id/tv_search"
-                    />
+                    app:layout_constraintRight_toLeftOf="@+id/tv_search"
+
+                    app:layout_constraintTop_toTopOf="@id/tv_search" />
+
                 <TextView
                     android:id="@id/tv_line"
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:layout_constraintTop_toTopOf="@id/tv_search"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_search"
                     android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_search"
                     app:layout_constraintRight_toLeftOf="@id/tv_search"
-                    />
-
-
+                    app:layout_constraintTop_toTopOf="@id/tv_search" />
 
 
                 <TextView
@@ -76,21 +74,22 @@
                     android:paddingVertical="6dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="20dp"
-                    android:textSize="12sp"
                     android:text="@string/bookmark"
                     android:textColor="@color/white"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@+id/cv_image"
                     app:layout_constraintRight_toRightOf="@id/tv_read_story"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_image"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:background="#40000000"
-                    app:cardCornerRadius="12dp"
-                    android:layout_marginLeft="10dp"
                     android:padding="10dp"
+                    app:cardCornerRadius="12dp"
                     app:layout_constraintDimensionRatio="3.3:4"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_search">
@@ -112,13 +111,14 @@
                     android:layout_marginLeft="15dp"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:textSize="20sp"
-                    tools:text="Kiếm Động Cửu Thiên"
                     android:textColor="@color/white"
+                    android:textSize="19sp"
                     android:textStyle="bold"
+                    android:layout_marginRight="10dp"
                     app:layout_constraintLeft_toRightOf="@+id/cv_image"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cv_image" />
+                    app:layout_constraintTop_toTopOf="@+id/cv_image"
+                    tools:text="Kiếm Động Cửu Thiên" />
 
 
                 <com.example.appstory88.customview.ViewStar
@@ -134,13 +134,13 @@
                     android:id="@+id/tv_read_story"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/custom_bg_bookmark"
                     android:gravity="center"
                     android:paddingVertical="10dp"
-                    android:layout_marginRight="20dp"
                     android:text="@string/read_story"
-                    android:textSize="16sp"
                     android:textColor="@color/white"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/cv_image"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_nameStory"
                     app:layout_constraintRight_toRightOf="parent" />
@@ -159,11 +159,12 @@
                     android:id="@+id/tv_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/view"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textColor="#504F4F"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="@+id/cv_image"
                     app:layout_constraintTop_toTopOf="@+id/view_top_story" />
 
@@ -171,12 +172,12 @@
                     android:id="@+id/tv_value_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="1001"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="@id/tv_value_chapter_number"
-                    app:layout_constraintTop_toTopOf="@+id/tv_view" />
+
+                    app:layout_constraintTop_toTopOf="@+id/tv_view"
+                    tools:text="1001" />
 
                 <TextView
                     android:id="@+id/tv_chapter_number"
@@ -184,8 +185,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/chapter_number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textColor="#504F4F"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_view"
                     app:layout_constraintTop_toBottomOf="@id/tv_view" />
 
@@ -193,13 +195,13 @@
                     android:id="@+id/tv_value_chapter_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="10"
+                    android:layout_marginLeft="40dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="20dp"
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toRightOf="@+id/tv_chapter_number"
                     app:layout_constraintRight_toRightOf="@+id/cv_image"
-                    app:layout_constraintTop_toTopOf="@+id/tv_chapter_number" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_chapter_number"
+                    tools:text="10" />
 
 
                 <TextView
@@ -208,8 +210,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/athur"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textColor="#504F4F"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_view"
                     app:layout_constraintTop_toBottomOf="@+id/tv_chapter_number" />
 
@@ -217,12 +220,12 @@
                     android:id="@+id/tv_value_authur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Mck"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="@id/tv_value_chapter_number"
-                    app:layout_constraintTop_toTopOf="@+id/tv_authur" />
+
+                    app:layout_constraintTop_toTopOf="@+id/tv_authur"
+                    tools:text="Mck" />
 
                 <TextView
                     android:id="@+id/tv_category"
@@ -230,8 +233,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/category_r"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textColor="#504F4F"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_view"
                     app:layout_constraintTop_toBottomOf="@+id/tv_authur" />
 
@@ -239,12 +243,17 @@
                     android:id="@+id/tv_value_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Đam mỹ"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:background="@drawable/custom_bg_solid_category"
+                    android:paddingHorizontal="15dp"
 
+
+                    android:paddingVertical="5dp"
+                    android:textColor="#2196F3"
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="@id/tv_value_chapter_number"
-                    app:layout_constraintTop_toTopOf="@+id/tv_category" />
+
+                    app:layout_constraintTop_toTopOf="@+id/tv_category"
+                    tools:text="Đam mỹ" />
 
                 <TextView
                     android:id="@+id/tv_status"
@@ -252,8 +261,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/status_s"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textColor="#504F4F"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_view"
                     app:layout_constraintTop_toBottomOf="@+id/tv_value_category" />
 
@@ -261,12 +271,12 @@
                     android:id="@+id/tv_value_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Đang ra"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="@id/tv_value_chapter_number"
-                    app:layout_constraintTop_toTopOf="@+id/tv_status" />
+
+                    app:layout_constraintTop_toTopOf="@+id/tv_status"
+                    tools:text="Đang ra" />
 
                 <TextView
                     android:id="@+id/tv_describe"
@@ -274,8 +284,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/describe"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textColor="#504F4F"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_view"
                     app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
@@ -292,17 +303,20 @@
                 <TextView
                     android:id="@+id/tv_value_describe"
                     android:layout_width="0dp"
-                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    tools:text="Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn
-Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo."
+                    android:paddingBottom="20dp"
+                    android:textColor="#302F2F"
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_view"
                     app:layout_constraintRight_toRightOf="@+id/tv_read_story"
-                    android:paddingBottom="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_line" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_line"
+                    tools:text="Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn
+Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo." />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
         <ImageView
             android:id="@+id/im_back"
             android:layout_width="40dp"
@@ -313,7 +327,6 @@ Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương 
             android:src="@drawable/baseline_arrow_back_white_24"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

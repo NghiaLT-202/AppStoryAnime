@@ -13,4 +13,5 @@ object Constant {
     val CHAPTER_STORY="chapter"
     val CHAPTER_SUM_STORY="chapterSum"
     val TYPE_STORY="TYPE_STORY"
+    val TYPE="Thể loại: "
 }

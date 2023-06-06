@@ -7,18 +7,19 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryStoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.CategoryActivityBinding
+import com.example.appstory88.databinding.ActivityCategoryStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
+import com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopActivity
 import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
 class CategoryStoryActicity :
-    BaseBindingActivity<CategoryActivityBinding, CategoryStoryViewModel>() {
+    BaseBindingActivity<ActivityCategoryStoryBinding, CategoryStoryViewModel>() {
     lateinit var mainViewModel: MainViewModel
     private val listStory: MutableList<Story> = mutableListOf()
     private var itemCategoryStoryAdapter: ItemCategoryStoryAdapter? = null
     override fun getLayoutId(): Int {
-        return R.layout.category_activity
+        return R.layout.activity_category_story
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
@@ -51,7 +52,7 @@ class CategoryStoryActicity :
     }
 
     private fun intentActivity(story: Story) {
-        val intent = Intent(this, ViewMoreStoryActivity::class.java)
+        val intent = Intent(this, DetailStoryTopActivity::class.java)
         intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
         startActivity(intent)
 

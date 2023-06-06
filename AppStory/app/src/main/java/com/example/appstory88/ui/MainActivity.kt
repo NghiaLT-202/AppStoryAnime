@@ -2,23 +2,22 @@ package com.example.appstory88.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
-import com.example.appstory88.adapter.StoryBanerAdapter
+import com.example.appstory88.adapter.StoryBannerAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.HomeActivityBinding
+import com.example.appstory88.databinding.ActivityHomeStoryBinding
 import com.example.appstory88.model.Story
-import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
+import com.example.appstory88.ui.describestory.DetailStoryActivity
 import com.example.appstory88.ui.home.bookmark.BookmarkActivity
 import com.example.appstory88.ui.home.category.CategoryStoryActicity
 import com.example.appstory88.ui.home.ratestory.RateStoryActivity
 import com.example.appstory88.ui.home.topstory.TopStoryActivity
 import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
-class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
+class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
     private var storyNewUpdateAdapter: StoryAdapter? = null
     private val listStoryNewUpdate: MutableList<Story> = mutableListOf()
@@ -35,12 +34,12 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     private var storyGoodPassionAdapter: StoryAdapter? = null
     private val listStoryGoodPassion: MutableList<Story> = mutableListOf()
 
-    private var storyBannerAdapter: StoryBanerAdapter? = null
+    private var storyBannerAdapter: StoryBannerAdapter? = null
     private val listStoryBanner: MutableList<Story> = mutableListOf()
 
 
     override fun getLayoutId(): Int {
-        return R.layout.home_activity
+        return R.layout.activity_home_story
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
@@ -154,9 +153,9 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
     }
 
     private fun storyBannerAdapter() {
-        storyBannerAdapter = StoryBanerAdapter().apply {
+        storyBannerAdapter = StoryBannerAdapter().apply {
             binding.rcItemStoryBanner.adapter = this
-            iclick = object : StoryBanerAdapter.Iclick {
+            iclick = object : StoryBannerAdapter.IClick {
 
 
                 override fun clickItem(story: Story, position: Int) {
@@ -246,7 +245,7 @@ class MainActivity : BaseBindingActivity<HomeActivityBinding, MainViewModel>() {
 
 
     private fun intentActivityAndData(story: Story) {
-        val intent = Intent(this, ViewDescribeStoryActivity::class.java)
+        val intent = Intent(this, DetailStoryActivity::class.java)
         intent.putExtra(Constant.IMAGE_STORY, story.imageStory)
         intent.putExtra(Constant.NAME_STORY, story.nameStory)
         intent.putExtra(Constant.NAME_AUTHUR_STORY, story.nameAuthur)

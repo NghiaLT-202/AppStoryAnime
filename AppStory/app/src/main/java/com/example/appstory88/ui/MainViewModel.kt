@@ -15,6 +15,7 @@ class MainViewModel : BaseViewModel() {
     val TYPE_GOOD_PASSION_STORY="Good passion"
     val listStoryLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryMoreLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryDetailLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryRateLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
@@ -62,6 +63,12 @@ class MainViewModel : BaseViewModel() {
     }
     fun initlistStoryLiveData(list: MutableList<Story>, type:String) {
         listStoryMoreLiveData.postValue(list.filter {             it.nameCategory == type
+        }.toMutableList())
+    }
+
+    fun initlistDetailStoryLiveData(list: MutableList<Story>, type: String) {
+        listStoryDetailLiveData.postValue(list.filter {
+            it.nameCategory == type
         }.toMutableList())
     }
     fun initListRateStoryLiveData(list: MutableList<Story>) {

@@ -32,10 +32,10 @@ class ItemCategoryStoryAdapter : BaseBindingAdapter<ItemCategoryStoryBinding>() 
     }
 
     override fun getSizeItem(): Int {
-        if (listStory.size > 10) {
-            return 10
+        return if (listStory.size > 10) {
+            10
         } else {
-            return listStory.size
+            listStory.size
         }
 
     }

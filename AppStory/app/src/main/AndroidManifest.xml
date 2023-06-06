@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppStory88"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.splash.SplashActivity"
 
             android:exported="true">
             <intent-filter>
@@ -23,19 +23,24 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.MainActivity"
+
+            android:exported="true">
+
+        </activity> <activity
             android:name=".ui.morestory.ViewMoreStoryActivity"
 
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".ui.describestory.ViewDescribeStoryActivity"
+            android:name=".ui.describestory.DetailStoryActivity"
 
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".ui.detailstory.DetailStoryActivity"
+            android:name=".ui.detailstory.ReadStoryActivity"
 
 
             android:exported="true">
@@ -62,6 +67,12 @@
         </activity>
         <activity
             android:name=".ui.home.bookmark.BookmarkActivity"
+
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".ui.home.topstory.detailstorytop.DetailStoryTopActivity"
 
             android:exported="true">
 

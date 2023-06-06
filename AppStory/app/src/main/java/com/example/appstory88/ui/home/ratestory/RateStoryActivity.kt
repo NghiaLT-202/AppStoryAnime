@@ -7,17 +7,17 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.RateStoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.RateActivityBinding
+import com.example.appstory88.databinding.ActivityRateStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
-import com.example.appstory88.ui.describestory.ViewDescribeStoryActivity
+import com.example.appstory88.ui.describestory.DetailStoryActivity
 
-class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryViewModel>() {
-    private val listStory: MutableList<Story> = mutableListOf()
+class RateStoryActivity : BaseBindingActivity<ActivityRateStoryBinding, RateStoryViewModel>() {
+//    private val listStory: MutableList<Story> = mutableListOf()
     private var mainViewModel: MainViewModel? = null
     private var rateStoryAdapter: RateStoryAdapter? = null
     override fun getLayoutId(): Int {
-        return R.layout.rate_activity
+        return R.layout.activity_rate_story
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
@@ -56,7 +56,7 @@ class RateStoryActivity : BaseBindingActivity<RateActivityBinding, RateStoryView
     }
 
     private fun intentActivityAndData(story: Story) {
-        val intent = Intent(this, ViewDescribeStoryActivity::class.java)
+        val intent = Intent(this, DetailStoryActivity::class.java)
         intent.putExtra(Constant.IMAGE_STORY, story.imageStory)
         intent.putExtra(Constant.NAME_STORY, story.nameStory)
         intent.putExtra(Constant.NAME_AUTHUR_STORY, story.nameAuthur)

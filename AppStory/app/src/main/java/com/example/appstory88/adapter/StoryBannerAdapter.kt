@@ -6,14 +6,14 @@ import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemStoryBannerBinding
 import com.example.appstory88.model.Story
 
-class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
+class StoryBannerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
     var listStory: MutableList<Story> = mutableListOf()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field=value
             notifyDataSetChanged()
         }
-     var iclick:Iclick?=null
+     var iclick:IClick?=null
 
 
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBannerBinding>, position: Int) {
@@ -37,7 +37,7 @@ class StoryBanerAdapter: BaseBindingAdapter<ItemStoryBannerBinding>() {
     override fun getSizeItem(): Int {
        return listStory.size
     }
-    interface Iclick{
+    interface IClick{
      fun   clickItem(story: Story,position: Int)
     }
 

@@ -11,7 +11,7 @@
     <string name="good_passion">Good passion</string>
     <string name="newly_updated_story">Newly updated story</string>
     <string name="view">View</string>
-    <string name="chapter_number">Chapter number</string>
+    <string name="chapter_number">Chapter </string>
     <string name="athur">Athur</string>
     <string name="category_r">Category</string>
     <string name="status">Status</string>
@@ -37,7 +37,7 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="most_read_stories_of_the_month">Most read stories of the month</string>
     <string name="t_c_gi">Tác giả: </string>
     <string name="th_lo_i">Thể loại: </string>
-    <string name="truy_n_hay"># TRUYỆN HAY</string>
+    <string name="truy_n_hay"># Good story</string>
     <string name="x_p_h_ng">XẾP HẠNG</string>
     <string name="bookmark">Bookmark</string>
     <string name="ti_u_ng_o_giang_h_l_t_qua_s_ng">Tiếu ngạo giang hồ lồ tồ qua sông</string>
@@ -65,6 +65,9 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="_1000">1000</string>
     <string name="story_saved">Story Saved</string>
     <string name="delete_bookmark">Delete bookmark</string>
+    <string name="most_social"># MOST SOCIAL</string>
+    <string name="categories"># CATEGORIES</string>
+    <string name="your_story"># YOUR STORY</string>
 
 
 </resources>

@@ -19,16 +19,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_bg_tv_top_story"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:paddingHorizontal="20dp"
             android:paddingVertical="12dp"
-            android:textSize="20sp"
-
+            android:textSize="18sp"
             android:textColor="#ab5f70"
             app:layout_constraintDimensionRatio="3:0.7"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Truyện mới cập nhật" />
+            tools:text="Truyện mới cập nhật Truyện mới cập nhật" />
 
         <TextView
             android:id="@+id/tv_line"

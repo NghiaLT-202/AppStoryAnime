@@ -1,62 +1,66 @@
-package com.example.appstory88.ui.morestory
+package com.example.appstory88.ui.home.topstory.detailstorytop
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
-import com.example.appstory88.adapter.StoryAdapter
+import com.example.appstory88.adapter.DetailStoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.ActivityShowMoreStoryBinding
+import com.example.appstory88.databinding.ActivityDetailStoryTopBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.describestory.DetailStoryActivity
 
-class ViewMoreStoryActivity :
-    BaseBindingActivity<ActivityShowMoreStoryBinding, ViewMoreStoryModel>() {
-    private var storyAdapter: StoryAdapter? = null
+class DetailStoryTopActivity :
+    BaseBindingActivity<ActivityDetailStoryTopBinding, DetailStoryTopViewModel>() {
+    private val listStory: MutableList<Story> = mutableListOf()
+
     private var mainViewModel: MainViewModel? = null
-    private var listStory: MutableList<Story> = mutableListOf()
+    private var detailStoryAdapter: DetailStoryAdapter? = null
+
     override fun getLayoutId(): Int {
-        return R.layout.activity_show_more_story
+        return R.layout.activity_detail_story_top
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
-        binding.imBack.setOnClickListener {
-            finish()
-        }
         initAdapter()
     }
 
     override fun setupData() {
-        val category = intent.getStringExtra(Constant.CATEGORY_STORY)
-        binding.nameCategory.text = category
+        val category=intent.getStringExtra(Constant.CATEGORY_STORY)
+        binding.tvNameCategory.text=category
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel?.initData(this)
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             listStory.clear()
             listStory.addAll(story)
-            category?.let { mainViewModel?.initlistStoryLiveData(listStory, it) }
-            storyAdapter?.listStory = listStory
+            category?.let { mainViewModel?.initlistDetailStoryLiveData(listStory, it) }
+            Log.e("tnghia",""+story.size)
+
+            Log.e("tnghia",""+listStory.size)
+            for (i in story) Log.e("tnghia",""+i+""+i.nameCategory)
+            detailStoryAdapter?.listStory = listStory
+
         }
     }
 
-
-    override fun getViewModel(): Class<ViewMoreStoryModel> {
-        return ViewMoreStoryModel::class.java
+    override fun getViewModel(): Class<DetailStoryTopViewModel> {
+        return DetailStoryTopViewModel::class.java
     }
-
 
     private fun initAdapter() {
-        storyAdapter = StoryAdapter().apply {
-            binding.rcListStory.adapter = this
-            onItemClickListener = object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+        detailStoryAdapter = DetailStoryAdapter().apply {
+            binding.rcItemStory.adapter = this
+            onItemClickListener = object : DetailStoryAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                    intentActivityAndData(listStory[position])
+
                 }
             }
-        }
 
+        }
     }
 
     private fun intentActivityAndData(story: Story) {
@@ -74,4 +78,5 @@ class ViewMoreStoryActivity :
         startActivity(intent)
 
     }
+
 }

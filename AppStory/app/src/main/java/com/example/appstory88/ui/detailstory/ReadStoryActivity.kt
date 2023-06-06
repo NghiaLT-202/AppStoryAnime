@@ -4,16 +4,13 @@ import android.os.Bundle
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.LayoutViewDetailStoryBinding
+import com.example.appstory88.databinding.ActivityDetailStoryBinding
 
 
-class DetailStoryActivity :
-    BaseBindingActivity<LayoutViewDetailStoryBinding, DetailStoryViewModel>() {
-//    private val listStory: MutableList<Story> = mutableListOf()
-
-
+class ReadStoryActivity :
+    BaseBindingActivity<ActivityDetailStoryBinding, ReadStoryViewModel>() {
     override fun getLayoutId(): Int {
-        return R.layout.layout_view_detail_story
+        return R.layout.activity_detail_story
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
@@ -26,8 +23,9 @@ class DetailStoryActivity :
     override fun setupData() {
         initData()
     }
-    override fun getViewModel(): Class<DetailStoryViewModel> {
-        return DetailStoryViewModel::class.java
+
+    override fun getViewModel(): Class<ReadStoryViewModel> {
+        return ReadStoryViewModel::class.java
     }
 
     private fun initData() {
