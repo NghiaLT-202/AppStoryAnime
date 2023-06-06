@@ -36,11 +36,9 @@ class DetailStoryTopActivity :
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             listStory.clear()
             listStory.addAll(story)
-            category?.let { mainViewModel?.initlistDetailStoryLiveData(listStory, it) }
-            Log.e("tnghia",""+story.size)
+//            category?.let { mainViewModel?.initlistDetailStoryLiveData(listStory, it) }
+            listStory.filter { it.nameCategory==category }
 
-            Log.e("tnghia",""+listStory.size)
-            for (i in story) Log.e("tnghia",""+i+""+i.nameCategory)
             detailStoryAdapter?.listStory = listStory
 
         }
