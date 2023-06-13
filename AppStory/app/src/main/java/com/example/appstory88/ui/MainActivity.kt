@@ -262,7 +262,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
     private fun intentActivity(activityClass: Class<*>, position: Int) {
         val intent = Intent(this, activityClass)
-        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory)
+        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory[0])
         startActivity(intent)
 
     }

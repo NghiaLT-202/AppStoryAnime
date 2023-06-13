@@ -1,20 +1,25 @@
 package com.example.appstory88.ui.splash
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.view.WindowManager
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.databinding.ActivitySplashBinding
 import com.example.appstory88.ui.MainActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class SplashActivity: BaseBindingActivity<ActivitySplashBinding, SplashViewModel>() {
-    private val splashScope = CoroutineScope(Dispatchers.Main)
-    private val splashDelay: Long = 1000 // Delay time in milliseconds (e.g., 2000 = 2 seconds)
+    lateinit var binding: ActivitySplashBinding
+
+    var handle: Handler? = null
+    var runable: Runnable? = null
+
+
 
 
     override fun getLayoutId(): Int {
@@ -22,13 +27,9 @@ class SplashActivity: BaseBindingActivity<ActivitySplashBinding, SplashViewModel
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
-        splashScope.launch {
-            delay(splashDelay)
+        makeStatusBarLight(this, Color.parseColor("#45ABF6"))
+        startToMain()
 
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     override fun setupData() {
@@ -38,8 +39,32 @@ class SplashActivity: BaseBindingActivity<ActivitySplashBinding, SplashViewModel
         return  SplashViewModel::class.java
     }
 
+    private fun makeStatusBarLight(activity: Activity, color: Int) {
+        val window = activity.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = color
+        activity.window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        splashScope.cancel()
+        handle?.removeCallbacksAndMessages(null)
+    }
+
+    private fun startToMain() {
+        // Cho 1 khoang thoi gian moi thuc hien hanh dong
+        handle?.removeCallbacksAndMessages(null)
+        handle = Handler(Looper.getMainLooper())
+        runable = Runnable {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        runable?.let {
+            handle?.postDelayed(it, 3000)
+        }
+
     }
 }

@@ -27,11 +27,7 @@ class RateStoryAdapter : BaseBindingAdapter<ItemRateStoryBinding>() {
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemRateStoryBinding>, position: Int) {
         val story:Story= listStory[position]
-        val drawable = GradientDrawable()
-//        drawable.setColor(ContextCompat.getColor( R.color.black))
-        drawable.setColor(R.color.white)
         holder.binding.imStory.setImageResource( story.imageStory)
-        Log.e("tnghia","onBindViewHolderBase")
         holder.binding.tvNameStory.text =  story.nameStory
         holder.binding.tvNumberView.text =  story.numberView.toString()
         holder.binding.viewStar.numberStar =  story.numberStar

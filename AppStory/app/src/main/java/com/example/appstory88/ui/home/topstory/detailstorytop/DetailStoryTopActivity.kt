@@ -17,7 +17,7 @@ class DetailStoryTopActivity :
     BaseBindingActivity<ActivityDetailStoryTopBinding, DetailStoryTopViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
 
-    private var mainViewModel: MainViewModel? = null
+    private lateinit var mainViewModel: MainViewModel
     private var detailStoryAdapter: DetailStoryAdapter? = null
 
     override fun getLayoutId(): Int {
@@ -32,14 +32,15 @@ class DetailStoryTopActivity :
         val category=intent.getStringExtra(Constant.CATEGORY_STORY)
         binding.tvNameCategory.text=category
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel?.initData(this)
-        mainViewModel?.listStoryLiveData?.observe(this) { story ->
+        mainViewModel.initData(this)
+        mainViewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStory.addAll(story)
-//            category?.let { mainViewModel?.initlistDetailStoryLiveData(listStory, it) }
-            listStory.filter { it.nameCategory==category }
+            category?.let { mainViewModel.initlistDetailStoryLiveData(listStory, it) }
 
-            detailStoryAdapter?.listStory = listStory
+        }
+        mainViewModel.listStoryDetailLiveData.observe(this){
+            detailStoryAdapter?.listStory = it
 
         }
     }

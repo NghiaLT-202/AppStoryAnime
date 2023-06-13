@@ -14,10 +14,6 @@ class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
             notifyDataSetChanged()
         }
     var onItemClickListener: ItemClickListener? = null
-
-
-
-
     override fun onBindViewHolderBase(holder: BaseHolder<ItemTopStoryBinding>, position: Int) {
         val story:Story= listStory[position]
 
@@ -26,18 +22,14 @@ class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }
     }
-
-
     override fun getLayoutIdItem(): Int {
         return R.layout.item_top_story
     }
 
     override fun getSizeItem(): Int {
-        if (listStory.size > 10) {
-            return 10
-        } else {
+
             return listStory.size
-        }
+
 
     }
 

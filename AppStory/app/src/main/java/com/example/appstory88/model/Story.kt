@@ -6,17 +6,18 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Story(
-    @ColumnInfo var imageStory: Int,
-    @ColumnInfo var nameStory: String,
-    @ColumnInfo var numberStar: Int,
-    @ColumnInfo var nameAuthur: String,
-    @ColumnInfo var nameCategory: String,
-    @ColumnInfo var numberView: Long,
-    @ColumnInfo var status: Boolean,
-    @ColumnInfo var describe: String,
-    @ColumnInfo var chapter: String,
-    @ColumnInfo var chapterSum: Int,
-){
-    @PrimaryKey(autoGenerate = true) var idStory: Int=0
+    var imageStory: Int,
+    var nameStory: String,
+    var numberStar: Int,
+    var nameAuthur: String,
+    var     nameCategory: String,
+    var numberView: Long,
+    var status: Boolean,
+    var describe: String,
+    var chapter: String,
+    var chapterSum: Int,
+) {
+    @PrimaryKey(autoGenerate = true)
+    var idStory: Int = 0
 
 }

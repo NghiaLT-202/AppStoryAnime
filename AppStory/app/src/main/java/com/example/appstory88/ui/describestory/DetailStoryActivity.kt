@@ -1,26 +1,63 @@
 package com.example.appstory88.ui.describestory
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.WindowManager
+import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
+import com.example.appstory88.adapter.ItemCategoryDetailAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.ActivityDescribeStoryBinding
+import com.example.appstory88.model.Story
+import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.detailstory.ReadStoryActivity
 import java.text.DecimalFormat
-import java.text.NumberFormat
 
 class DetailStoryActivity :
     BaseBindingActivity<ActivityDescribeStoryBinding, DetailStoryViewModel>() {
+    private var mainViewModel: MainViewModel? = null
+
+    private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
+    var listCategoryStory: MutableList<Story> = mutableListOf()
+
     override fun getLayoutId(): Int {
         return R.layout.activity_describe_story
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
+        makeStatusBarLight(this, Color.parseColor("#52322C2A"))
+
         inlistener()
+        initAdapter()
+    }
+
+    private fun initAdapter() {
+
+        itemCategoryDetailAdapter = ItemCategoryDetailAdapter().apply {
+            binding.rcCategory.adapter = this
+            onItemClickListener = object : ItemCategoryDetailAdapter.ItemClickListener {
+                override fun onItemClick(position: Int) {
+                }
+
+            }
+        }
+
     }
 
     override fun setupData() {
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mainViewModel?.initData(this)
+        mainViewModel?.listStoryLiveData?.observe(this) { story ->
+            listCategoryStory.clear()
+            Log.e("tnghia",""+listCategoryStory.size)
+            listCategoryStory.addAll(story)
+            itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
+        }
         initData()
     }
 
@@ -47,16 +84,24 @@ class DetailStoryActivity :
         binding.tvNameStory.text = intent.getStringExtra(Constant.NAME_STORY)
         binding.viewStar.numberStar = intent.getIntExtra(Constant.NUMBER_STAR_STORY, 0)
         val views = intent.getLongExtra((Constant.NUMBER_VIEW_STORY), 0)
-
         val decimalFormat = DecimalFormat("#,###")
         val formattedViews = decimalFormat.format(views)
         binding.tvValueView.text = formattedViews
         binding.tvValueChapterNumber.text =
             intent.getIntExtra((Constant.CHAPTER_SUM_STORY), 0).toString()
         binding.tvValueAuthur.text = intent.getStringExtra(Constant.NAME_AUTHUR_STORY)
-        binding.tvValueCategory.text = intent.getStringExtra(Constant.CATEGORY_STORY)
+//        binding.tvValueCategory.text = intent.getStringExtra(Constant.CATEGORY_STORY)
         binding.tvValueStatus.text = intent.getBooleanExtra(Constant.STATUS_STORY, false).toString()
         binding.tvValueDescribe.text = intent.getStringExtra(Constant.DESCRIBE_STORY)
         chapter = intent.getStringExtra(Constant.CHAPTER_STORY)
+    }
+
+    private fun makeStatusBarLight(activity: Activity, color: Int) {
+        val window = activity.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = color
+        activity.window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
     }
 }

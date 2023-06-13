@@ -9,35 +9,54 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_marginVertical="10dp"
-        android:layout_marginRight="10dp"
+        android:padding="5dp"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_nameCategory"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_nameCategory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_bg_tv_top_story"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="12dp"
-            android:textSize="18sp"
-            android:textColor="#ab5f70"
-            app:layout_constraintDimensionRatio="3:0.7"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Truyện mới cập nhật Truyện mới cập nhật" />
+            android:layout_height="match_parent"
+            app:cardCornerRadius="10dp"
+            >
+            <TextView
+                android:id="@+id/tv_nameCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:background="#E1EDCBCB"
 
-        <TextView
-            android:id="@+id/tv_line"
-            android:layout_width="4dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/tv_nameCategory"
-            app:layout_constraintBottom_toBottomOf="@id/tv_nameCategory"
-            android:background="#b3515c"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
+                android:textSize="16sp"
+                android:textColor="#ab5f70"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Truyện mới cập nhật Truyện mới cập nhật" />
 
-            app:layout_constraintLeft_toLeftOf="@id/tv_nameCategory"
-            />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/cv_nameCategory"
+            app:layout_constraintBottom_toBottomOf="@id/cv_nameCategory"
+            app:layout_constraintLeft_toLeftOf="@id/cv_nameCategory"
+            app:cardCornerRadius="5dp"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/tv_line"
+                android:layout_width="6dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:background="#b3515c"
+                />
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
