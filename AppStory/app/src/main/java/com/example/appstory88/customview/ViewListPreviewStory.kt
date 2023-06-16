@@ -1,9 +1,10 @@
-package com.tunglt.trainingstoryapp.customview
+package com.example.appstory88.customview
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.appstory88.adapter.ListStoryPreviewAdapter
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.databinding.ViewListStoryBinding
 import com.example.appstory88.model.Story
@@ -24,10 +25,10 @@ class ViewListPreviewStory : ConstraintLayout {
             field = value
             listStoryPreviewAdapter?.listStory = value
         }
-    private var listStoryPreviewAdapter: StoryAdapter? = null
+    private var listStoryPreviewAdapter: ListStoryPreviewAdapter? = null
 
     init {
-        listStoryPreviewAdapter = StoryAdapter()
+        listStoryPreviewAdapter = ListStoryPreviewAdapter()
         binding.rcStoryPreview.adapter = listStoryPreviewAdapter
     }
 

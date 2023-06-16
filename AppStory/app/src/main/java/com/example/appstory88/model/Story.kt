@@ -1,6 +1,5 @@
 package com.example.appstory88.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -10,7 +9,7 @@ class Story(
     var nameStory: String,
     var numberStar: Int,
     var nameAuthur: String,
-    var     nameCategory: String,
+    var nameCategory: String,
     var numberView: Long,
     var status: Boolean,
     var describe: String,

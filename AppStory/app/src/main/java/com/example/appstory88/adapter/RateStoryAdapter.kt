@@ -2,6 +2,7 @@ package com.example.appstory88.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -31,10 +32,27 @@ class RateStoryAdapter : BaseBindingAdapter<ItemRateStoryBinding>() {
         holder.binding.tvNameStory.text =  story.nameStory
         holder.binding.tvNumberView.text =  story.numberView.toString()
         holder.binding.viewStar.numberStar =  story.numberStar
+        when (position) {
+            0 -> {
+                holder.binding.view.setBackgroundColor(Color.parseColor("#B8545F"))
+            }
+
+            1 -> {
+                holder.binding.view.setBackgroundColor(Color.parseColor("#4C6699"))
+            }
+
+            2 -> {
+                holder.binding.view.setBackgroundColor(Color.parseColor("#7A3A80"))
+            }
+
+            else -> {
+                holder.binding.view.setBackgroundColor(Color.parseColor("#9B9B9B"))
+            }
+        }
+
 //        holder.binding.tvView.background=drawable
 //        holder.binding.view.setBackgroundColor(R.color.black)
         holder.itemView.setOnClickListener {
-            Log.e("tnghia","hahha")
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }
     }

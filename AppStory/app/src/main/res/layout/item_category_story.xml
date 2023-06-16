@@ -9,87 +9,89 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content"
+      >
 
-       android:padding="5dp"
-
-        android:background="@drawable/custom_ripple_view">
-
-        <View
-            android:id="@+id/view"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="2.5:1"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:background="@drawable/custom_bg_category_story"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_total_story"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_nameCategory"
-            app:layout_constraintRight_toRightOf="@id/tv_nameCategory"
-            app:layout_constraintTop_toTopOf="@+id/tv_nameCategory"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:background="@color/transparent"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp">
 
-            />
+                <View
+                    android:id="@+id/view_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.1"
+                    android:background="#BBC8BC" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingRight="8dp"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        tools:text="Truyện Hot" />
+
+                    <TextView
+                        android:id="@+id/tv_sum_story"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingRight="8dp"
+                        android:textColor="#A9AFB4"
+                        android:textSize="12sp"
+                        tools:text="Truyện Hot" />
+                </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/tv_nameCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingLeft="25dp"
-            android:paddingTop="15dp"
-            android:textColor="#829c7e"
-            android:textSize="19sp"
-            android:minLines="2"
-            android:gravity="center_vertical"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Truyện mới cập nhật" />
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tv_total_story"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:paddingLeft="25dp"
-            android:paddingBottom="15dp"
-            android:text="@string/_1000"
-            android:textColor="#9fa69f"
-            app:layout_constraintLeft_toLeftOf="@id/tv_nameCategory"
-            app:layout_constraintTop_toBottomOf="@id/tv_nameCategory"
-            tools:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:paddingBottom="15dp"
-            android:text="@string/truy_n"
-            android:textColor="#9fa69f"
-
-            app:layout_constraintLeft_toRightOf="@id/tv_total_story"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nameCategory"
-
-            tools:textSize="12sp" />
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/view"
-            app:layout_constraintLeft_toLeftOf="@id/tv_nameCategory"
+            android:id="@+id/cv_line_vertical"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="16dp"
+            android:background="@color/transparent"
+            app:cardBackgroundColor="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/layout_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layout_text">
 
-            app:layout_constraintTop_toTopOf="@id/view"
-            app:cardCornerRadius="5dp"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/tv_line"
-                android:layout_width="6dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="5dp"
-                android:background="#5e9251"
-                />
+            <View
+                android:id="@+id/view_line_vertical"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:background="#3AAF43" />
         </androidx.cardview.widget.CardView>
 
 

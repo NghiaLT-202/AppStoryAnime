@@ -23,7 +23,7 @@
             android:id="@+id/nameCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/newly_updated_story"
+            android:text="@string/new_story_updated"
             app:layout_constraintLeft_toRightOf="@+id/im_back"
             app:layout_constraintTop_toTopOf="@id/im_back"
             app:layout_constraintBottom_toBottomOf="@id/im_back"

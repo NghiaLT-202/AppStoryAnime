@@ -8,6 +8,7 @@ import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.adapter.StoryBannerAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.commom.Constant.KEY_DETAIL_STORY
 import com.example.appstory88.databinding.ActivityHomeStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.describestory.DetailStoryActivity
@@ -16,6 +17,7 @@ import com.example.appstory88.ui.home.category.CategoryStoryActicity
 import com.example.appstory88.ui.home.ratestory.RateStoryActivity
 import com.example.appstory88.ui.home.topstory.TopStoryActivity
 import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
+import com.google.gson.Gson
 
 class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
@@ -43,6 +45,11 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
+        binding.rcFullStory.textCategory = getString(R.string.truy_n_full)
+        binding.rcLoveLanguageStory.textCategory = getString(R.string.good_love_language)
+        binding.rcFirstHalfStory.textCategory = getString(R.string.good_fairy_tale)
+        binding.rcPassionStory.textCategory = getString(R.string.good_passion)
+        binding.rcNewUpdateStory.textCategory = getString(R.string.new_story_updated)
         initAdapter()
         initListener()
     }
@@ -62,43 +69,48 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
             listStoryBanner.clear()
             listStory.addAll(story)
             listStoryBanner.addAll(story)
-            viewModel.initlistStoryNewUpdateLiveData(listStory)
-            viewModel.initlistStoryFullAdapterLiveData(listStory)
-            viewModel.initlistStoryGoodLoveLanguageLiveData(listStory)
-            viewModel.initlistStoryGoodFairyTaleLiveData(listStory)
-            viewModel.initlistStoryGoodPassionLiveData(listStory)
+//            viewModel.initlistStoryNewUpdateLiveData(listStory)
+//            viewModel.initlistStoryFullAdapterLiveData(listStory)
+//            viewModel.initlistStoryGoodLoveLanguageLiveData(listStory)
+//            viewModel.initlistStoryGoodFairyTaleLiveData(listStory)
+//            viewModel.initlistStoryGoodPassionLiveData(listStory)
+            binding.rcLoveLanguageStory.listPreviewStory = story
+            binding.rcFullStory.listPreviewStory = story
+            binding.rcFirstHalfStory.listPreviewStory = story
+            binding.rcPassionStory.listPreviewStory = story
+            binding.rcNewUpdateStory.listPreviewStory = story
             storyBannerAdapter?.listStory=listStory
         }
-        viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
-            listStoryNewUpdate.clear()
-            listStoryNewUpdate.addAll(newUpdate)
-            storyNewUpdateAdapter?.listStory=newUpdate
-        }
-        viewModel.listStoryFullAdapterLiveData.observe(this) { storyFull ->
-            listStoryFull.clear()
-            listStoryFull.addAll(storyFull)
-
-            storyFullAdapter?.listStory=storyFull
-
-        }
-        viewModel.listStoryGoodLoveLanguageLiveData.observe(this) { goodLove ->
-            listStoryGoodLoveLanguage.clear()
-            listStoryGoodLoveLanguage.addAll(goodLove)
-
-            storyGoodLoveLanguageAdapter?.listStory=goodLove
-        }
-        viewModel.listStoryGoodFairyTaleLiveData.observe(this) { goodFairyTale ->
-            listStoryGoodFairyTale.clear()
-            listStoryGoodFairyTale.addAll(goodFairyTale)
-            storyGoodFairyTaleAdapter?.listStory=goodFairyTale
-
-        }
-        viewModel.listStoryGoodPassionLiveData.observe(this) { goodPassion ->
-            listStoryGoodPassion.clear()
-            listStoryGoodPassion.addAll(goodPassion)
-            storyGoodPassionAdapter?.listStory=goodPassion
-
-        }
+//        viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
+//            listStoryNewUpdate.clear()
+//            listStoryNewUpdate.addAll(newUpdate)
+//            storyNewUpdateAdapter?.listStory=newUpdate
+//        }
+//        viewModel.listStoryFullAdapterLiveData.observe(this) { storyFull ->
+//            listStoryFull.clear()
+//            listStoryFull.addAll(storyFull)
+//
+//            storyFullAdapter?.listStory=storyFull
+//
+//        }
+//        viewModel.listStoryGoodLoveLanguageLiveData.observe(this) { goodLove ->
+//            listStoryGoodLoveLanguage.clear()
+//            listStoryGoodLoveLanguage.addAll(goodLove)
+//
+//            storyGoodLoveLanguageAdapter?.listStory=goodLove
+//        }
+//        viewModel.listStoryGoodFairyTaleLiveData.observe(this) { goodFairyTale ->
+//            listStoryGoodFairyTale.clear()
+//            listStoryGoodFairyTale.addAll(goodFairyTale)
+//            storyGoodFairyTaleAdapter?.listStory=goodFairyTale
+//
+//        }
+//        viewModel.listStoryGoodPassionLiveData.observe(this) { goodPassion ->
+//            listStoryGoodPassion.clear()
+//            listStoryGoodPassion.addAll(goodPassion)
+//            storyGoodPassionAdapter?.listStory=goodPassion
+//
+//        }
     }
 
 
@@ -107,35 +119,35 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
             intentActivity(TopStoryActivity::class.java, 0)
 
         }
-        binding.viewCategory.setOnClickListener {
+        binding.viewCategoryStory.setOnClickListener {
             intentActivity(CategoryStoryActicity::class.java, 0)
         }
-        binding.viewRating.setOnClickListener {
+        binding.viewRateStory.setOnClickListener {
             intentActivity(RateStoryActivity::class.java, 0)
         }
-        binding.viewBookmark.setOnClickListener {
+        binding.viewBookMarkStory.setOnClickListener {
             intentActivity(BookmarkActivity::class.java, 0)
 
         }
-        binding.imViewMoreNewStoryUpdated.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java, 0)
-
-        }
-        binding.imViewMoreStoryFull.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java, 1)
-
-        }
-        binding.imViewMoreGoodLoveLanguage.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java, 2)
-        }
-
-        binding.imViewMoreGoodFairyTale.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java, 3)
-        }
-        binding.imViewMoreGoodPassion.setOnClickListener {
-            intentActivity(ViewMoreStoryActivity::class.java, 4)
-
-        }
+//        binding.imViewMoreNewStoryUpdated.setOnClickListener {
+//            intentActivity(ViewMoreStoryActivity::class.java, 0)
+//
+//        }
+//        binding.imViewMoreStoryFull.setOnClickListener {
+//            intentActivity(ViewMoreStoryActivity::class.java, 1)
+//
+//        }
+//        binding.imViewMoreGoodLoveLanguage.setOnClickListener {
+//            intentActivity(ViewMoreStoryActivity::class.java, 2)
+//        }
+//
+//        binding.imViewMoreGoodFairyTale.setOnClickListener {
+//            intentActivity(ViewMoreStoryActivity::class.java, 3)
+//        }
+//        binding.imViewMoreGoodPassion.setOnClickListener {
+//            intentActivity(ViewMoreStoryActivity::class.java, 4)
+//
+//        }
 
 
     }
@@ -143,11 +155,11 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
     private fun initAdapter() {
         storyBannerAdapter()
-        storyNewUpdateAdapter(binding.rcItemStoryUpdateNew)
-        storyFullAdapter(binding.rcItemStoryFull)
-        storyGoodLoveLanguageAdapter(binding.rcItemGoodLoveLanguage)
-        storyGoodFairyTaleAdapter(binding.rcItemGoodFairyTale)
-        storyGoodPassionAdapter(binding.rcItemGoodPassion)
+//        storyNewUpdateAdapter(binding.rcItemStoryUpdateNew)
+//        storyFullAdapter(binding.rcItemStoryFull)
+//        storyGoodLoveLanguageAdapter(binding.rcItemGoodLoveLanguage)
+//        storyGoodFairyTaleAdapter(binding.rcItemGoodFairyTale)
+//        storyGoodPassionAdapter(binding.rcItemGoodPassion)
 
 
     }
@@ -156,10 +168,8 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
         storyBannerAdapter = StoryBannerAdapter().apply {
             binding.rcItemStoryBanner.adapter = this
             iclick = object : StoryBannerAdapter.IClick {
-
-
                 override fun clickItem(story: Story, position: Int) {
-                    intentActivityAndData(story)
+                    intentActivityAndData(story,position)
                 }
             }
         }
@@ -173,7 +183,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
 
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+//                    intentActivityAndData(story)
                 }
 
             }
@@ -188,7 +198,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
 
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+//                    intentActivityAndData(story)
                 }
             }
 
@@ -204,7 +214,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
 
                     override fun onItemClick(story: Story, position: Int) {
-                        intentActivityAndData(story)
+//                        intentActivityAndData(story)
                     }
 
                 }
@@ -218,7 +228,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
             onItemClickListener = object : StoryAdapter.ItemClickListener {
 
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+//                    intentActivityAndData(story)
                 }
             }
 
@@ -234,7 +244,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
 
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+//                    intentActivityAndData(story)
                 }
             }
 
@@ -244,19 +254,14 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
     }
 
 
-    private fun intentActivityAndData(story: Story) {
+    private fun intentActivityAndData(story: Story,position: Int) {
         val intent = Intent(this, DetailStoryActivity::class.java)
-        intent.putExtra(Constant.IMAGE_STORY, story.imageStory)
-        intent.putExtra(Constant.NAME_STORY, story.nameStory)
-        intent.putExtra(Constant.NAME_AUTHUR_STORY, story.nameAuthur)
-        intent.putExtra(Constant.NUMBER_STAR_STORY, story.numberStar)
-        intent.putExtra(Constant.NUMBER_VIEW_STORY, story.numberView)
-        intent.putExtra(Constant.STATUS_STORY, story.status)
-        intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
-        intent.putExtra(Constant.DESCRIBE_STORY, story.describe)
-        intent.putExtra(Constant.CHAPTER_STORY, story.chapter)
-        intent.putExtra(Constant.CHAPTER_SUM_STORY, story.chapterSum)
+        intent.putExtra(
+            KEY_DETAIL_STORY,
+            Gson().toJson(storyBannerAdapter?.listStory?.get(position))
+        )
         startActivity(intent)
+
 
     }
 

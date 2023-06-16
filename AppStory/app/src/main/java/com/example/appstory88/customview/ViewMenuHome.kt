@@ -1,4 +1,4 @@
-package com.tunglt.trainingstoryapp.customview
+package com.example.appstory88.customview
 
 import android.content.Context
 import android.util.AttributeSet

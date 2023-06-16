@@ -10,6 +10,7 @@ import com.example.appstory88.adapter.ItemTopStoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.ActivityTopStoryBinding
+import com.example.appstory88.model.ItemTopStory
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopActivity
@@ -17,7 +18,7 @@ import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
 class TopStoryActivity : BaseBindingActivity<ActivityTopStoryBinding, TopStoryViewModel>() {
     private lateinit var mainViewModel: MainViewModel
-    private val listStory: MutableList<Story> = mutableListOf()
+    private val listStory: MutableList<ItemTopStory> = mutableListOf()
     private var itemTopStoryAdapter: ItemTopStoryAdapter? = null
     override fun getLayoutId(): Int {
         return R.layout.activity_top_story
@@ -35,11 +36,11 @@ class TopStoryActivity : BaseBindingActivity<ActivityTopStoryBinding, TopStoryVi
 
     override fun setupData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.initData(this)
-        mainViewModel.listStoryLiveData.observe(this) { story ->
+        mainViewModel.initDataTopStory(this)
+        mainViewModel.listTopStoryLiveData.observe(this) {
             listStory.clear()
-            listStory.addAll(story)
-            itemTopStoryAdapter?.listStory = story
+            listStory.addAll(it)
+            itemTopStoryAdapter?.listStory = it
         }
     }
 
@@ -58,9 +59,9 @@ class TopStoryActivity : BaseBindingActivity<ActivityTopStoryBinding, TopStoryVi
         return TopStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: Story) {
+    private fun intentActivity(story: ItemTopStory) {
         val intent = Intent(this, DetailStoryTopActivity::class.java)
-        intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
+        intent.putExtra(Constant.CATEGORY_STORY, story.name)
         startActivity(intent)
 
     }

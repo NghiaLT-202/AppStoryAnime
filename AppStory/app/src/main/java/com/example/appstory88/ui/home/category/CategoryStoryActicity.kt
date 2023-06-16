@@ -8,6 +8,7 @@ import com.example.appstory88.adapter.ItemCategoryStoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.ActivityCategoryStoryBinding
+import com.example.appstory88.model.ItemCategory
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopActivity
@@ -16,7 +17,7 @@ import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 class CategoryStoryActicity :
     BaseBindingActivity<ActivityCategoryStoryBinding, CategoryStoryViewModel>() {
     lateinit var mainViewModel: MainViewModel
-    private val listStory: MutableList<Story> = mutableListOf()
+    private val listStory: MutableList<ItemCategory> = mutableListOf()
     private var itemCategoryStoryAdapter: ItemCategoryStoryAdapter? = null
     override fun getLayoutId(): Int {
         return R.layout.activity_category_story
@@ -29,10 +30,12 @@ class CategoryStoryActicity :
     override fun setupData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initData(this)
-        mainViewModel.listStoryLiveData.observe(this) { story ->
-            listStory.clear()
-            listStory.addAll(story)
-            itemCategoryStoryAdapter?.listStory = story
+        mainViewModel.listStoryLiveData.observe(this) {
+
+            mainViewModel.initDataCategory(this,it)
+        }
+        mainViewModel.listCategoryLiveData.observe(this){
+            itemCategoryStoryAdapter?.listCategory=it
         }
     }
 
@@ -51,9 +54,9 @@ class CategoryStoryActicity :
         return CategoryStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: Story) {
+    private fun intentActivity(story: ItemCategory) {
         val intent = Intent(this, DetailStoryTopActivity::class.java)
-        intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
+        intent.putExtra(Constant.CATEGORY_STORY, story.name)
         startActivity(intent)
 
     }
