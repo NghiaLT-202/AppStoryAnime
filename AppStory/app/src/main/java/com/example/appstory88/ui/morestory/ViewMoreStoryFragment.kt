@@ -2,19 +2,19 @@ package com.example.appstory88.ui.morestory
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
-import com.example.appstory88.base.BaseBindingActivity
+import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.ActivityShowMoreStoryBinding
-import com.example.appstory88.databinding.FragmentShowMoreStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.describestory.DetailStoryActivity
 
-class ViewMoreStoryActivity :
-    BaseBindingActivity<FragmentShowMoreStoryBinding, ViewMoreStoryModel>() {
+class ViewMoreStoryFragment:
+    BaseBindingFragment<ActivityShowMoreStoryBinding, ViewMoreStoryModel>() {
     private var storyAdapter: StoryAdapter? = null
     private var mainViewModel: MainViewModel? = null
     private var listStory: MutableList<Story> = mutableListOf()
@@ -22,14 +22,20 @@ class ViewMoreStoryActivity :
         return R.layout.fragment_show_more_story
     }
 
-    override fun setupView(savedInstanceState: Bundle?) {
+    override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+        initListener()
+        initAdapter()
+        setupData()
+    }
+
+    private fun initListener() {
         binding.imBack.setOnClickListener {
             finish()
         }
-        initAdapter()
     }
 
-    override fun setupData() {
+
+     fun setupData() {
         val category = intent.getStringExtra(Constant.CATEGORY_STORY)
         binding.nameCategory.text = category
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]

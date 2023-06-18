@@ -7,14 +7,14 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.DetailStoryAdapter
 import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.ActivityDetailStoryTopBinding
+import com.example.appstory88.databinding.FragmentDetailStoryTopBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.describestory.DetailStoryActivity
 import com.google.gson.Gson
 
-class DetailStoryTopActivity :
-    BaseBindingActivity<ActivityDetailStoryTopBinding, DetailStoryTopViewModel>() {
+class DetailStoryTopFragment :
+    BaseBindingActivity<FragmentDetailStoryTopBinding, DetailStoryTopViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
 
     private lateinit var mainViewModel: MainViewModel
@@ -61,7 +61,7 @@ class DetailStoryTopActivity :
         }
     }
 
-    private fun intentActivityAndData(story: Story,position:Int) {
+    private fun intentActivityAndData(story: Story, position:Int) {
         val intent = Intent(this, DetailStoryActivity::class.java)
         intent.putExtra(
             Constant.KEY_DETAIL_STORY,

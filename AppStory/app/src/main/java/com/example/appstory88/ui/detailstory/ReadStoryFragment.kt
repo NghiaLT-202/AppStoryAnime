@@ -1,28 +1,33 @@
 package com.example.appstory88.ui.detailstory
 
 import android.os.Bundle
+import android.view.View
 import com.example.appstory88.R
-import com.example.appstory88.base.BaseBindingActivity
+import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.ActivityDetailStoryBinding
+import com.example.appstory88.databinding.FragmentDetailStoryBinding
+import com.example.appstory88.databinding.FragmentRedStoryBinding
 
-
-class ReadStoryActivity :
-    BaseBindingActivity<ActivityDetailStoryBinding, ReadStoryViewModel>() {
+class ReadStoryFragment :
+    BaseBindingFragment<FragmentRedStoryBinding, ReadStoryViewModel>() {
     override fun getLayoutId(): Int {
         return R.layout.fragment_red_story
     }
 
-    override fun setupView(savedInstanceState: Bundle?) {
+    override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+        initListener()
+        initData()
+
+    }
+
+    private fun initListener() {
         binding.imBack.setOnClickListener {
             finish()
         }
-
     }
 
-    override fun setupData() {
-        initData()
-    }
+
+
 
     override fun getViewModel(): Class<ReadStoryViewModel> {
         return ReadStoryViewModel::class.java

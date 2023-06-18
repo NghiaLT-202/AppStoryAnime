@@ -27,55 +27,6 @@
 
             android:exported="true">
 
-        </activity> <activity
-            android:name=".ui.morestory.ViewMoreStoryActivity"
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.describestory.DetailStoryActivity"
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.detailstory.ReadStoryActivity"
-
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.home.ratestory.RateStoryActivity"
-
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.home.topstory.TopStoryActivity"
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.home.category.CategoryStoryActicity"
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.home.bookmark.BookmarkActivity"
-
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ui.home.topstory.detailstorytop.DetailStoryTopActivity"
-
-            android:exported="true">
-
         </activity>
     </application>
 

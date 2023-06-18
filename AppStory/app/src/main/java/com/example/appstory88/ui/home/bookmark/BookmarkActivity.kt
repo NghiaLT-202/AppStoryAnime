@@ -7,7 +7,7 @@ import com.example.appstory88.databinding.ActivityBookMarkStoryBinding
 
 class BookmarkActivity : BaseBindingActivity<ActivityBookMarkStoryBinding, BookmarkViewModel>() {
     override fun getLayoutId(): Int {
-        return R.layout.activity_book_mark_story
+        return R.layout.fragment_book_mark_story
     }
 
     override fun setupView(savedInstanceState: Bundle?) {

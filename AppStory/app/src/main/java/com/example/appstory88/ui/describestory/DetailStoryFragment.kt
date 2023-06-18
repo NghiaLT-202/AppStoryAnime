@@ -10,17 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
-import com.example.appstory88.base.BaseBindingActivity
+import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.ActivityDescribeStoryBinding
+import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.detailstory.ReadStoryActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class DetailStoryActivity :
-    BaseBindingActivity<ActivityDescribeStoryBinding, DetailStoryViewModel>() {
+class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var mainViewModel: MainViewModel? = null
     private var story: Story? = null
 
@@ -29,16 +28,17 @@ class DetailStoryActivity :
     var listCategoryStory: MutableList<Story> = mutableListOf()
 
     override fun getLayoutId(): Int {
-        return R.layout.fragment_red_story
+        return R.layout.fragment_detail_story
     }
 
-    override fun setupView(savedInstanceState: Bundle?) {
-
+    override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
         makeStatusBarLight(this, Color.parseColor("#52322C2A"))
-
         inlistener()
         initAdapter()
+        setupData()
     }
+
+
 
     private fun initAdapter() {
 
@@ -53,18 +53,18 @@ class DetailStoryActivity :
 
     }
 
-    override fun setupData() {
-        story = Gson().fromJson(
-            intent.getStringExtra(Constant.KEY_DETAIL_STORY), object : TypeToken<Story>() {}.type
-        )
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel?.initData(this)
-        mainViewModel?.listStoryLiveData?.observe(this) { story ->
-            listCategoryStory.clear()
-            listCategoryStory.addAll(story)
-            itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
-        }
-        initData()
+     fun setupData() {
+         story = Gson().fromJson(
+             intent.getStringExtra(Constant.KEY_DETAIL_STORY), object : TypeToken<Story>() {}.type
+         )
+         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+         mainViewModel?.initData(this)
+         mainViewModel?.listStoryLiveData?.observe(this) { story ->
+             listCategoryStory.clear()
+             listCategoryStory.addAll(story)
+             itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
+         }
+         initData()
     }
 
     override fun getViewModel(): Class<DetailStoryViewModel> {
