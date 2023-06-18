@@ -6,10 +6,12 @@ import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemDetailStoryBinding
 import com.example.appstory88.databinding.ItemRateStoryBinding
+import com.example.appstory88.model.ItemTopStory
 import com.example.appstory88.model.Story
 
 class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
@@ -29,13 +31,13 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
     override fun onBindViewHolderBase(holder: BaseHolder<ItemDetailStoryBinding>, position: Int) {
         val story:Story= listStory[position]
         val tvChapterSum="Chapter sum: "
-        holder.binding.imStory.setImageResource( story.imageStory)
+        Glide.with(holder.itemView.context).load(story.imageStory).into(holder.binding.imStory)
         holder.binding.tvNameStory.text =  story.nameStory
         holder.binding.tvNumberChapter.text =  tvChapterSum+story.chapterSum.toString()
         holder.binding.tvNameCategory.text =  story.nameCategory
         holder.binding.viewStar.numberStar =  story.numberStar
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(holder.adapterPosition)
+            onItemClickListener?.onItemClick(story,holder.adapterPosition)
         }    }
 
 
@@ -53,6 +55,6 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
     }
 
     interface ItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(story: Story,position: Int)
     }
 }

@@ -10,14 +10,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        >
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#302E2E"
+            android:textColor="#B2202020"
+            android:textAllCaps="true"
+            android:layout_marginStart="15dp"
+
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Truyên mới cập nhật" />
@@ -27,15 +31,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_back_revers_68"
+            android:layout_marginEnd="15dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_title"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_story_preview"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingLeft="15dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />

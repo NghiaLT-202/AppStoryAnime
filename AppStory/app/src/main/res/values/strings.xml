@@ -999,6 +999,8 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="th_loai">THỂ LOẠI</string>
     <string name="chuy_n_m_c"># CHUYÊN MỤC</string>
     <string name="truy_n_c_a_b_n"># TRUYỆN CỦA BẠN</string>
+    <string name="menu">MENU</string>
+    <string name="view_number">"Luợt xem: "</string>
 
 
 </resources>

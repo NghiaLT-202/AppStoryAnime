@@ -2,6 +2,7 @@ package com.example.appstory88.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
@@ -146,11 +147,12 @@ class MainViewModel : BaseViewModel() {
         //size author = 200
         val listAuthor = context.resources.getStringArray(R.array.list_name_authur_story)
         val listnumberView = context.resources.getStringArray(R.array.list_number_view_story)
+        val listChappter = context.resources.getStringArray(R.array.list_number_chapter_story)
 
 
         val listPathImage: MutableList<String> = mutableListOf()
         context.assets.list("story")?.toMutableList()?.let { list ->
-            list.forEach { listPathImage.add("file:///assets/story/$it") }
+            list.forEach { listPathImage.add("file:///android_asset/story/$it") }
         }
 
         val listStory: MutableList<Story> = mutableListOf()
@@ -158,20 +160,20 @@ class MainViewModel : BaseViewModel() {
             val numberRate = Random().nextInt(5) + 1
             val numberCategory = Random().nextInt(listCategory.size - 1) + 1
             val numberAuthor = Random().nextInt(listAuthor.size - 1) + 1
-//            val numberImage = Random().nextInt(listPathImage.size - 1) + 1
+            val numberImage = Random().nextInt(listPathImage.size - 1) + 1
+            val status = Random().nextBoolean()
             val story =
                 Story(
-                    R.drawable.anime1,
+                   listPathImage[numberImage],
                     listName[i],
                     numberRate,
                     listAuthor[numberAuthor],
                     listCategory[numberCategory],
-                    20000,
-                    true,
+                    listnumberView[i].toLong(),
+                    status,
                     listContent[0],
-                    "50",
+                    listChappter[i],
                     90,
-//                    kotlin.random.Random.nextLong(10000L, 10000001L)
                 )
             listStory.add(story)
         }

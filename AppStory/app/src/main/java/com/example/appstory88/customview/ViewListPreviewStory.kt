@@ -1,13 +1,19 @@
 package com.example.appstory88.customview
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import com.example.appstory88.adapter.ListStoryPreviewAdapter
 import com.example.appstory88.adapter.StoryAdapter
+import com.example.appstory88.adapter.StoryBannerAdapter
+import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.ViewListStoryBinding
 import com.example.appstory88.model.Story
+import com.example.appstory88.ui.describestory.DetailStoryActivity
+import com.google.gson.Gson
 
 
 class ViewListPreviewStory : ConstraintLayout {
@@ -25,12 +31,31 @@ class ViewListPreviewStory : ConstraintLayout {
             field = value
             listStoryPreviewAdapter?.listStory = value
         }
-    private var listStoryPreviewAdapter: ListStoryPreviewAdapter? = null
+     var listStoryPreviewAdapter: ListStoryPreviewAdapter? = null
 
     init {
-        listStoryPreviewAdapter = ListStoryPreviewAdapter()
-        binding.rcStoryPreview.adapter = listStoryPreviewAdapter
+        listStoryPreviewAdapter = ListStoryPreviewAdapter().apply {
+            binding.rcStoryPreview.adapter = this
+            onItemClickListener = object : StoryAdapter.ItemClickListener {
+
+
+                override fun onItemClick(story: Story, position: Int) {
+//                    intentActivityAndData(story,position)
+                }
+
+            }
+
+        }
+
     }
+//    private fun intentActivityAndData(story: Story,position: Int) {
+//        val intent = Intent(this, DetailStoryActivity::class.java)
+//        intent.putExtra(
+//            Constant.KEY_DETAIL_STORY,
+//            Gson().toJson(listStoryPreviewAdapter?.listStory?.get(position))
+//        )
+//        startActivity(intent)
+//    }
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

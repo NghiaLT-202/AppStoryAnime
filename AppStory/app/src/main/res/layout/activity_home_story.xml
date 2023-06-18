@@ -16,10 +16,11 @@
             android:id="@+id/im_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/custom_ripple_view"
             android:paddingVertical="5dp"
             android:paddingEnd="5dp"
-            android:background="@drawable/custom_ripple_view"
             android:src="@drawable/icon_menu_72"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,10 +28,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:text="@string/app_story"
             android:textColor="#A8000000"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/im_menu"
             app:layout_constraintLeft_toRightOf="@+id/im_menu"
@@ -78,30 +79,32 @@
                     tools:listitem="@layout/item_story_banner" />
 
                 <TextView
-                    android:id="@+id/tv_category"
+                    android:id="@+id/tv_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/category"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/menu"
                     android:textAllCaps="true"
                     android:textColor="#B2202020"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rc_item_story_banner" />
+
                 <com.example.appstory88.customview.ViewMenuHome
                     android:id="@+id/view_top_story"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintDimensionRatio="2:1.1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/view_rate_story"
-                    app:layout_constraintTop_toBottomOf="@id/tv_category"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu"
                     app:textBottom="@string/truy_n_hay"
                     app:textTop="@string/top_truy_n" />
+
                 <com.example.appstory88.customview.ViewMenuHome
                     android:id="@+id/view_rate_story"
                     android:layout_width="0dp"
@@ -145,12 +148,13 @@
                     app:textTop="@string/bookmark" />
 
 
-
                 <com.example.appstory88.customview.ViewListPreviewStory
                     android:id="@+id/rc_new_update_story"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+
+                    android:layout_marginTop="20dp"
+
 
                     app:layout_constraintTop_toBottomOf="@+id/view_book_mark_story" />
 
@@ -159,6 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+
                     app:layout_constraintTop_toBottomOf="@+id/rc_new_update_story" />
 
                 <com.example.appstory88.customview.ViewListPreviewStory
@@ -166,12 +171,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+
                     app:layout_constraintTop_toBottomOf="@+id/rc_full_story" />
 
                 <com.example.appstory88.customview.ViewListPreviewStory
                     android:id="@+id/rc_first_half_story"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/rc_love_language_story" />
 
@@ -179,6 +186,7 @@
                     android:id="@+id/rc_passion_story"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/rc_first_half_story" />
 

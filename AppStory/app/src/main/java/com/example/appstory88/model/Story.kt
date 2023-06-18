@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Story(
-    var imageStory: Int,
+    var imageStory: String,
     var nameStory: String,
     var numberStar: Int,
     var nameAuthur: String,

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appstory88.R
+import com.example.appstory88.adapter.ListStoryPreviewAdapter
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.adapter.StoryBannerAdapter
 import com.example.appstory88.base.BaseBindingActivity
@@ -45,6 +46,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
+
         binding.rcFullStory.textCategory = getString(R.string.truy_n_full)
         binding.rcLoveLanguageStory.textCategory = getString(R.string.good_love_language)
         binding.rcFirstHalfStory.textCategory = getString(R.string.good_fairy_tale)
@@ -129,6 +131,7 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
             intentActivity(BookmarkActivity::class.java, 0)
 
         }
+
 //        binding.imViewMoreNewStoryUpdated.setOnClickListener {
 //            intentActivity(ViewMoreStoryActivity::class.java, 0)
 //
@@ -155,11 +158,12 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
     private fun initAdapter() {
         storyBannerAdapter()
-//        storyNewUpdateAdapter(binding.rcItemStoryUpdateNew)
-//        storyFullAdapter(binding.rcItemStoryFull)
-//        storyGoodLoveLanguageAdapter(binding.rcItemGoodLoveLanguage)
-//        storyGoodFairyTaleAdapter(binding.rcItemGoodFairyTale)
-//        storyGoodPassionAdapter(binding.rcItemGoodPassion)
+        storyGoodFairyTaleAdapter()
+        storyNewUpdateAdapter()
+        storyFullAdapter()
+        storyGoodLoveLanguageAdapter()
+        storyGoodFairyTaleAdapter()
+        storyGoodPassionAdapter()
 
 
     }
@@ -176,85 +180,57 @@ class MainActivity : BaseBindingActivity<ActivityHomeStoryBinding, MainViewModel
 
     }
 
-    private fun storyNewUpdateAdapter(rcItem: RecyclerView) {
-        storyNewUpdateAdapter = StoryAdapter().apply {
-            rcItem.adapter = this
-            onItemClickListener = object : StoryAdapter.ItemClickListener {
+    private fun storyNewUpdateAdapter() {
+        binding.rcNewUpdateStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(story: Story, position: Int) {
+                intentActivityAndData(story,position)
+            }
+        }
 
 
-                override fun onItemClick(story: Story, position: Int) {
-//                    intentActivityAndData(story)
-                }
+    }
 
+    private fun storyFullAdapter() {
+        binding.rcFullStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(story: Story, position: Int) {
+                intentActivityAndData(story,position)
             }
         }
 
     }
 
-    private fun storyFullAdapter(rcItem: RecyclerView) {
-        storyFullAdapter = StoryAdapter().apply {
-            rcItem.adapter = this
-            onItemClickListener = object : StoryAdapter.ItemClickListener {
-
-
-                override fun onItemClick(story: Story, position: Int) {
-//                    intentActivityAndData(story)
-                }
+    private fun storyGoodLoveLanguageAdapter() {
+        binding.rcLoveLanguageStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(story: Story, position: Int) {
+                intentActivityAndData(story,position)
             }
-
-        }
-
-    }
-
-    private fun storyGoodLoveLanguageAdapter(rcItem: RecyclerView) {
-        storyGoodLoveLanguageAdapter = StoryAdapter().apply {
-            rcItem.adapter = this
-            onItemClickListener =
-                object : StoryAdapter.ItemClickListener {
-
-
-                    override fun onItemClick(story: Story, position: Int) {
-//                        intentActivityAndData(story)
-                    }
-
-                }
         }
     }
 
-    private fun storyGoodFairyTaleAdapter(rcItem: RecyclerView) {
-        storyGoodFairyTaleAdapter = StoryAdapter().apply {
-            rcItem.adapter = this
+    private fun storyGoodFairyTaleAdapter() {
 
-            onItemClickListener = object : StoryAdapter.ItemClickListener {
-
-                override fun onItemClick(story: Story, position: Int) {
-//                    intentActivityAndData(story)
-                }
+        binding.rcFirstHalfStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(story: Story, position: Int) {
+                intentActivityAndData(story,position)
             }
-
         }
 
     }
 
 
-    private fun storyGoodPassionAdapter(rcItem: RecyclerView) {
-        storyGoodPassionAdapter = StoryAdapter().apply {
-            rcItem.adapter = this
-            onItemClickListener = object : StoryAdapter.ItemClickListener {
+    private fun storyGoodPassionAdapter() {
 
-
-                override fun onItemClick(story: Story, position: Int) {
-//                    intentActivityAndData(story)
-                }
+        binding.rcPassionStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
+            override fun onItemClick(story: Story, position: Int) {
+                intentActivityAndData(story,position)
             }
-
         }
-
 
     }
 
 
     private fun intentActivityAndData(story: Story,position: Int) {
+
         val intent = Intent(this, DetailStoryActivity::class.java)
         intent.putExtra(
             KEY_DETAIL_STORY,

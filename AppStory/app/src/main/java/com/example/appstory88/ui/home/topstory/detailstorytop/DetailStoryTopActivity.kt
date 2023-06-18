@@ -12,6 +12,7 @@ import com.example.appstory88.databinding.ActivityDetailStoryTopBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.describestory.DetailStoryActivity
+import com.google.gson.Gson
 
 class DetailStoryTopActivity :
     BaseBindingActivity<ActivityDetailStoryTopBinding, DetailStoryTopViewModel>() {
@@ -53,27 +54,20 @@ class DetailStoryTopActivity :
         detailStoryAdapter = DetailStoryAdapter().apply {
             binding.rcItemStory.adapter = this
             onItemClickListener = object : DetailStoryAdapter.ItemClickListener {
-                override fun onItemClick(position: Int) {
-                    intentActivityAndData(listStory[position])
-
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story,position)
                 }
             }
 
         }
     }
 
-    private fun intentActivityAndData(story: Story) {
+    private fun intentActivityAndData(story: Story,position:Int) {
         val intent = Intent(this, DetailStoryActivity::class.java)
-        intent.putExtra(Constant.IMAGE_STORY, story.imageStory)
-        intent.putExtra(Constant.NAME_STORY, story.nameStory)
-        intent.putExtra(Constant.NAME_AUTHUR_STORY, story.nameAuthur)
-        intent.putExtra(Constant.NUMBER_STAR_STORY, story.numberStar)
-        intent.putExtra(Constant.NUMBER_VIEW_STORY, story.numberView)
-        intent.putExtra(Constant.STATUS_STORY, story.status)
-        intent.putExtra(Constant.CATEGORY_STORY, story.nameCategory)
-        intent.putExtra(Constant.DESCRIBE_STORY, story.describe)
-        intent.putExtra(Constant.CHAPTER_STORY, story.chapter)
-        intent.putExtra(Constant.CHAPTER_SUM_STORY, story.chapterSum)
+        intent.putExtra(
+            Constant.KEY_DETAIL_STORY,
+            Gson().toJson(detailStoryAdapter?.listStory?.get(position))
+        )
         startActivity(intent)
 
     }

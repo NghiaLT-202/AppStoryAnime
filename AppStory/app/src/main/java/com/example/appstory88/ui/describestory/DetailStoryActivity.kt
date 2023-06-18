@@ -63,7 +63,6 @@ class DetailStoryActivity :
         mainViewModel?.initData(this)
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             listCategoryStory.clear()
-            Log.e("tnghia",""+listCategoryStory.size)
             listCategoryStory.addAll(story)
             itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
         }
@@ -90,8 +89,8 @@ class DetailStoryActivity :
 
     private fun initData() {
         story?.let {
-//            Glide.with(this).load(it.imageStory).into(binding.imStory)
-            binding.imStory.setImageResource(it.imageStory)
+            Glide.with(this).load(it.imageStory).into(binding.imStory)
+
             binding.tvNameStory.text=it.nameStory
             binding.viewStar.numberStar = it.numberStar
             binding.tvValueView.text = it.numberView.toString()
@@ -101,20 +100,7 @@ class DetailStoryActivity :
             binding.tvValueStatus.text=it.status.toString()
             binding.tvValueDescribe.text=it.describe
         }
-//        binding.imStory.setImageResource(intent.getIntExtra(Constant.IMAGE_STORY, 0))
-//        binding.tvNameStory.text = intent.getStringExtra(Constant.NAME_STORY)
-//        binding.viewStar.numberStar = intent.getIntExtra(Constant.NUMBER_STAR_STORY, 0)
-//        val views = intent.getLongExtra((Constant.NUMBER_VIEW_STORY), 0)
-//        val decimalFormat = DecimalFormat("#,###")
-//        val formattedViews = decimalFormat.format(views)
-//        binding.tvValueView.text = formattedViews
-//        binding.tvValueChapterNumber.text =
-//            intent.getIntExtra((Constant.CHAPTER_SUM_STORY), 0).toString()
-//        binding.tvValueAuthur.text = intent.getStringExtra(Constant.NAME_AUTHUR_STORY)
-////        binding.tvValueCategory.text = intent.getStringExtra(Constant.CATEGORY_STORY)
-//        binding.tvValueStatus.text = intent.getBooleanExtra(Constant.STATUS_STORY, false).toString()
-//        binding.tvValueDescribe.text = intent.getStringExtra(Constant.DESCRIBE_STORY)
-//        chapter = intent.getStringExtra(Constant.CHAPTER_STORY)
+
     }
 
     private fun makeStatusBarLight(activity: Activity, color: Int) {

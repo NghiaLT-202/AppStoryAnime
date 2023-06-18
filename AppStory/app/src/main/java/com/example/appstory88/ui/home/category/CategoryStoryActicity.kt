@@ -9,15 +9,13 @@ import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.ActivityCategoryStoryBinding
 import com.example.appstory88.model.ItemCategory
-import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainViewModel
 import com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopActivity
-import com.example.appstory88.ui.morestory.ViewMoreStoryActivity
 
 class CategoryStoryActicity :
     BaseBindingActivity<ActivityCategoryStoryBinding, CategoryStoryViewModel>() {
     lateinit var mainViewModel: MainViewModel
-    private val listStory: MutableList<ItemCategory> = mutableListOf()
+    private val listCategory: MutableList<ItemCategory> = mutableListOf()
     private var itemCategoryStoryAdapter: ItemCategoryStoryAdapter? = null
     override fun getLayoutId(): Int {
         return R.layout.activity_category_story
@@ -35,6 +33,8 @@ class CategoryStoryActicity :
             mainViewModel.initDataCategory(this,it)
         }
         mainViewModel.listCategoryLiveData.observe(this){
+            listCategory.clear()
+            listCategory.addAll(it)
             itemCategoryStoryAdapter?.listCategory=it
         }
     }
@@ -44,7 +44,7 @@ class CategoryStoryActicity :
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemCategoryStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(listStory[position])
+                    intentActivity(this@CategoryStoryActicity.listCategory[position])
                 }
             }
         }

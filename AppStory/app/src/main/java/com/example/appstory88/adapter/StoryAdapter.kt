@@ -2,6 +2,7 @@ package com.example.appstory88.adapter
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemStoryBinding
@@ -21,7 +22,7 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBinding>, position: Int) {
         val story:Story= listStory[position]
 
-        holder.binding.imStory.setImageResource( story.imageStory)
+        Glide.with(holder.itemView.context).load(story.imageStory).into(holder.binding.imStory)
         holder.binding.tvNameStory.text =  story.nameStory
         holder.binding.viewStar.numberStar =  story.numberStar
 
