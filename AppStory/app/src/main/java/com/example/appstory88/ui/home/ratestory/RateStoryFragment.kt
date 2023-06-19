@@ -1,6 +1,5 @@
 package com.example.appstory88.ui.home.ratestory
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -8,11 +7,10 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.RateStoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.databinding.ActivityRateStoryBinding
 import com.example.appstory88.databinding.FragmentRateStoryBinding
 import com.example.appstory88.model.Story
+import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.ui.MainViewModel
-import com.example.appstory88.ui.describestory.DetailStoryActivity
 import com.google.gson.Gson
 
 class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStoryViewModel>() {
@@ -32,7 +30,7 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
 
      fun setupData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel?.initData(this)
+        mainViewModel?.initData(requireContext())
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
             rateStoryAdapter?.listStory = story
@@ -60,12 +58,15 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
     }
 
     private fun intentActivityAndData(story: Story, position: Int) {
-        val intent = Intent(this, DetailStoryActivity::class.java)
-        intent.putExtra(
+        val bundle = Bundle()
+        bundle.putString(
             Constant.KEY_DETAIL_STORY,
             Gson().toJson(rateStoryAdapter?.listStory?.get(position))
         )
-        startActivity(intent)
+        (requireActivity() as MainActivity).navController?.navigate(
+            R.id.fragment_detail_story,
+            bundle
+        )
 
     }
 }

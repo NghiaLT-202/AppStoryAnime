@@ -1,6 +1,5 @@
 package com.example.appstory88.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.example.appstory88.R
@@ -10,14 +9,9 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentHomeStoryBinding
 import com.example.appstory88.model.Story
-import com.example.appstory88.ui.describestory.DetailStoryActivity
-import com.example.appstory88.ui.home.bookmark.BookmarkActivity
-import com.example.appstory88.ui.home.category.CategoryStoryActicity
-import com.example.appstory88.ui.home.ratestory.RateStoryActivity
-import com.example.appstory88.ui.home.topstory.TopStoryActivity
 import com.google.gson.Gson
 
-class HomeFragment: BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>() {
+class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
     private var storyNewUpdateAdapter: StoryAdapter? = null
     private val listStoryNewUpdate: MutableList<Story> = mutableListOf()
@@ -43,31 +37,29 @@ class HomeFragment: BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+        initAdapter()
+        initListener()
         setupView()
-        setupData()
+        initData()
     }
 
-     fun setupView() {
+    fun setupView() {
 
         binding.rcFullStory.textCategory = getString(R.string.truy_n_full)
         binding.rcLoveLanguageStory.textCategory = getString(R.string.good_love_language)
         binding.rcFirstHalfStory.textCategory = getString(R.string.good_fairy_tale)
         binding.rcPassionStory.textCategory = getString(R.string.good_passion)
         binding.rcNewUpdateStory.textCategory = getString(R.string.new_story_updated)
-        initAdapter()
-        initListener()
+
     }
 
-     fun setupData() {
-        initData()
-    }
 
     override fun getViewModel(): Class<MainViewModel> {
         return MainViewModel::class.java
     }
 
     private fun initData() {
-        viewModel.initData(this)
+        viewModel.initData(requireContext())
         viewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStoryBanner.clear()
@@ -83,7 +75,7 @@ class HomeFragment: BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>
             binding.rcFirstHalfStory.listPreviewStory = story
             binding.rcPassionStory.listPreviewStory = story
             binding.rcNewUpdateStory.listPreviewStory = story
-            storyBannerAdapter?.listStory=listStory
+            storyBannerAdapter?.listStory = listStoryBanner
         }
 //        viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
 //            listStoryNewUpdate.clear()
@@ -120,21 +112,18 @@ class HomeFragment: BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>
 
     private fun initListener() {
         binding.viewTopStory.setOnClickListener {
-            intentActivity(TopStoryActivity::class.java, 0)
-
+            intentActivity(R.id.fragment_view_top,0)
         }
         binding.viewCategoryStory.setOnClickListener {
-            intentActivity(CategoryStoryActicity::class.java, 0)
+            intentActivity(R.id.fragment_view_category,0)
         }
         binding.viewRateStory.setOnClickListener {
-            intentActivity(RateStoryActivity::class.java, 0)
+            intentActivity(R.id.fragment_view_rate,0)
         }
         binding.viewBookMarkStory.setOnClickListener {
-            intentActivity(BookmarkActivity::class.java, 0)
+            intentActivity(R.id.fragment_view_bookmark,0)
 
         }
-
-
 
 
     }
@@ -157,7 +146,7 @@ class HomeFragment: BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>
             binding.rcItemStoryBanner.adapter = this
             iclick = object : StoryBannerAdapter.IClick {
                 override fun clickItem(story: Story, position: Int) {
-                    intentActivityAndData(story,position)
+                    intentActivityAndData(story, position)
                 }
             }
         }
@@ -165,69 +154,78 @@ class HomeFragment: BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>
     }
 
     private fun storyNewUpdateAdapter() {
-        binding.rcNewUpdateStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(story: Story, position: Int) {
-                intentActivityAndData(story,position)
+        binding.rcNewUpdateStory.listStoryPreviewAdapter!!.onItemClickListener =
+            object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story, position)
+                }
             }
-        }
 
 
     }
 
     private fun storyFullAdapter() {
-        binding.rcFullStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(story: Story, position: Int) {
-                intentActivityAndData(story,position)
+        binding.rcFullStory.listStoryPreviewAdapter!!.onItemClickListener =
+            object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story, position)
+                }
             }
-        }
 
     }
 
     private fun storyGoodLoveLanguageAdapter() {
-        binding.rcLoveLanguageStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(story: Story, position: Int) {
-                intentActivityAndData(story,position)
+        binding.rcLoveLanguageStory.listStoryPreviewAdapter!!.onItemClickListener =
+            object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story, position)
+                }
             }
-        }
     }
 
     private fun storyGoodFairyTaleAdapter() {
-        binding.rcFirstHalfStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(story: Story, position: Int) {
-                intentActivityAndData(story,position)
+        binding.rcFirstHalfStory.listStoryPreviewAdapter!!.onItemClickListener =
+            object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story, position)
+                }
             }
-        }
 
     }
 
 
     private fun storyGoodPassionAdapter() {
 
-        binding.rcPassionStory.listStoryPreviewAdapter!!.onItemClickListener= object : StoryAdapter.ItemClickListener {
-            override fun onItemClick(story: Story, position: Int) {
-                intentActivityAndData(story,position)
+        binding.rcPassionStory.listStoryPreviewAdapter!!.onItemClickListener =
+            object : StoryAdapter.ItemClickListener {
+                override fun onItemClick(story: Story, position: Int) {
+                    intentActivityAndData(story, position)
+                }
             }
-        }
 
     }
 
 
     private fun intentActivityAndData(story: Story, position: Int) {
 
-        val intent = Intent(this, DetailStoryActivity::class.java)
-        intent.putExtra(
+        val bundle = Bundle()
+        bundle.putString(
             Constant.KEY_DETAIL_STORY,
             Gson().toJson(storyBannerAdapter?.listStory?.get(position))
         )
-        startActivity(intent)
+        (requireActivity() as MainActivity).navController?.navigate(
+            R.id.fragment_detail_story,
+            bundle
+        )
 
 
     }
 
-    private fun intentActivity(activityClass: Class<*>, position: Int) {
-        val intent = Intent(this, activityClass)
-        intent.putExtra(Constant.CATEGORY_STORY, listStory[position].nameCategory[0])
-        startActivity(intent)
+    private fun intentActivity(id: Int, position: Int) {
+        val bundle = Bundle()
+        bundle.putString(Constant.CATEGORY_STORY, listStory[position].nameCategory)
+
+        (requireActivity() as MainActivity).navController?.navigate(id, null)
 
     }
 

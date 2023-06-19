@@ -9,5 +9,40 @@
         android:name="com.example.appstory88.ui.HomeFragment"
         android:label="FragmentHome"
         tools:layout="@layout/fragment_home_story" />
+    <fragment
+        android:id="@+id/fragment_view_top"
+        android:name="com.example.appstory88.ui.home.topstory.TopStoryFragment"
+        android:label="FragmentViewTop"
+        tools:layout="@layout/fragment_top_story" />
+    <fragment
+        android:id="@+id/fragment_view_rate"
+        android:name="com.example.appstory88.ui.home.ratestory.RateStoryFragment"
+        android:label="FragmentViewRate"
+        tools:layout="@layout/fragment_rate_story" />
+    <fragment
+        android:id="@+id/fragment_view_category"
+        android:name="com.example.appstory88.ui.home.category.CategoryStoryFragment"
+        android:label="FragmentViewCategory"
+        tools:layout="@layout/fragment_category_story" />
+    <fragment
+        android:id="@+id/fragment_view_bookmark"
+        android:name="com.example.appstory88.ui.home.bookmark.BookMarkFragment"
+        android:label="FragmentBookMark"
+        tools:layout="@layout/fragment_book_mark_story" />
+    <fragment
+        android:id="@+id/fragment_detail_story"
+        android:name="com.example.appstory88.ui.describestory.DetailStoryFragment"
+        android:label="FragmentDetailStory"
+        tools:layout="@layout/fragment_detail_story" />
+    <fragment
+        android:id="@+id/fragment_detail_story_top"
+        android:name="com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopFragment"
+        android:label="FragmentDetailStoryTop"
+        tools:layout="@layout/fragment_detail_story_top" />
+    <fragment
+        android:id="@+id/fragment_read_story"
+        android:name="com.example.appstory88.ui.detailstory.ReadStoryFragment"
+        android:label="FragmentReadStory"
+        tools:layout="@layout/fragment_red_story" />
 
 </navigation>

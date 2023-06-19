@@ -12,7 +12,6 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
     }
 
 

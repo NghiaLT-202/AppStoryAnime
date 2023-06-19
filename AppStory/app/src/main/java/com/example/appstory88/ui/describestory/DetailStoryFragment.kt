@@ -2,7 +2,6 @@ package com.example.appstory88.ui.describestory
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -14,8 +13,8 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
+import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.ui.MainViewModel
-import com.example.appstory88.ui.detailstory.ReadStoryActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -32,7 +31,7 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        makeStatusBarLight(this, Color.parseColor("#52322C2A"))
+//        makeStatusBarLight(this, Color.parseColor("#52322C2A"))
         inlistener()
         initAdapter()
         setupData()
@@ -54,11 +53,11 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
     }
 
      fun setupData() {
-         story = Gson().fromJson(
-             intent.getStringExtra(Constant.KEY_DETAIL_STORY), object : TypeToken<Story>() {}.type
-         )
+         val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
+          story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
+
          mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-         mainViewModel?.initData(this)
+         mainViewModel?.initData(requireContext())
          mainViewModel?.listStoryLiveData?.observe(this) { story ->
              listCategoryStory.clear()
              listCategoryStory.addAll(story)
@@ -74,14 +73,18 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
     private var chapter: String? = null
     private fun inlistener() {
         binding.imBack.setOnClickListener {
-            finish()
+            requireActivity().supportFragmentManager.popBackStack()
         }
         binding.tvReadStory.setOnClickListener {
-            val intent = Intent(this, ReadStoryActivity::class.java)
-            intent.putExtra(Constant.NAME_STORY, binding.tvNameStory.text)
-            intent.putExtra(Constant.DESCRIBE_STORY, binding.tvValueDescribe.text)
-            intent.putExtra(Constant.CHAPTER_STORY, chapter)
-            startActivity(intent)
+            val bundle = Bundle()
+            bundle.putString(
+                Constant.KEY_DETAIL_STORY,
+                Gson().toJson(story)
+            )
+            (requireActivity() as MainActivity).navController?.navigate(
+                R.id.fragment_read_story,
+                bundle
+            )
         }
     }
 
@@ -93,7 +96,6 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
             binding.viewStar.numberStar = it.numberStar
             binding.tvValueView.text = it.numberView.toString()
             binding.tvValueChapterNumber.text=it.chapterSum.toString()
-
             binding.tvValueAuthur.text = it.nameAuthur
             binding.tvValueStatus.text=it.status.toString()
             binding.tvValueDescribe.text=it.describe

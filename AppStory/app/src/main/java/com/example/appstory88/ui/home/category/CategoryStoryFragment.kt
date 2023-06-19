@@ -1,6 +1,5 @@
 package com.example.appstory88.ui.home.category
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -10,12 +9,12 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentCategoryStoryBinding
 import com.example.appstory88.model.ItemCategory
+import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.ui.MainViewModel
-import com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopActivity
+import com.google.gson.Gson
 
 class CategoryStoryFragment :
     BaseBindingFragment<FragmentCategoryStoryBinding, CategoryStoryViewModel>() {
-    lateinit var mainViewModel: MainViewModel
     private val listCategory: MutableList<ItemCategory> = mutableListOf()
     private var itemCategoryStoryAdapter: ItemCategoryStoryAdapter? = null
     override fun getLayoutId(): Int {
@@ -24,22 +23,20 @@ class CategoryStoryFragment :
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
         initAdapter()
-        setupData()
+        initData()
     }
 
 
-
-     fun setupData() {
+    fun initData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.initData(this)
+        mainViewModel.initData(requireContext())
         mainViewModel.listStoryLiveData.observe(this) {
-
-            mainViewModel.initDataCategory(this,it)
+            mainViewModel.initDataCategory(requireContext(), it)
         }
-        mainViewModel.listCategoryLiveData.observe(this){
+        mainViewModel.listCategoryLiveData.observe(this) {
             listCategory.clear()
             listCategory.addAll(it)
-            itemCategoryStoryAdapter?.listCategory=it
+            itemCategoryStoryAdapter?.listCategory = it
         }
     }
 
@@ -48,7 +45,7 @@ class CategoryStoryFragment :
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemCategoryStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(this@CategoryStoryActicity.listCategory[position])
+                    intentActivity(listCategory[position], position)
                 }
             }
         }
@@ -58,10 +55,16 @@ class CategoryStoryFragment :
         return CategoryStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: ItemCategory) {
-        val intent = Intent(this, DetailStoryTopActivity::class.java)
-        intent.putExtra(Constant.CATEGORY_STORY, story.name)
-        startActivity(intent)
+    private fun intentActivity(story: ItemCategory, position: Int) {
+        val bundle = Bundle()
+        bundle.putString(
+            Constant.KEY_DETAIL_STORY,
+            Gson().toJson(itemCategoryStoryAdapter?.listCategory?.get(position))
+        )
+        (requireActivity() as MainActivity).navController?.navigate(
+            R.id.fragment_detail_story_top,
+            bundle
+        )
 
     }
 }

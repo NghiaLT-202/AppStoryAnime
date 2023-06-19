@@ -1,6 +1,5 @@
 package com.example.appstory88.ui.home.topstory
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -10,8 +9,8 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentTopStoryBinding
 import com.example.appstory88.model.ItemTopStory
+import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.ui.MainViewModel
-import com.example.appstory88.ui.home.topstory.detailstorytop.DetailStoryTopActivity
 
 class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryViewModel>() {
     private lateinit var mainViewModel: MainViewModel
@@ -32,9 +31,9 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
 
     }
 
-     fun setupData() {
+    fun setupData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.initDataTopStory(this)
+        mainViewModel.initDataTopStory(requireContext())
         mainViewModel.listTopStoryLiveData.observe(this) {
             listStory.clear()
             listStory.addAll(it)
@@ -47,7 +46,7 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemTopStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(listStory[position])
+                    intentActivity(listStory[position], position)
                 }
             }
         }
@@ -57,10 +56,17 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
         return TopStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: ItemTopStory) {
-        val intent = Intent(this, DetailStoryTopActivity::class.java)
-        intent.putExtra(Constant.CATEGORY_STORY, story.name)
-        startActivity(intent)
+    private fun intentActivity(story: ItemTopStory, position: Int) {
+        val bundle = Bundle()
+        bundle.putString(
+            Constant.CATEGORY_STORY,
+            story.name
+        )
+
+        (requireActivity() as MainActivity).navController?.navigate(
+            R.id.fragment_detail_story_top,
+            bundle
+        )
 
     }
 }
