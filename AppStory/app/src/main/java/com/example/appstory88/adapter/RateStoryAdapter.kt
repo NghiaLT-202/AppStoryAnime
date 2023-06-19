@@ -17,7 +17,7 @@ class RateStoryAdapter : BaseBindingAdapter<ItemRateStoryBinding>() {
     var onItemClickListener: ItemClickListener? = null
 
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemRateStoryBinding>, position: Int) {
         val story: Story = listStory[position]
         Glide.with(holder.itemView.context).load(story.imageStory).into(holder.binding.imStory)

@@ -13,20 +13,20 @@ import com.google.gson.Gson
 
 class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
-    private var storyNewUpdateAdapter: StoryAdapter? = null
-    private val listStoryNewUpdate: MutableList<Story> = mutableListOf()
-
-    private var storyFullAdapter: StoryAdapter? = null
-    private val listStoryFull: MutableList<Story> = mutableListOf()
-
-    private var storyGoodLoveLanguageAdapter: StoryAdapter? = null
-    private val listStoryGoodLoveLanguage: MutableList<Story> = mutableListOf()
-
-    private var storyGoodFairyTaleAdapter: StoryAdapter? = null
-    private val listStoryGoodFairyTale: MutableList<Story> = mutableListOf()
-
-    private var storyGoodPassionAdapter: StoryAdapter? = null
-    private val listStoryGoodPassion: MutableList<Story> = mutableListOf()
+//    private var storyNewUpdateAdapter: StoryAdapter? = null
+//    private val listStoryNewUpdate: MutableList<Story> = mutableListOf()
+//
+//    private var storyFullAdapter: StoryAdapter? = null
+//    private val listStoryFull: MutableList<Story> = mutableListOf()
+//
+//    private var storyGoodLoveLanguageAdapter: StoryAdapter? = null
+//    private val listStoryGoodLoveLanguage: MutableList<Story> = mutableListOf()
+//
+//    private var storyGoodFairyTaleAdapter: StoryAdapter? = null
+//    private val listStoryGoodFairyTale: MutableList<Story> = mutableListOf()
+//
+//    private var storyGoodPassionAdapter: StoryAdapter? = null
+//    private val listStoryGoodPassion: MutableList<Story> = mutableListOf()
 
     private var storyBannerAdapter: StoryBannerAdapter? = null
     private val listStoryBanner: MutableList<Story> = mutableListOf()
@@ -146,7 +146,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
             binding.rcItemStoryBanner.adapter = this
             iclick = object : StoryBannerAdapter.IClick {
                 override fun clickItem(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData( position)
                 }
             }
         }
@@ -157,7 +157,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         binding.rcNewUpdateStory.listStoryPreviewAdapter!!.onItemClickListener =
             object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData( position)
                 }
             }
 
@@ -168,7 +168,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         binding.rcFullStory.listStoryPreviewAdapter!!.onItemClickListener =
             object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData( position)
                 }
             }
 
@@ -178,7 +178,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         binding.rcLoveLanguageStory.listStoryPreviewAdapter!!.onItemClickListener =
             object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData( position)
                 }
             }
     }
@@ -187,7 +187,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         binding.rcFirstHalfStory.listStoryPreviewAdapter!!.onItemClickListener =
             object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData( position)
                 }
             }
 
@@ -199,14 +199,14 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         binding.rcPassionStory.listStoryPreviewAdapter!!.onItemClickListener =
             object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData( position)
                 }
             }
 
     }
 
 
-    private fun intentActivityAndData(story: Story, position: Int) {
+    private fun intentActivityAndData( position: Int) {
 
         val bundle = Bundle()
         bundle.putString(

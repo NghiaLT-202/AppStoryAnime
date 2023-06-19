@@ -1,5 +1,6 @@
 package com.example.appstory88.ui.detailstory
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import com.example.appstory88.R
@@ -33,18 +34,17 @@ class ReadStoryFragment :
     }
 
 
-
-
     override fun getViewModel(): Class<ReadStoryViewModel> {
         return ReadStoryViewModel::class.java
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initData() {
         val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
         story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
         binding.tvNameStory.text = story?.nameStory
         binding.tvDescribeStory.text = story?.describe
-        binding.tvNamechapter.text =getString(R.string.ch_ng)+ story?.chapter
+        binding.tvNamechapter.text = getString(R.string.ch_ng) + story?.chapter
 
 
     }

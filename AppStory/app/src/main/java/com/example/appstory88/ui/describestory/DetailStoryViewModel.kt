@@ -2,5 +2,5 @@ package com.example.appstory88.ui.describestory
 
 import com.example.appstory88.base.BaseViewModel
 
-class DetailStoryViewModel: BaseViewModel() {
+class DetailStoryViewModel : BaseViewModel() {
 }

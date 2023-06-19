@@ -25,15 +25,15 @@ class DetailStoryTopFragment :
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
 
-        setupView()
+        setupViews()
         setupData()
     }
 
-    fun setupView() {
+    private fun setupViews() {
         initAdapter()
     }
 
-    fun setupData() {
+    private fun setupData() {
         val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
         Log.e("tnghia", "" + category)
         binding.tvNameCategory.text = category
@@ -43,18 +43,15 @@ class DetailStoryTopFragment :
         mainViewModel.listStoryLiveData.observe(this) {
             listStory.clear()
             listStory.addAll(it)
-            mainViewModel?.initlistStoryLiveData(listStory, category)
-            detailStoryAdapter?.listStory = listStory
-
-            Log.e("tnghia", "size" + listStory.size)
+            mainViewModel.initlistDetailStoryLiveData(listStory, category)
+            Log.e("tnghia", "" + listStory.size)
 
         }
-//        mainViewModel.listStoryMoreLiveData.observe(this) {
-//            Log.e("tnghia", "" + listStory.size)
-//
-//            detailStoryAdapter?.listStory = listStory
-//
-//        }
+        mainViewModel.listStoryDetailLiveData.observe(this) {
+            Log.e("tnghia", "" + listStory.size)
+            detailStoryAdapter?.listStory = it
+
+        }
     }
 
     override fun getViewModel(): Class<DetailStoryTopViewModel> {
@@ -66,14 +63,14 @@ class DetailStoryTopFragment :
             binding.rcItemStory.adapter = this
             onItemClickListener = object : DetailStoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story, position)
+                    intentActivityAndData(story)
                 }
             }
 
         }
     }
 
-    private fun intentActivityAndData(story: Story, position: Int) {
+    private fun intentActivityAndData(story: Story) {
         val bundle = Bundle()
         bundle.putString(
             Constant.KEY_DETAIL_STORY,

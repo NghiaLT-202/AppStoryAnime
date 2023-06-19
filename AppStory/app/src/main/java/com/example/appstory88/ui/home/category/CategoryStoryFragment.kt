@@ -11,7 +11,6 @@ import com.example.appstory88.databinding.FragmentCategoryStoryBinding
 import com.example.appstory88.model.ItemCategory
 import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.ui.MainViewModel
-import com.google.gson.Gson
 
 class CategoryStoryFragment :
     BaseBindingFragment<FragmentCategoryStoryBinding, CategoryStoryViewModel>() {
@@ -27,7 +26,7 @@ class CategoryStoryFragment :
     }
 
 
-    fun initData() {
+    private fun initData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initData(requireContext())
         mainViewModel.listStoryLiveData.observe(this) {
@@ -45,7 +44,7 @@ class CategoryStoryFragment :
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemCategoryStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(listCategory[position], position)
+                    intentActivity(listCategory[position])
                 }
             }
         }
@@ -55,7 +54,7 @@ class CategoryStoryFragment :
         return CategoryStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: ItemCategory, position: Int) {
+    private fun intentActivity(story: ItemCategory) {
         val bundle = Bundle()
         bundle.putString(
             Constant.CATEGORY_STORY,

@@ -1,7 +1,7 @@
 package com.example.appstory88.ui.describestory
 
 import android.app.Activity
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -18,8 +18,8 @@ import com.example.appstory88.ui.MainViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
-    private var mainViewModel: MainViewModel? = null
+class DetailStoryFragment :
+    BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
 
 
@@ -31,12 +31,11 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-//        makeStatusBarLight(this, Color.parseColor("#52322C2A"))
+        makeStatusBarLight(requireActivity(), Color.parseColor("#52322C2A"))
         inlistener()
         initAdapter()
         setupData()
     }
-
 
 
     private fun initAdapter() {
@@ -52,25 +51,24 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
 
     }
 
-     fun setupData() {
-         val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
-          story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
+    fun setupData() {
+        val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
+        story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
 
-         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-         mainViewModel?.initData(requireContext())
-         mainViewModel?.listStoryLiveData?.observe(this) { story ->
-             listCategoryStory.clear()
-             listCategoryStory.addAll(story)
-             itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
-         }
-         initData()
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mainViewModel?.initData(requireContext())
+        mainViewModel?.listStoryLiveData?.observe(this) { story ->
+            listCategoryStory.clear()
+            listCategoryStory.addAll(story)
+            itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
+        }
+        initData()
     }
 
     override fun getViewModel(): Class<DetailStoryViewModel> {
         return DetailStoryViewModel::class.java
     }
 
-    private var chapter: String? = null
     private fun inlistener() {
         binding.imBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
@@ -92,13 +90,13 @@ class DetailStoryFragment: BaseBindingFragment<FragmentDetailStoryBinding, Detai
         story?.let {
             Glide.with(this).load(it.imageStory).into(binding.imStory)
 
-            binding.tvNameStory.text=it.nameStory
+            binding.tvNameStory.text = it.nameStory
             binding.viewStar.numberStar = it.numberStar
             binding.tvValueView.text = it.numberView.toString()
-            binding.tvValueChapterNumber.text=it.chapterSum.toString()
+            binding.tvValueChapterNumber.text = it.chapterSum.toString()
             binding.tvValueAuthur.text = it.nameAuthur
-            binding.tvValueStatus.text=it.status.toString()
-            binding.tvValueDescribe.text=it.describe
+            binding.tvValueStatus.text = it.status.toString()
+            binding.tvValueDescribe.text = it.describe
         }
 
     }

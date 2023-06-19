@@ -15,9 +15,12 @@ class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>(
     var onItemClickListener: ItemClickListener? = null
 
 
-    override fun onBindViewHolderBase(holder: BaseHolder<ItemCategoryDetailBinding>, position: Int) {
-        var story:Story=listCategoryStory[position]
-        holder.binding.tvValueCategory.text=story.nameCategory
+    override fun onBindViewHolderBase(
+        holder: BaseHolder<ItemCategoryDetailBinding>,
+        position: Int
+    ) {
+        val story: Story = listCategoryStory[position]
+        holder.binding.tvValueCategory.text = story.nameCategory
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

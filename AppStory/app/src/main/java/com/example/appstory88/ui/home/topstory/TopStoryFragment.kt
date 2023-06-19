@@ -13,7 +13,6 @@ import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.ui.MainViewModel
 
 class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryViewModel>() {
-    private lateinit var mainViewModel: MainViewModel
     private val listStory: MutableList<ItemTopStory> = mutableListOf()
     private var itemTopStoryAdapter: ItemTopStoryAdapter? = null
     override fun getLayoutId(): Int {
@@ -46,7 +45,7 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemTopStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(listStory[position], position)
+                    intentActivity(listStory[position])
                 }
             }
         }
@@ -56,13 +55,12 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
         return TopStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: ItemTopStory, position: Int) {
+    private fun intentActivity(story: ItemTopStory) {
         val bundle = Bundle()
         bundle.putString(
             Constant.CATEGORY_STORY,
             story.name
         )
-
         (requireActivity() as MainActivity).navController?.navigate(
             R.id.fragment_detail_story_top,
             bundle

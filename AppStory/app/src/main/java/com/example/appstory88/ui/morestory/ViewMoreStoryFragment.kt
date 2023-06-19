@@ -2,14 +2,12 @@ package com.example.appstory88.ui.morestory
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentShowMoreStoryBinding
 import com.example.appstory88.model.Story
-import com.example.appstory88.ui.MainViewModel
 
 class ViewMoreStoryFragment :
     BaseBindingFragment<FragmentShowMoreStoryBinding, ViewMoreStoryModel>() {
@@ -35,12 +33,11 @@ class ViewMoreStoryFragment :
     fun setupData() {
         val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
         binding.nameCategory.text = category
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel?.initData(requireContext())
-        mainViewModel?.listStoryLiveData?.observe(this) { story ->
+        mainViewModel.initData(requireContext())
+        mainViewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStory.addAll(story)
-            category.let { mainViewModel?.initlistStoryLiveData(listStory, it) }
+            mainViewModel.initlistStoryLiveData(listStory, category)
             storyAdapter?.listStory = listStory
         }
     }
@@ -56,14 +53,15 @@ class ViewMoreStoryFragment :
             binding.rcListStory.adapter = this
             onItemClickListener = object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+//                    intentActivityAndData(story)
                 }
             }
         }
-    }
-
-    private fun intentActivityAndData(story: Story) {
-
 
     }
+
+//    private fun intentActivityAndData(story: Story) {
+//
+//
+//    }
 }

@@ -14,8 +14,6 @@ import com.example.appstory88.ui.MainViewModel
 import com.google.gson.Gson
 
 class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStoryViewModel>() {
-    //    private val listStory: MutableList<Story> = mutableListOf()
-    private var mainViewModel: MainViewModel? = null
     private var rateStoryAdapter: RateStoryAdapter? = null
     override fun getLayoutId(): Int {
         return R.layout.fragment_rate_story
@@ -27,13 +25,15 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
     }
 
 
-
-     fun setupData() {
+    private fun setupData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel?.initData(requireContext())
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
-            rateStoryAdapter?.listStory = story
+
+        }
+        mainViewModel.listStoryRateLiveData.observe(this){
+            rateStoryAdapter?.listStory = it
 
         }
 
@@ -44,7 +44,7 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
             binding.rcItemStory.adapter = this
             onItemClickListener = object : RateStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivityAndData(listStory[position],position)
+                    intentActivityAndData( position)
 
                 }
             }
@@ -57,7 +57,7 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
         return RateStoryViewModel::class.java
     }
 
-    private fun intentActivityAndData(story: Story, position: Int) {
+    private fun intentActivityAndData( position: Int) {
         val bundle = Bundle()
         bundle.putString(
             Constant.KEY_DETAIL_STORY,

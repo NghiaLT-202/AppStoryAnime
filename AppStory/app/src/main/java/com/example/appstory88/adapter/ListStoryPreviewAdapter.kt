@@ -1,5 +1,6 @@
 package com.example.appstory88.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -12,11 +13,12 @@ import com.example.appstory88.model.Story
 class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreviewHolder>() {
 
     var listStory: MutableList<Story> = mutableListOf()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-    var onItemClickListener: StoryAdapter.ItemClickListener?=null
+    var onItemClickListener: StoryAdapter.ItemClickListener? = null
 
 
     class ListStoryPreviewHolder(var binding: ItemStoryBinding) :
@@ -42,10 +44,11 @@ class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreview
         holder.binding.tvNameCategory.text = story.nameCategory
         holder.binding.viewStar.numberStar = story.numberStar
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(story,holder.adapterPosition)
+            onItemClickListener?.onItemClick(story, holder.adapterPosition)
         }
     }
+
     interface ItemClickListener {
-        fun onItemClick(story: Story,position: Int)
+        fun onItemClick(story: Story, position: Int)
     }
 }

@@ -20,11 +20,11 @@ class MainViewModel : BaseViewModel() {
     val listStoryDetailLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryRateLiveData = MutableLiveData<MutableList<Story>>()
 
-    val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
-    val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
-    val listStoryGoodLoveLanguageLiveData = MutableLiveData<MutableList<Story>>()
-    val listStoryGoodFairyTaleLiveData = MutableLiveData<MutableList<Story>>()
-    val listStoryGoodPassionLiveData = MutableLiveData<MutableList<Story>>()
+//    val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
+//    val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
+//    val listStoryGoodLoveLanguageLiveData = MutableLiveData<MutableList<Story>>()
+//    val listStoryGoodFairyTaleLiveData = MutableLiveData<MutableList<Story>>()
+//    val listStoryGoodPassionLiveData = MutableLiveData<MutableList<Story>>()
 
     //list
     var listTopStoryLiveData: MutableLiveData<MutableList<ItemTopStory>> = MutableLiveData()
@@ -35,8 +35,8 @@ class MainViewModel : BaseViewModel() {
         val listColor = context.resources.getStringArray(R.array.colorTopStory)
         val numberColor = Random().nextInt(listColor.size - 1) + 1
         val listTopStory: MutableList<ItemTopStory> = mutableListOf()
-        listTopStory.add(ItemTopStory("Truyện Đề Cử", listColor[numberColor]))
-        listTopStory.add(ItemTopStory("Truyện Hot", listColor[numberColor]))
+        listTopStory.add(ItemTopStory(context.getString(R.string.truy_n_dc), listColor[numberColor]))
+        listTopStory.add(ItemTopStory(context.getString(R.string.truy_n_hot), listColor[numberColor]))
         val listCategory = context.resources.getStringArray(R.array.list_category_story)
         for (i in listCategory.indices) {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
@@ -70,10 +70,10 @@ class MainViewModel : BaseViewModel() {
     }
 
 
-    fun getListRateStory(listAll: MutableList<Story>) {
-        listAll.sortByDescending { it.numberView }
-        listRateStoryLiveData.postValue(listAll)
-    }
+//    fun getListRateStory(listAll: MutableList<Story>) {
+//        listAll.sortByDescending { it.numberView }
+//        listRateStoryLiveData.postValue(listAll)
+//    }
 
 //    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>) {
 //
@@ -110,7 +110,7 @@ class MainViewModel : BaseViewModel() {
 //    }
 
     fun initlistStoryLiveData(list: MutableList<Story>, type: String) {
-        Log.e("tnghia","ss")
+        Log.e("tnghia", "ss")
         listStoryMoreLiveData.postValue(list.filter {
             it.nameCategory == type
         }.toMutableList())
@@ -118,7 +118,7 @@ class MainViewModel : BaseViewModel() {
 
     fun initlistDetailStoryLiveData(list: MutableList<Story>, type: String) {
 
-        listStoryDetailLiveData.postValue( list.filter { it.nameCategory == type }.toMutableList())
+        listStoryDetailLiveData.postValue(list.filter { it.nameCategory == type }.toMutableList())
     }
 
 //    fun initlistCategoryDetailStoryLiveData(list: MutableList<Story>, type: String) {
@@ -164,7 +164,7 @@ class MainViewModel : BaseViewModel() {
             val status = Random().nextBoolean()
             val story =
                 Story(
-                   listPathImage[numberImage],
+                    listPathImage[numberImage],
                     listName[i],
                     numberRate,
                     listAuthor[numberAuthor],

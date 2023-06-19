@@ -13,13 +13,11 @@ import com.example.appstory88.base.BaseBindingActivity
 import com.example.appstory88.databinding.ActivitySplashBinding
 import com.example.appstory88.ui.MainActivity
 
-class SplashActivity: BaseBindingActivity<ActivitySplashBinding, SplashViewModel>() {
+class SplashActivity : BaseBindingActivity<ActivitySplashBinding, SplashViewModel>() {
     lateinit var binding: ActivitySplashBinding
 
     var handle: Handler? = null
     var runable: Runnable? = null
-
-
 
 
     override fun getLayoutId(): Int {
@@ -36,7 +34,7 @@ class SplashActivity: BaseBindingActivity<ActivitySplashBinding, SplashViewModel
     }
 
     override fun getViewModel(): Class<SplashViewModel> {
-        return  SplashViewModel::class.java
+        return SplashViewModel::class.java
     }
 
     private fun makeStatusBarLight(activity: Activity, color: Int) {
