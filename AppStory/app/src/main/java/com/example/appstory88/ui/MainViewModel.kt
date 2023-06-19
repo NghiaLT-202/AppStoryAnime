@@ -110,15 +110,15 @@ class MainViewModel : BaseViewModel() {
 //    }
 
     fun initlistStoryLiveData(list: MutableList<Story>, type: String) {
+        Log.e("tnghia","ss")
         listStoryMoreLiveData.postValue(list.filter {
             it.nameCategory == type
         }.toMutableList())
     }
 
     fun initlistDetailStoryLiveData(list: MutableList<Story>, type: String) {
-        list.filter { it.nameCategory == type }.toMutableList()
-        Log.e("tnghia","55ds")
-        listStoryDetailLiveData.postValue(list)
+
+        listStoryDetailLiveData.postValue( list.filter { it.nameCategory == type }.toMutableList())
     }
 
 //    fun initlistCategoryDetailStoryLiveData(list: MutableList<Story>, type: String) {

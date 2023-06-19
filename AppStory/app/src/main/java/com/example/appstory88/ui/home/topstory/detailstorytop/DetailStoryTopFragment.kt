@@ -34,23 +34,27 @@ class DetailStoryTopFragment :
     }
 
     fun setupData() {
-        val category = arguments?.getString(Constant.CATEGORY_STORY)?:""
+        val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
+        Log.e("tnghia", "" + category)
         binding.tvNameCategory.text = category
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initData(requireContext())
-        mainViewModel.listStoryLiveData.observe(this) { story ->
+        mainViewModel.listStoryLiveData.observe(this) {
             listStory.clear()
-            listStory.addAll(story)
-            category.let {
-
-                mainViewModel.initlistDetailStoryLiveData(listStory, it)  }
-
-        }
-        mainViewModel.listStoryDetailLiveData.observe(this) {
+            listStory.addAll(it)
+            mainViewModel?.initlistStoryLiveData(listStory, category)
             detailStoryAdapter?.listStory = listStory
 
+            Log.e("tnghia", "size" + listStory.size)
+
         }
+//        mainViewModel.listStoryMoreLiveData.observe(this) {
+//            Log.e("tnghia", "" + listStory.size)
+//
+//            detailStoryAdapter?.listStory = listStory
+//
+//        }
     }
 
     override fun getViewModel(): Class<DetailStoryTopViewModel> {

@@ -44,5 +44,10 @@
         android:name="com.example.appstory88.ui.detailstory.ReadStoryFragment"
         android:label="FragmentReadStory"
         tools:layout="@layout/fragment_red_story" />
+    <fragment
+        android:id="@+id/fragment_view_more_story"
+        android:name="com.example.appstory88.ui.morestory.ViewMoreStoryFragment"
+        android:label="FragmentViewMoreStory"
+        tools:layout="@layout/fragment_show_more_story" />
 
 </navigation>

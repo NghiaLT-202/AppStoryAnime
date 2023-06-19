@@ -26,14 +26,18 @@
         <TextView
             android:id="@+id/tv_nameCategory"
 
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@string/rate_story"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/im_menu"
             app:layout_constraintLeft_toRightOf="@+id/im_menu"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="10dp"
             app:layout_constraintTop_toTopOf="@+id/im_menu" />
 
 

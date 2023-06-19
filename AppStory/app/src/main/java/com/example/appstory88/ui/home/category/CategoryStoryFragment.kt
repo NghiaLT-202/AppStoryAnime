@@ -58,9 +58,10 @@ class CategoryStoryFragment :
     private fun intentActivity(story: ItemCategory, position: Int) {
         val bundle = Bundle()
         bundle.putString(
-            Constant.KEY_DETAIL_STORY,
-            Gson().toJson(itemCategoryStoryAdapter?.listCategory?.get(position))
+            Constant.CATEGORY_STORY,
+            story.name
         )
+
         (requireActivity() as MainActivity).navController?.navigate(
             R.id.fragment_detail_story_top,
             bundle
