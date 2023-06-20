@@ -2,7 +2,6 @@ package com.example.appstory88.ui.home.category
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryStoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
@@ -10,7 +9,6 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentCategoryStoryBinding
 import com.example.appstory88.model.ItemCategory
 import com.example.appstory88.ui.MainActivity
-import com.example.appstory88.ui.MainViewModel
 
 class CategoryStoryFragment :
     BaseBindingFragment<FragmentCategoryStoryBinding, CategoryStoryViewModel>() {
@@ -27,7 +25,6 @@ class CategoryStoryFragment :
 
 
     private fun initData() {
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initData(requireContext())
         mainViewModel.listStoryLiveData.observe(this) {
             mainViewModel.initDataCategory(requireContext(), it)
@@ -55,16 +52,18 @@ class CategoryStoryFragment :
     }
 
     private fun intentActivity(story: ItemCategory) {
-        val bundle = Bundle()
-        bundle.putString(
-            Constant.CATEGORY_STORY,
-            story.name
-        )
+       Bundle().let {
+           it.putString(
+               Constant.CATEGORY_STORY,
+               story.name
+           )
+           (requireActivity() as MainActivity).navController?.navigate(
+               R.id.fragment_detail_story_top,
+               it
+           )
 
-        (requireActivity() as MainActivity).navController?.navigate(
-            R.id.fragment_detail_story_top,
-            bundle
-        )
+       }
+
 
     }
 }

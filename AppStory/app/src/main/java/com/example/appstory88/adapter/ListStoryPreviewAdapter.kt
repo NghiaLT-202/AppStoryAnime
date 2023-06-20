@@ -38,11 +38,13 @@ class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreview
 
     override fun onBindViewHolder(holder: ListStoryPreviewHolder, position: Int) {
         val story = listStory[position]
-        Glide.with(holder.itemView.context).load(story.imageStory).into(holder.binding.imStory)
+      story.let {
+          Glide.with(holder.itemView.context).load(it.imageStory).into(holder.binding.imStory)
 
-        holder.binding.tvNameStory.text = story.nameStory
-        holder.binding.tvNameCategory.text = story.nameCategory
-        holder.binding.viewStar.numberStar = story.numberStar
+          holder.binding.tvNameStory.text = it.nameStory
+          holder.binding.tvNameCategory.text = it.nameCategory
+          holder.binding.viewStar.numberStar = it.numberStar
+      }
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(story, holder.adapterPosition)
         }

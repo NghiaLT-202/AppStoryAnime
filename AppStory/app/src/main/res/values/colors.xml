@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="statusbarlight">#52322C2A</color>
 
     <string-array name="colorTopStory">
         <item name="item">#9970E6</item>

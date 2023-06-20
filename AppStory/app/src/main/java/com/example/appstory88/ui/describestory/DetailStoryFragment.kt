@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
@@ -14,7 +13,8 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
-import com.example.appstory88.ui.MainViewModel
+import com.example.appstory88.ui.detailstory.ReadStoryFragment
+import com.example.appstory88.utils.MakeStatusBarLight
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -31,15 +31,12 @@ class DetailStoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        makeStatusBarLight(requireActivity(), Color.parseColor("#52322C2A"))
-        inlistener()
+//        MakeStatusBarLight.makeStatusBarLight(requireActivity(), R.color.statusbarlight)
+        initListener()
         initAdapter()
         setupData()
     }
-
-
     private fun initAdapter() {
-
         itemCategoryDetailAdapter = ItemCategoryDetailAdapter().apply {
             binding.rcCategory.adapter = this
             onItemClickListener = object : ItemCategoryDetailAdapter.ItemClickListener {
@@ -51,11 +48,9 @@ class DetailStoryFragment :
 
     }
 
-    fun setupData() {
+    private fun setupData() {
         val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
         story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
-
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel?.initData(requireContext())
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             listCategoryStory.clear()
@@ -69,7 +64,7 @@ class DetailStoryFragment :
         return DetailStoryViewModel::class.java
     }
 
-    private fun inlistener() {
+    private fun initListener() {
         binding.imBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
@@ -101,12 +96,6 @@ class DetailStoryFragment :
 
     }
 
-    private fun makeStatusBarLight(activity: Activity, color: Int) {
-        val window = activity.window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = color
-        activity.window.decorView.systemUiVisibility =
-            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-    }
+
+
 }

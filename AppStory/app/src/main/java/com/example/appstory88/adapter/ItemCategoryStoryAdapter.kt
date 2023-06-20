@@ -20,13 +20,17 @@ class ItemCategoryStoryAdapter : BaseBindingAdapter<ItemCategoryStoryBinding>() 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemCategoryStoryBinding>, position: Int) {
         val category = listCategory[position]
-        holder.binding.tvName.text = category.name
         val color = Color.parseColor(category.color)
-        holder.binding.viewLineVertical.setBackgroundColor(color)
-        holder.binding.viewBackground.setBackgroundColor(color)
-        holder.binding.tvName.setTextColor(color)
-        holder.binding.tvSumStory.text =
-            category.sumStory.toString() + " " + holder.itemView.context.getString(R.string.truyen)
+        category.let {
+            holder.binding.tvName.text = it.name
+            holder.binding.viewLineVertical.setBackgroundColor(color)
+            holder.binding.viewBackground.setBackgroundColor(color)
+            holder.binding.tvName.setTextColor(color)
+            holder.binding.tvSumStory.text =
+                it.sumStory.toString() + " " + holder.itemView.context.getString(R.string.truyen)
+        }
+
+
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

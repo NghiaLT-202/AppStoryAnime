@@ -20,33 +20,21 @@ class RateStoryAdapter : BaseBindingAdapter<ItemRateStoryBinding>() {
     @SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemRateStoryBinding>, position: Int) {
         val story: Story = listStory[position]
-        Glide.with(holder.itemView.context).load(story.imageStory).into(holder.binding.imStory)
-
-        holder.binding.tvNameStory.text = story.nameStory
-
-        holder.binding.tvView.text =
-            holder.itemView.context.getString(R.string.view_number) + story.numberView.toString()
-        holder.binding.viewStar.numberStar = story.numberStar
-        when (position) {
-            0 -> {
-                holder.binding.tvView.setBackgroundResource(R.drawable.custom_bg_number_view_red)
-            }
-
-            1 -> {
-                holder.binding.tvView.setBackgroundResource(R.drawable.custom_bg_number_view_blue)
-            }
-
-            2 -> {
-                holder.binding.tvView.setBackgroundResource(R.drawable.custom_bg_number_view_violet)
-            }
-
-            else -> {
-                holder.binding.tvView.setBackgroundResource(R.drawable.custom_bg_number_view)
-            }
-        }
-
-//        holder.binding.tvView.background=drawable
-//        holder.binding.view.setBackgroundColor(R.color.black)
+       story.let {
+           Glide.with(holder.itemView.context).load(it.imageStory).into(holder.binding.imStory)
+           holder.binding.tvNameStory.text = it.nameStory
+           holder.binding.tvView.text =
+               holder.itemView.context.getString(R.string.view_number) + it.numberView.toString()
+           holder.binding.viewStar.numberStar = it.numberStar
+           holder.binding.tvView.setBackgroundResource(
+               when (position) {
+                   0 -> R.drawable.custom_bg_number_view_red
+                   1 -> R.drawable.custom_bg_number_view_blue
+                   2 -> R.drawable.custom_bg_number_view_violet
+                   else -> R.drawable.custom_bg_number_view
+               }
+           )
+       }
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

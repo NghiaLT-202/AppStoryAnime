@@ -35,7 +35,6 @@ class DetailStoryTopFragment :
 
     private fun setupData() {
         val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
-        Log.e("tnghia", "" + category)
         binding.tvNameCategory.text = category
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]

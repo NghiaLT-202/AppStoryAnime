@@ -20,7 +20,10 @@ class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>(
         position: Int
     ) {
         val story: Story = listCategoryStory[position]
-        holder.binding.tvValueCategory.text = story.nameCategory
+        story.let {
+            holder.binding.tvValueCategory.text = it.nameCategory
+
+        }
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

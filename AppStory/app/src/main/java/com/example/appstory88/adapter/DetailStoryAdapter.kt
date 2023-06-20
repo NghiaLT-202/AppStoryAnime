@@ -20,12 +20,15 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemDetailStoryBinding>, position: Int) {
         val story: Story = listStory[position]
-        val tvChapterSum = "Chapter sum: "
-        Glide.with(holder.itemView.context).load(story.imageStory).into(holder.binding.imStory)
-        holder.binding.tvNameStory.text = story.nameStory
-        holder.binding.tvNumberChapter.text = tvChapterSum + story.chapterSum.toString()
-        holder.binding.tvNameCategory.text = story.nameCategory
-        holder.binding.viewStar.numberStar = story.numberStar
+        val tvChapterSum = holder.itemView.context.getString(R.string.chapter_sum)
+        story.let {
+            Glide.with(holder.itemView.context).load(it.imageStory).into(holder.binding.imStory)
+            holder.binding.tvNameStory.text = it.nameStory
+            holder.binding.tvNumberChapter.text = tvChapterSum + it.chapterSum.toString()
+            holder.binding.tvNameCategory.text = it.nameCategory
+            holder.binding.viewStar.numberStar = it.numberStar
+        }
+
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(story, holder.adapterPosition)
         }

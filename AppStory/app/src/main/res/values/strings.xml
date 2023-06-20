@@ -1004,6 +1004,7 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="ch_ng">"Chương: "</string>
     <string name="truy_n_dc">Truyện Đề Cử</string>
     <string name="truy_n_hot">Truyện Hot</string>
+    <string name="chapter_sum">"Chapter sum: "</string>
 
 
 </resources>
