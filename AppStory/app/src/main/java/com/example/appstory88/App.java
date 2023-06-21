@@ -6,8 +6,8 @@ import android.app.Application;
 
 import com.example.appstory88.utils.MyDebugTree;
 
-
 import timber.log.Timber;
+
 
 public class App extends Application {
     @Override
