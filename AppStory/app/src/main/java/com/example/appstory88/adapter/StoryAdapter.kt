@@ -19,16 +19,16 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
 
 
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBinding>, position: Int) {
-        val story: Story = listStory[position]
-
-      story.let {
-          Glide.with(holder.itemView.context).load(it.imageStory).into(holder.binding.imStory)
-          holder.binding.tvNameStory.text = it.nameStory
-          holder.binding.viewStar.numberStar = it.numberStar
-          holder.binding.tvNameCategory.text = it.nameCategory
-      }
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(story, holder.adapterPosition)
+        with(listStory[position]) {
+            with(holder.binding) {
+                Glide.with(holder.itemView.context).load(imageStory).into(imStory)
+                tvNameStory.text = nameStory
+                viewStar.numberStar = numberStar
+                tvNameCategory.text = nameCategory
+            }
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.onItemClick(this, holder.adapterPosition)
+            }
         }
     }
 

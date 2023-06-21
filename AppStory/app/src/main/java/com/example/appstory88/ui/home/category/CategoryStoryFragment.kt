@@ -52,17 +52,17 @@ class CategoryStoryFragment :
     }
 
     private fun intentActivity(story: ItemCategory) {
-       Bundle().let {
-           it.putString(
-               Constant.CATEGORY_STORY,
-               story.name
-           )
-           (requireActivity() as MainActivity).navController?.navigate(
-               R.id.fragment_detail_story_top,
-               it
-           )
+        Bundle().let {
+            it.putString(
+                Constant.CATEGORY_STORY,
+                story.name
+            )
+            (requireActivity() as MainActivity).navController?.navigate(
+                R.id.fragment_detail_story_top,
+                it
+            )
 
-       }
+        }
 
 
     }

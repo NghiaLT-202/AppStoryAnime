@@ -40,6 +40,9 @@ class ViewListPreviewStory : ConstraintLayout {
             }
 
         }
+        binding.imRight.setOnClickListener {
+
+        }
 
     }
 //    private fun intentActivityAndData(story: Story,position: Int) {

@@ -202,7 +202,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
                     intentActivityAndData( position)
                 }
             }
-
+//        binding.rcPassionStory.
     }
 
 

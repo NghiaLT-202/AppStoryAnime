@@ -42,9 +42,14 @@ class ReadStoryFragment :
     private fun initData() {
         val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
         story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
-        binding.tvNameStory.text = story?.nameStory
-        binding.tvDescribeStory.text = story?.describe
-        binding.tvNamechapter.text = getString(R.string.ch_ng) + story?.chapter
+        story?.let {
+            with(binding){
+                tvNameStory.text = it.nameStory
+                tvDescribeStory.text = it.describe
+                tvNamechapter.text = getString(R.string.ch_ng) + it.chapter
+            }
+
+        }
 
 
     }

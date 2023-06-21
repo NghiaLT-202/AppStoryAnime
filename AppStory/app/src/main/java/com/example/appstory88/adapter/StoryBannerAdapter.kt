@@ -19,24 +19,18 @@ class StoryBannerAdapter : BaseBindingAdapter<ItemStoryBannerBinding>() {
 
 
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBannerBinding>, position: Int) {
-        val story: Story = listStory[position]
-      story.let {
-          holder.binding.imStory.post {
-              Glide.with(holder.itemView.context).asBitmap().load(it.imageStory)
-                  .into(holder.binding.imStory)
-
-          }
-          holder.binding.tvNameStory.text = it.nameStory
-          holder.binding.tvValueNameAuthor.text = it.nameAuthur
-          holder.binding.tvValueNameCategory.text = it.nameCategory
-          holder.binding.viewStar.numberStar = it.numberStar
-      }
-//        holder.binding.cvImage.background
-        holder.itemView.setOnClickListener {
-            iclick?.clickItem(story, holder.adapterPosition)
-
+        with(listStory[position]) {
+            with(holder.binding) {
+                imStory.post { Glide.with(holder.itemView.context).asBitmap().load(imageStory).into(imStory) }
+                tvNameStory.text = nameStory
+                tvValueNameAuthor.text = nameAuthur
+                tvValueNameCategory.text = nameCategory
+                viewStar.numberStar = numberStar
+            }
+            holder.itemView.setOnClickListener {
+                iclick?.clickItem(this, holder.adapterPosition)
+            }
         }
-
     }
 
     override fun getLayoutIdItem(): Int {

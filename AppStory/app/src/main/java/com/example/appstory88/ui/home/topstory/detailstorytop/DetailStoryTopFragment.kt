@@ -43,11 +43,9 @@ class DetailStoryTopFragment :
             listStory.clear()
             listStory.addAll(it)
             mainViewModel.initlistDetailStoryLiveData(listStory, category)
-            Log.e("tnghia", "" + listStory.size)
 
         }
         mainViewModel.listStoryDetailLiveData.observe(this) {
-            Log.e("tnghia", "" + listStory.size)
             detailStoryAdapter?.listStory = it
 
         }
@@ -70,15 +68,20 @@ class DetailStoryTopFragment :
     }
 
     private fun intentActivityAndData(story: Story) {
-        val bundle = Bundle()
-        bundle.putString(
-            Constant.KEY_DETAIL_STORY,
-            Gson().toJson(story)
-        )
-        (requireActivity() as MainActivity).navController?.navigate(
-            R.id.fragment_read_story,
-            bundle
-        )
+        story.let {
+           Bundle().let {
+               it.putString(
+                   Constant.KEY_DETAIL_STORY,
+                   Gson().toJson(it)
+               )
+               (requireActivity() as MainActivity).navController?.navigate(
+                   R.id.fragment_read_story,
+                   it
+               )
+           }
+
+        }
+
 
     }
 

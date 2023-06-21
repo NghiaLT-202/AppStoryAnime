@@ -19,22 +19,23 @@ class RateStoryAdapter : BaseBindingAdapter<ItemRateStoryBinding>() {
 
     @SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemRateStoryBinding>, position: Int) {
-        val story: Story = listStory[position]
-       story.let {
-           Glide.with(holder.itemView.context).load(it.imageStory).into(holder.binding.imStory)
-           holder.binding.tvNameStory.text = it.nameStory
-           holder.binding.tvView.text =
-               holder.itemView.context.getString(R.string.view_number) + it.numberView.toString()
-           holder.binding.viewStar.numberStar = it.numberStar
-           holder.binding.tvView.setBackgroundResource(
-               when (position) {
-                   0 -> R.drawable.custom_bg_number_view_red
-                   1 -> R.drawable.custom_bg_number_view_blue
-                   2 -> R.drawable.custom_bg_number_view_violet
-                   else -> R.drawable.custom_bg_number_view
-               }
-           )
-       }
+        with(listStory[position]) {
+            with(holder.binding){
+                Glide.with(holder.itemView.context).load(imageStory).into(imStory)
+                tvNameStory.text = nameStory
+                tvView.text = holder.itemView.context.getString(R.string.view_number) + numberView
+                viewStar.numberStar = numberStar
+                tvView.setBackgroundResource(
+                    when (position) {
+                        0 -> R.drawable.custom_bg_number_view_red
+                        1 -> R.drawable.custom_bg_number_view_blue
+                        2 -> R.drawable.custom_bg_number_view_violet
+                        else -> R.drawable.custom_bg_number_view
+                    }
+                )
+            }
+
+        }
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)
         }

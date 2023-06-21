@@ -19,6 +19,7 @@ class MainViewModel : BaseViewModel() {
     val listStoryMoreLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryDetailLiveData = MutableLiveData<MutableList<Story>>()
     val listStoryRateLiveData = MutableLiveData<MutableList<Story>>()
+    val listCategoryData = MutableLiveData<MutableList<Story>>()
 
 //    val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
 //    val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
@@ -83,6 +84,14 @@ class MainViewModel : BaseViewModel() {
 //
 //
 //    }
+    fun initlistCategoryData(list: MutableList<Story>,name:String) {
+
+
+        listCategoryData.postValue(list.filter { it.nameStory == name }
+            .toMutableList())
+
+
+    }
 //
 //    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>) {
 //        listStoryFullAdapterLiveData.postValue(list.filter { it.nameCategory == TYPE_FULL_STORY }

@@ -56,15 +56,20 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
     }
 
     private fun intentActivity(story: ItemTopStory) {
-        val bundle = Bundle()
-        bundle.putString(
-            Constant.CATEGORY_STORY,
-            story.name
-        )
-        (requireActivity() as MainActivity).navController?.navigate(
-            R.id.fragment_detail_story_top,
-            bundle
-        )
+
+        Bundle().let {
+            it.putString(
+                Constant.CATEGORY_STORY,
+                story.name
+            )
+            (requireActivity() as MainActivity).navController?.navigate(
+                R.id.fragment_detail_story_top,
+                it
+            )
+
+
+        }
+
 
     }
 }

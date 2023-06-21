@@ -58,15 +58,18 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
     }
 
     private fun intentActivityAndData( position: Int) {
-        val bundle = Bundle()
-        bundle.putString(
-            Constant.KEY_DETAIL_STORY,
-            Gson().toJson(rateStoryAdapter?.listStory?.get(position))
-        )
-        (requireActivity() as MainActivity).navController?.navigate(
-            R.id.fragment_detail_story,
-            bundle
-        )
+
+        Bundle().let {
+            it.putString(
+                Constant.KEY_DETAIL_STORY,
+                Gson().toJson(rateStoryAdapter?.listStory?.get(position))
+            )
+            (requireActivity() as MainActivity).navController?.navigate(
+                R.id.fragment_detail_story,
+                it
+            )
+        }
+
 
     }
 }

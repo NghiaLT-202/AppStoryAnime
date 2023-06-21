@@ -1,10 +1,7 @@
 package com.example.appstory88.ui.describestory
 
-import android.app.Activity
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
@@ -13,8 +10,8 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
-import com.example.appstory88.ui.detailstory.ReadStoryFragment
 import com.example.appstory88.utils.MakeStatusBarLight
+
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -31,11 +28,12 @@ class DetailStoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-//        MakeStatusBarLight.makeStatusBarLight(requireActivity(), R.color.statusbarlight)
+        MakeStatusBarLight.makeStatusBarLight(requireActivity(), R.color.statusbarlight)
         initListener()
         initAdapter()
         setupData()
     }
+
     private fun initAdapter() {
         itemCategoryDetailAdapter = ItemCategoryDetailAdapter().apply {
             binding.rcCategory.adapter = this
@@ -52,10 +50,9 @@ class DetailStoryFragment :
         val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
         story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
         mainViewModel?.initData(requireContext())
-        mainViewModel?.listStoryLiveData?.observe(this) { story ->
-            listCategoryStory.clear()
-            listCategoryStory.addAll(story)
-            itemCategoryDetailAdapter?.listCategoryStory = listCategoryStory
+        mainViewModel?.listStoryLiveData?.observe(this) {
+            story?.nameStory?.let { it1 -> mainViewModel.initlistCategoryData(it, it1) }
+            itemCategoryDetailAdapter?.listCategoryStory = it
         }
         initData()
     }
@@ -83,19 +80,20 @@ class DetailStoryFragment :
 
     private fun initData() {
         story?.let {
-            Glide.with(this).load(it.imageStory).into(binding.imStory)
+            with(binding) {
+                Glide.with(requireContext()).load(it.imageStory).into(imStory)
+                tvNameStory.text = it.nameStory
+                viewStar.numberStar = it.numberStar
+                tvValueView.text = it.numberView.toString()
+                tvValueChapterNumber.text = it.chapterSum.toString()
+                tvValueAuthur.text = it.nameAuthur
+                tvValueStatus.text = it.status.toString()
+                tvValueDescribe.text = it.describe
+            }
 
-            binding.tvNameStory.text = it.nameStory
-            binding.viewStar.numberStar = it.numberStar
-            binding.tvValueView.text = it.numberView.toString()
-            binding.tvValueChapterNumber.text = it.chapterSum.toString()
-            binding.tvValueAuthur.text = it.nameAuthur
-            binding.tvValueStatus.text = it.status.toString()
-            binding.tvValueDescribe.text = it.describe
         }
 
     }
-
 
 
 }

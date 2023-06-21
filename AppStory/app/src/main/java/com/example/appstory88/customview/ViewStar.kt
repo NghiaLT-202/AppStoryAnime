@@ -2,7 +2,6 @@ package com.example.appstory88.customview
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
@@ -10,23 +9,15 @@ import com.example.appstory88.R
 import com.example.appstory88.databinding.LayoutViewStarBinding
 
 class ViewStar : LinearLayout {
-
-
     var numberStar: Int = 0
         set(value) {
             field = value
             setNumberStar()
         }
-
-
-
     var binding: LayoutViewStarBinding
-
 
     init {
         binding = LayoutViewStarBinding.inflate(LayoutInflater.from(context), this, true)
-
-
         layout(0, 0, WRAP_CONTENT, WRAP_CONTENT)
     }
 
@@ -41,12 +32,12 @@ class ViewStar : LinearLayout {
         context, attrs, defStyleAttr
     ) {
 
-
     }
 
     constructor(
         context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes)
+
     private fun setNumberStar() {
         when (numberStar) {
             1 -> {
@@ -65,7 +56,6 @@ class ViewStar : LinearLayout {
                 binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
             }
 
-
             3 -> {
                 binding.imStar1.setImageResource(R.drawable.icon_star_48)
                 binding.imStar2.setImageResource(R.drawable.icon_star_48)
@@ -73,7 +63,6 @@ class ViewStar : LinearLayout {
                 binding.imStar4.setImageResource(R.drawable.icon_star_gray_48)
                 binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
             }
-
 
             4 -> {
                 binding.imStar1.setImageResource(R.drawable.icon_star_48)
