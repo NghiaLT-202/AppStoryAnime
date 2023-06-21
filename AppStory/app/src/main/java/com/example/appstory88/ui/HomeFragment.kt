@@ -7,9 +7,11 @@ import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.adapter.StoryBannerAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.customview.ViewListPreviewStory
 import com.example.appstory88.databinding.FragmentHomeStoryBinding
 import com.example.appstory88.model.Story
 import com.google.gson.Gson
+import timber.log.Timber
 
 class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
@@ -154,12 +156,11 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     }
 
     private fun storyNewUpdateAdapter() {
-        binding.rcNewUpdateStory.listStoryPreviewAdapter!!.onItemClickListener =
-            object : StoryAdapter.ItemClickListener {
-                override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData( position)
-                }
+        binding.rcNewUpdateStory.iClickListener =object :ViewListPreviewStory.IClickPreview{
+            override fun onClick(story: Story, position: Int) {
+                Timber.e("tunglt: tunglt")
             }
+        }
 
 
     }

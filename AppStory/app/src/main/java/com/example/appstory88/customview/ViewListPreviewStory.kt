@@ -25,16 +25,21 @@ class ViewListPreviewStory : ConstraintLayout {
             field = value
             listStoryPreviewAdapter?.listStory = value
         }
-     var listStoryPreviewAdapter: ListStoryPreviewAdapter? = null
+    var listStoryPreviewAdapter: ListStoryPreviewAdapter? = null
+
+    interface IClickPreview {
+        fun onClick(story: Story, position: Int)
+    }
+
+    var iClickListener: IClickPreview? = null
 
     init {
         listStoryPreviewAdapter = ListStoryPreviewAdapter().apply {
             binding.rcStoryPreview.adapter = this
             onItemClickListener = object : StoryAdapter.ItemClickListener {
-
-
                 override fun onItemClick(story: Story, position: Int) {
 //                    intentActivityAndData(story,position)
+                    iClickListener?.onClick(story, position)
                 }
 
             }
