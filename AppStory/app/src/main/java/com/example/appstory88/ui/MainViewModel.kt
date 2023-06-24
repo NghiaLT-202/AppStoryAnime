@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
+import com.example.appstory88.database.AppDatabase.Companion.appDatabase
 import com.example.appstory88.model.ItemCategory
 import com.example.appstory88.model.ItemTopStory
 
@@ -21,16 +22,14 @@ class MainViewModel : BaseViewModel() {
     val listStoryRateLiveData = MutableLiveData<MutableList<Story>>()
     val listCategoryData = MutableLiveData<MutableList<Story>>()
 
-//    val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
-//    val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
-//    val listStoryGoodLoveLanguageLiveData = MutableLiveData<MutableList<Story>>()
-//    val listStoryGoodFairyTaleLiveData = MutableLiveData<MutableList<Story>>()
-//    val listStoryGoodPassionLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryNewUpdateLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryFullAdapterLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryGoodLoveLanguageLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryGoodFairyTaleLiveData = MutableLiveData<MutableList<Story>>()
+    val listStoryGoodPassionLiveData = MutableLiveData<MutableList<Story>>()
 
     //list
     var listTopStoryLiveData: MutableLiveData<MutableList<ItemTopStory>> = MutableLiveData()
-    var listRateStoryLiveData: MutableLiveData<MutableList<Story>> = MutableLiveData()
-//    var listCategoryLiveData: MutableLiveData<MutableList<ItemCategory>> = MutableLiveData()
 
     fun initDataTopStory(context: Context) {
         val listColor = context.resources.getStringArray(R.array.colorTopStory)
@@ -71,19 +70,7 @@ class MainViewModel : BaseViewModel() {
     }
 
 
-//    fun getListRateStory(listAll: MutableList<Story>) {
-//        listAll.sortByDescending { it.numberView }
-//        listRateStoryLiveData.postValue(listAll)
-//    }
 
-//    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>) {
-//
-//
-//        listStoryNewUpdateLiveData.postValue(list.filter { it.nameCategory == TYPE_NEW_STORY }
-//            .toMutableList())
-//
-//
-//    }
     fun initlistCategoryData(list: MutableList<Story>,name:String) {
 
 
@@ -92,34 +79,37 @@ class MainViewModel : BaseViewModel() {
 
 
     }
-//
-//    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>) {
-//        listStoryFullAdapterLiveData.postValue(list.filter { it.nameCategory == TYPE_FULL_STORY }
-//            .toMutableList())
-//    }
-//
-//    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>) {
-//        listStoryGoodLoveLanguageLiveData.postValue(list.filter {
-//            it.nameCategory == TYPE_GOOD_LOVE_STORY
-//        }
-//            .toMutableList())
-//    }
-//
-//    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>) {
-//        listStoryGoodFairyTaleLiveData.postValue(list.filter {
-//            it.nameCategory == TYPE_FAIRY_TALE_STORY
-//        }
-//            .toMutableList())
-//    }
-//
-//    fun initlistStoryGoodPassionLiveData(list: MutableList<Story>) {
-//        listStoryGoodPassionLiveData.postValue(list.filter {
-//            it.nameCategory == TYPE_GOOD_PASSION_STORY
-//        }.toMutableList())
-//    }
+    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>,nameCategory: String) {
+        listStoryNewUpdateLiveData.postValue(list.filter { it.nameCategory == nameCategory }
+            .toMutableList())
+   }
+
+    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>,nameCategory: String) {
+        listStoryFullAdapterLiveData.postValue(list.filter { it.nameCategory == nameCategory }
+            .toMutableList())
+    }
+
+    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>,nameCategory: String) {
+        listStoryGoodLoveLanguageLiveData.postValue(list.filter {
+            it.nameCategory == nameCategory
+        }
+            .toMutableList())
+    }
+
+    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>,nameCategory: String) {
+        listStoryGoodFairyTaleLiveData.postValue(list.filter {
+            it.nameCategory == nameCategory
+        }
+            .toMutableList())
+    }
+
+    fun initlistStoryGoodPassionLiveData(list: MutableList<Story>,nameCategory: String) {
+        listStoryGoodPassionLiveData.postValue(list.filter {
+            it.nameCategory == nameCategory
+        }.toMutableList())
+    }
 
     fun initlistStoryLiveData(list: MutableList<Story>, type: String) {
-        Log.e("tnghia", "ss")
         listStoryMoreLiveData.postValue(list.filter {
             it.nameCategory == type
         }.toMutableList())
@@ -130,11 +120,6 @@ class MainViewModel : BaseViewModel() {
         listStoryDetailLiveData.postValue(list.filter { it.nameCategory == type }.toMutableList())
     }
 
-//    fun initlistCategoryDetailStoryLiveData(list: MutableList<Story>, type: String) {
-//        listCategoryLiveData.postValue(list.filter {
-//            it.nameCategory == type
-//        }.toMutableList())
-//    }
 
     fun initListRateStoryLiveData(list: MutableList<Story>) {
         list.sortWith(compareByDescending(Story::numberView))
@@ -187,6 +172,10 @@ class MainViewModel : BaseViewModel() {
             listStory.add(story)
         }
         listStoryLiveData.postValue(listStory)
+//        val storyDao = appDatabase?.storyDao()
+//        storyDao?.insertListStory(listStory)
+
+
     }
 
 }

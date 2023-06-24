@@ -18,7 +18,7 @@ class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreview
             field = value
             notifyDataSetChanged()
         }
-    var onItemClickListener: StoryAdapter.ItemClickListener? = null
+    var onItemClickListener: ItemClickListener?=null
 
 
     class ListStoryPreviewHolder(var binding: ItemStoryBinding) :
@@ -43,6 +43,7 @@ class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreview
                 tvNameStory.text = nameStory
                 tvNameCategory.text = nameCategory
                 viewStar.numberStar = numberStar
+
             }
 
             holder.itemView.setOnClickListener {

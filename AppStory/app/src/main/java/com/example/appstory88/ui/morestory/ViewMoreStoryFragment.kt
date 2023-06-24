@@ -8,6 +8,7 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentShowMoreStoryBinding
 import com.example.appstory88.model.Story
+import timber.log.Timber
 
 class ViewMoreStoryFragment :
     BaseBindingFragment<FragmentShowMoreStoryBinding, ViewMoreStoryModel>() {
@@ -31,14 +32,19 @@ class ViewMoreStoryFragment :
 
 
     fun setupData() {
-        val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
-        binding.nameCategory.text = category
+
+        val categoryJson = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
+        binding.nameCategory.text=categoryJson
         mainViewModel.initData(requireContext())
-        mainViewModel.listStoryLiveData.observe(this) { story ->
-            listStory.clear()
-            listStory.addAll(story)
-            mainViewModel.initlistStoryLiveData(listStory, category)
-            storyAdapter?.listStory = listStory
+        mainViewModel.listStoryLiveData.observe(this) {
+            mainViewModel.initlistStoryLiveData(it, categoryJson)
+            binding.nameCategory.text = categoryJson
+
+        }
+        mainViewModel.listStoryMoreLiveData.observe(this){
+            storyAdapter?.listStory = it
+
+
         }
     }
 

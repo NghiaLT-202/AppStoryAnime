@@ -2,6 +2,7 @@ package com.example.appstory88.customview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.appstory88.adapter.ListStoryPreviewAdapter
@@ -29,6 +30,7 @@ class ViewListPreviewStory : ConstraintLayout {
 
     interface IClickPreview {
         fun onClick(story: Story, position: Int)
+        fun onClickShowMore(nameCategory: String)
     }
 
     var iClickListener: IClickPreview? = null
@@ -36,28 +38,22 @@ class ViewListPreviewStory : ConstraintLayout {
     init {
         listStoryPreviewAdapter = ListStoryPreviewAdapter().apply {
             binding.rcStoryPreview.adapter = this
-            onItemClickListener = object : StoryAdapter.ItemClickListener {
+            onItemClickListener = object : ListStoryPreviewAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-//                    intentActivityAndData(story,position)
                     iClickListener?.onClick(story, position)
-                }
 
+                }
             }
+
 
         }
         binding.imRight.setOnClickListener {
-
+            iClickListener?.onClickShowMore(binding.tvTitle.text.toString())
         }
 
+
     }
-//    private fun intentActivityAndData(story: Story,position: Int) {
-//        val intent = Intent(this, DetailStoryActivity::class.java)
-//        intent.putExtra(
-//            Constant.KEY_DETAIL_STORY,
-//            Gson().toJson(listStoryPreviewAdapter?.listStory?.get(position))
-//        )
-//        startActivity(intent)
-//    }
+
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

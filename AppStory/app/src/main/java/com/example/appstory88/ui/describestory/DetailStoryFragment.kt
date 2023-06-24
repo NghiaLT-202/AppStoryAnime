@@ -7,6 +7,8 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.dao.StoryDao
+import com.example.appstory88.database.AppDatabase
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
@@ -18,10 +20,9 @@ import com.google.gson.reflect.TypeToken
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
-
+    var storyDao : StoryDao?=null
 
     private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
-    var listCategoryStory: MutableList<Story> = mutableListOf()
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_detail_story
@@ -39,6 +40,7 @@ class DetailStoryFragment :
             binding.rcCategory.adapter = this
             onItemClickListener = object : ItemCategoryDetailAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
+
                 }
 
             }
@@ -52,7 +54,10 @@ class DetailStoryFragment :
         mainViewModel?.initData(requireContext())
         mainViewModel?.listStoryLiveData?.observe(this) {
             story?.nameStory?.let { it1 -> mainViewModel.initlistCategoryData(it, it1) }
+        }
+        mainViewModel.listCategoryData.observe(this){
             itemCategoryDetailAdapter?.listCategoryStory = it
+
         }
         initData()
     }
@@ -75,6 +80,10 @@ class DetailStoryFragment :
                 R.id.fragment_read_story,
                 bundle
             )
+        }
+        binding.tvBookmark.setOnClickListener {
+            storyDao= AppDatabase.getInstanceDataBase(requireContext()).storyDao()
+            story?.let { it1 -> storyDao?.insertStory(it1) }
         }
     }
 

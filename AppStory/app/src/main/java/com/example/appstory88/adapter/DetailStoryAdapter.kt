@@ -14,13 +14,12 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
             field = value
             notifyDataSetChanged()
         }
+    // khai báo interface
     var onItemClickListener: ItemClickListener? = null
 
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemDetailStoryBinding>, position: Int) {
-
-
         with(listStory[position]) {
             with(holder.binding) {
                 holder.itemView.context.let {
@@ -31,13 +30,10 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
                 tvNameCategory.text = nameCategory
                 viewStar.numberStar = numberStar
             }
-
             holder.itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(this, holder.adapterPosition)
             }
         }
-
-
     }
 
 

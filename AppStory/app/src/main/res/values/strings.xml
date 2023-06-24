@@ -989,7 +989,7 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="truy_n">truyện</string>
     <string name="_1000">1000</string>
     <string name="story_saved">Story Saved</string>
-    <string name="delete_bookmark">Delete bookmark</string>
+    <string name="delete_bookmark">Delete bookmarks</string>
     <string name="most_social"># MOST SOCIAL</string>
     <string name="categories"># CATEGORIES</string>
     <string name="your_story"># YOUR STORY</string>
@@ -1005,6 +1005,12 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="truy_n_dc">Truyện Đề Cử</string>
     <string name="truy_n_hot">Truyện Hot</string>
     <string name="chapter_sum">"Chapter sum: "</string>
+    <string name="ti_u_thuy_t_l_ch_s">Tiểu thuyết lịch sử</string>
+    <string name="ti_u_thuy_t_truy_n_k">Tiểu thuyết truyền kỳ</string>
+    <string name="ti_u_thuy_t_k_o">Tiểu thuyết kỳ ảo</string>
+    <string name="ti_u_thuy_t_k_ch_t_nh">Tiểu thuyết kịch tính</string>
+    <string name="ti_u_thuy_t_phi_u_l_u_m_o_hi_m">Tiểu thuyết phiêu lưu mạo hiểm</string>
+    <string name="ti_u_thuy_t_h_nh_ng">Tiểu thuyết hành động</string>
 
 
 </resources>
