@@ -18,10 +18,14 @@ class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
     override fun onBindViewHolderBase(holder: BaseHolder<ItemTopStoryBinding>, position: Int) {
         with(listStory[position]){
             val color = Color.parseColor(color)
-            holder.binding.tvName.text = name
-            holder.binding.viewLineVertical.setBackgroundColor(color)
-            holder.binding.viewBackground.setBackgroundColor(color)
-            holder.binding.tvName.setTextColor(color)
+
+            with( holder.binding){
+              tvName.text = name
+              viewLineVertical.setBackgroundColor(color)
+              viewBackground.setBackgroundColor(color)
+              tvName.setTextColor(color)
+            }
+
         }
 
         holder.itemView.setOnClickListener {
