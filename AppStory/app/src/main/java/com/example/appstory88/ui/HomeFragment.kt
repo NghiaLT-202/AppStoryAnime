@@ -9,18 +9,16 @@ import com.example.appstory88.adapter.StoryBannerAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.customview.ViewListPreviewStory
-import com.example.appstory88.dao.StoryDao
-import com.example.appstory88.database.AppDatabase
+
 import com.example.appstory88.databinding.FragmentHomeStoryBinding
 import com.example.appstory88.model.Story
 import com.google.gson.Gson
 import timber.log.Timber
 
-class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel>() {
+class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
     private var storyBannerAdapter: StoryBannerAdapter? = null
     private val listStoryBanner: MutableList<Story> = mutableListOf()
-
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home_story
@@ -44,18 +42,19 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     }
 
 
-    override fun getViewModel(): Class<MainViewModel> {
-        return MainViewModel::class.java
+    override fun getViewModel(): Class<HomeViewModel> {
+        return HomeViewModel::class.java
     }
 
     private fun initData() {
-        viewModel.initData(requireContext())
-        viewModel.listStoryLiveData.observe(this) { story ->
+        mainViewModel.initData(requireContext())
+        Log.e("tnghia","oncreat")
+        mainViewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStoryBanner.clear()
             listStory.addAll(story)
             listStoryBanner.addAll(story)
-            with(viewModel){
+            with(mainViewModel){
                 initlistStoryNewUpdateLiveData(listStory,getString(R.string.ti_u_thuy_t_h_nh_ng))
                 initlistStoryFullAdapterLiveData(listStory,getString(R.string.ti_u_thuy_t_truy_n_k))
                 initlistStoryGoodLoveLanguageLiveData(listStory,getString(R.string.ti_u_thuy_t_k_o))
@@ -65,21 +64,21 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
 
             storyBannerAdapter?.listStory = listStoryBanner
         }
-        viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
+        mainViewModel.listStoryNewUpdateLiveData.observe(viewLifecycleOwner) { newUpdate ->
             binding.rcNewUpdateStory.listPreviewStory = newUpdate
         }
-        viewModel.listStoryFullAdapterLiveData.observe(this) { storyFull ->
+        mainViewModel.listStoryFullAdapterLiveData.observe(viewLifecycleOwner) { storyFull ->
             binding.rcFullStory.listPreviewStory = storyFull
 
         }
-        viewModel.listStoryGoodLoveLanguageLiveData.observe(this) { goodLove ->
+        mainViewModel.listStoryGoodLoveLanguageLiveData.observe(viewLifecycleOwner) { goodLove ->
             binding.rcLoveLanguageStory.listPreviewStory = goodLove
         }
-        viewModel.listStoryGoodFairyTaleLiveData.observe(this) { goodFairyTale ->
+        mainViewModel.listStoryGoodFairyTaleLiveData.observe(viewLifecycleOwner) { goodFairyTale ->
             binding.rcFirstHalfStory.listPreviewStory = goodFairyTale
 
         }
-        viewModel.listStoryGoodPassionLiveData.observe(this) { goodPassion ->
+        mainViewModel.listStoryGoodPassionLiveData.observe(viewLifecycleOwner) { goodPassion ->
             binding.rcPassionStory.listPreviewStory = goodPassion
 
         }
