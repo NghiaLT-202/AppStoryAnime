@@ -10,7 +10,7 @@ class Story(
     @ColumnInfo var nameStory: String,
     @ColumnInfo var numberStar: Int,
     @ColumnInfo var nameAuthur: String,
-    @ColumnInfo var nameCategory: String,
+    @ColumnInfo var nameCategory: MutableList<String>,
     @ColumnInfo var numberView: Long,
     @ColumnInfo var status: Boolean,
     @ColumnInfo var describe: String,

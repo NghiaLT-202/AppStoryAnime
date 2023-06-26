@@ -25,7 +25,6 @@ class CategoryStoryFragment :
 
 
     private fun initData() {
-        mainViewModel.initData(requireContext())
         mainViewModel.listStoryLiveData.observe(this) {
             mainViewModel.initDataCategory(requireContext(), it)
         }

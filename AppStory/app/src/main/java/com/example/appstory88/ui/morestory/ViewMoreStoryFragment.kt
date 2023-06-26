@@ -37,7 +37,6 @@ class ViewMoreStoryFragment :
 
         val categoryJson = arguments?.getString(Constant.CATEGORY_STORY)
         binding.nameCategory.text=categoryJson
-        mainViewModel.initData(requireContext())
         mainViewModel.listStoryLiveData.observe(this) {
             categoryJson?.let { it1 -> mainViewModel.initlistStoryLiveData(it, it1) }
         }

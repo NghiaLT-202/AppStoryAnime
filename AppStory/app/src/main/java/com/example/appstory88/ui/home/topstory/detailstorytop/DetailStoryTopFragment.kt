@@ -36,9 +36,6 @@ class DetailStoryTopFragment :
     private fun setupData() {
         val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
         binding.tvNameCategory.text = category
-
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.initData(requireContext())
         mainViewModel.listStoryLiveData.observe(this) {
             listStory.clear()
             listStory.addAll(it)

@@ -14,7 +14,6 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
             field = value
             notifyDataSetChanged()
         }
-    // khai báo interface
     var onItemClickListener: ItemClickListener? = null
 
 

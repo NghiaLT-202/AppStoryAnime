@@ -47,8 +47,6 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     }
 
     private fun initData() {
-        mainViewModel.initData(requireContext())
-        Log.e("tnghia","oncreat")
         mainViewModel.listStoryLiveData.observe(this) { story ->
             listStory.clear()
             listStoryBanner.clear()
