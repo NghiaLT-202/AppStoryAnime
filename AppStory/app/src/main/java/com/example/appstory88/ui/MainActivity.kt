@@ -1,6 +1,7 @@
 package com.example.appstory88.ui
 
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.appstory88.R
@@ -22,6 +23,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun setupData() {
+        viewModel.initData(this)
+
     }
 
     override fun getViewModel(): Class<MainViewModel> {

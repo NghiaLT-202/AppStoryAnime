@@ -1,27 +1,35 @@
 package com.example.appstory88.ui.describestory
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.dao.StoryDao
-import com.example.appstory88.database.AppDatabase
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.MakeStatusBarLight
-
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
-    var  checkBookmark:Boolean=false
+    var checkBookmark: Boolean = false
+        set(value) {
+            field = value
+            if (!checkBookmark) {
+                checkBookmark = true
+                binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
+            } else {
+                checkBookmark = false
+                binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
+                story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
+            }
+        }
 
 
     private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
@@ -51,17 +59,12 @@ class DetailStoryFragment :
     }
 
     private fun setupData() {
-        val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
-        story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
-        mainViewModel?.initData(requireContext())
-        mainViewModel?.listStoryLiveData?.observe(this) {
-            story?.nameStory?.let { it1 -> mainViewModel.initlistCategoryData(it, it1) }
+        arguments?.getString(Constant.KEY_DETAIL_STORY)?.let { storyJson ->
+            story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
+            initData()
         }
-        mainViewModel.listCategoryData.observe(this){
-            itemCategoryDetailAdapter?.listCategoryStory = it
 
-        }
-        initData()
+
     }
 
     override fun getViewModel(): Class<DetailStoryViewModel> {
@@ -70,7 +73,7 @@ class DetailStoryFragment :
 
     private fun initListener() {
         binding.imBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+            (requireActivity() as MainActivity).navController?.popBackStack()
         }
         binding.tvReadStory.setOnClickListener {
             (requireActivity() as MainActivity).navController?.navigate(
@@ -84,14 +87,14 @@ class DetailStoryFragment :
             )
         }
         binding.tvBookmark.setOnClickListener {
-            if (!checkBookmark){
-                checkBookmark=true
+            if (!checkBookmark) {
+                checkBookmark = true
                 binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-                story?.let { it1 -> viewModel.insertStory(it1,requireContext()) }
-            }else{
-                checkBookmark=false
+                story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
+            } else {
+                checkBookmark = false
                 binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
-                story?.let { it1 -> viewModel.deleteStory(it1.nameStory,requireContext()) }
+                story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
             }
         }
     }

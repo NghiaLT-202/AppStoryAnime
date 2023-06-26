@@ -16,8 +16,9 @@ class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>(
 
 
     override fun onBindViewHolderBase(
-        holder: BaseHolder<ItemCategoryDetailBinding>, position: Int) {
-        with(listCategoryStory[position]){
+        holder: BaseHolder<ItemCategoryDetailBinding>, position: Int
+    ) {
+        with(listCategoryStory[position]) {
             holder.binding.tvValueCategory.text = nameCategory
         }
         holder.itemView.setOnClickListener {

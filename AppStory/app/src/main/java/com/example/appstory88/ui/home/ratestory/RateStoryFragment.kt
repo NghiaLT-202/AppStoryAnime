@@ -27,7 +27,6 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
 
     private fun setupData() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel?.initData(requireContext())
         mainViewModel?.listStoryLiveData?.observe(this) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
 
