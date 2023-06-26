@@ -14,10 +14,10 @@ class ViewStar : LinearLayout {
             field = value
             setNumberStar()
         }
-    var binding: LayoutViewStarBinding
+    var binding: LayoutViewStarBinding =
+        LayoutViewStarBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-        binding = LayoutViewStarBinding.inflate(LayoutInflater.from(context), this, true)
         layout(0, 0, WRAP_CONTENT, WRAP_CONTENT)
     }
 
@@ -41,43 +41,58 @@ class ViewStar : LinearLayout {
     private fun setNumberStar() {
         when (numberStar) {
             1 -> {
-                binding.imStar1.setImageResource(R.drawable.icon_star_48)
-                binding.imStar2.setImageResource(R.drawable.icon_star_gray_48)
-                binding.imStar3.setImageResource(R.drawable.icon_star_gray_48)
-                binding.imStar4.setImageResource(R.drawable.icon_star_gray_48)
-                binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                with(binding){
+                    imStar1.setImageResource(R.drawable.icon_star_48)
+                    imStar2.setImageResource(R.drawable.icon_star_gray_48)
+                    imStar3.setImageResource(R.drawable.icon_star_gray_48)
+                    imStar4.setImageResource(R.drawable.icon_star_gray_48)
+                    imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                }
+
             }
 
             2 -> {
-                binding.imStar1.setImageResource(R.drawable.icon_star_48)
-                binding.imStar2.setImageResource(R.drawable.icon_star_48)
-                binding.imStar3.setImageResource(R.drawable.icon_star_gray_48)
-                binding.imStar4.setImageResource(R.drawable.icon_star_gray_48)
-                binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                with(binding){
+                    imStar1.setImageResource(R.drawable.icon_star_48)
+                    imStar2.setImageResource(R.drawable.icon_star_48)
+                    imStar3.setImageResource(R.drawable.icon_star_gray_48)
+                    imStar4.setImageResource(R.drawable.icon_star_gray_48)
+                    imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                }
+
             }
 
             3 -> {
-                binding.imStar1.setImageResource(R.drawable.icon_star_48)
-                binding.imStar2.setImageResource(R.drawable.icon_star_48)
-                binding.imStar3.setImageResource(R.drawable.icon_star_48)
-                binding.imStar4.setImageResource(R.drawable.icon_star_gray_48)
-                binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                with(binding){
+                    binding.imStar1.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar2.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar3.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar4.setImageResource(R.drawable.icon_star_gray_48)
+                    binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                }
+
             }
 
             4 -> {
-                binding.imStar1.setImageResource(R.drawable.icon_star_48)
-                binding.imStar2.setImageResource(R.drawable.icon_star_48)
-                binding.imStar3.setImageResource(R.drawable.icon_star_48)
-                binding.imStar4.setImageResource(R.drawable.icon_star_48)
-                binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                with(binding){
+                    binding.imStar1.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar2.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar3.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar4.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar5.setImageResource(R.drawable.icon_star_gray_48)
+                }
+
             }
 
             5 -> {
-                binding.imStar1.setImageResource(R.drawable.icon_star_48)
-                binding.imStar2.setImageResource(R.drawable.icon_star_48)
-                binding.imStar3.setImageResource(R.drawable.icon_star_48)
-                binding.imStar4.setImageResource(R.drawable.icon_star_48)
-                binding.imStar5.setImageResource(R.drawable.icon_star_48)
+                with(binding){
+                    binding.imStar1.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar2.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar3.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar4.setImageResource(R.drawable.icon_star_48)
+                    binding.imStar5.setImageResource(R.drawable.icon_star_48)
+                }
+
             }
         }
     }

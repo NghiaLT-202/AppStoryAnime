@@ -30,7 +30,9 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         initAdapter()
         initListener()
         setupView()
-        initData()
+           initData()
+
+
     }
 
     fun setupView() {
@@ -53,11 +55,14 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
             listStoryBanner.clear()
             listStory.addAll(story)
             listStoryBanner.addAll(story)
-            viewModel.initlistStoryNewUpdateLiveData(listStory,getString(R.string.ti_u_thuy_t_h_nh_ng))
-            viewModel.initlistStoryFullAdapterLiveData(listStory,getString(R.string.ti_u_thuy_t_truy_n_k))
-            viewModel.initlistStoryGoodLoveLanguageLiveData(listStory,getString(R.string.ti_u_thuy_t_k_o))
-            viewModel.initlistStoryGoodFairyTaleLiveData(listStory,getString(R.string.ti_u_thuy_t_k_ch_t_nh))
-            viewModel.initlistStoryGoodPassionLiveData(listStory,getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m))
+            with(viewModel){
+                initlistStoryNewUpdateLiveData(listStory,getString(R.string.ti_u_thuy_t_h_nh_ng))
+                initlistStoryFullAdapterLiveData(listStory,getString(R.string.ti_u_thuy_t_truy_n_k))
+                initlistStoryGoodLoveLanguageLiveData(listStory,getString(R.string.ti_u_thuy_t_k_o))
+                initlistStoryGoodFairyTaleLiveData(listStory,getString(R.string.ti_u_thuy_t_k_ch_t_nh))
+                initlistStoryGoodPassionLiveData(listStory,getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m))
+            }
+
             storyBannerAdapter?.listStory = listStoryBanner
         }
         viewModel.listStoryNewUpdateLiveData.observe(this) { newUpdate ->
@@ -83,16 +88,16 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
 
     private fun initListener() {
         binding.viewTopStory.setOnClickListener {
-            intentActivity(R.id.fragment_view_top, 0, "")
+            intentActivity(R.id.fragment_view_top, "")
         }
         binding.viewCategoryStory.setOnClickListener {
-            intentActivity(R.id.fragment_view_category, 0, "")
+            intentActivity(R.id.fragment_view_category,  "")
         }
         binding.viewRateStory.setOnClickListener {
-            intentActivity(R.id.fragment_view_rate, 0, "")
+            intentActivity(R.id.fragment_view_rate, "")
         }
         binding.viewBookMarkStory.setOnClickListener {
-            intentActivity(R.id.fragment_view_bookmark, 0, "")
+            intentActivity(R.id.fragment_view_bookmark, "")
 
         }
 
@@ -117,7 +122,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
             binding.rcItemStoryBanner.adapter = this
             iclick = object : StoryBannerAdapter.IClick {
                 override fun clickItem(story: Story, position: Int) {
-                    intentActivityAndData(position)
+                    intentActivityAndData(story)
 
 
                 }
@@ -129,10 +134,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     private fun storyNewUpdateAdapter() {
         binding.rcNewUpdateStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
-                intentActivityAndData(position)
+                intentActivityAndData(story)
             }
             override fun onClickShowMore(name: String) {
-                intentActivity(R.id.fragment_view_more_story, 0, name)
+                intentActivity(R.id.fragment_view_more_story,  getString(R.string.ti_u_thuy_t_h_nh_ng))
             }
         }
 
@@ -142,10 +147,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     private fun storyFullAdapter() {
         binding.rcFullStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
-                intentActivityAndData(position)
+                intentActivityAndData(story)
             }
             override fun onClickShowMore(name: String) {
-                intentActivity(R.id.fragment_view_more_story, 0, name)
+                intentActivity(R.id.fragment_view_more_story, getString(R.string.ti_u_thuy_t_truy_n_k))
             }
         }
 
@@ -154,12 +159,12 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     private fun storyGoodLoveLanguageAdapter() {
         binding.rcLoveLanguageStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
-                intentActivityAndData(position)
+                intentActivityAndData(story)
 
             }
 
             override fun onClickShowMore(name: String) {
-                intentActivity(R.id.fragment_view_more_story, 0, name)
+                intentActivity(R.id.fragment_view_more_story, getString(R.string.ti_u_thuy_t_k_o))
 
             }
 
@@ -170,11 +175,11 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     private fun storyGoodFairyTaleAdapter() {
         binding.rcFirstHalfStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
-                intentActivityAndData(position)
+                intentActivityAndData(story)
 
             }
             override fun onClickShowMore(name: String) {
-                intentActivity(R.id.fragment_view_more_story, 0, name)
+                intentActivity(R.id.fragment_view_more_story,  getString(R.string.ti_u_thuy_t_k_ch_t_nh))
 
 
             }
@@ -190,14 +195,14 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
         binding.rcPassionStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
 
-                intentActivityAndData(position)
+                intentActivityAndData(story)
 
             }
 
             override fun onClickShowMore(name: String) {
-                Toast.makeText(requireContext(), ""+name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), ""+getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m), Toast.LENGTH_SHORT).show()
 
-                intentActivity(R.id.fragment_view_more_story, 0, name)
+                intentActivity(R.id.fragment_view_more_story,  getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m))
             }
 
 
@@ -206,23 +211,26 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, MainViewModel
     }
 
 
-    private fun intentActivityAndData(position: Int) {
-        val bundle = Bundle()
-        bundle.putString(
-            Constant.KEY_DETAIL_STORY,
-            Gson().toJson(storyBannerAdapter?.listStory?.get(position))
-        )
+    private fun intentActivityAndData(story: Story) {
+
         (requireActivity() as MainActivity).navController?.navigate(
             R.id.fragment_detail_story,
-            bundle
+            Bundle().apply {
+                putString(
+                    Constant.KEY_DETAIL_STORY,
+                    Gson().toJson(story)
+                )
+            }
         )
     }
 
-    private fun intentActivity(id: Int, position: Int, nameCategory: String) {
-        val bundle = Bundle()
-        bundle.putString(Constant.CATEGORY_STORY, listStory[position].nameCategory)
+    private fun intentActivity(id: Int,  nameCategory: String) {
 
-        (requireActivity() as MainActivity).navController?.navigate(id, null)
+
+        (requireActivity() as MainActivity).navController?.navigate(id,  Bundle().apply {
+            putString(Constant.CATEGORY_STORY, nameCategory)
+
+        })
 
     }
 

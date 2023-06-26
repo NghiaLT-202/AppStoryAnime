@@ -1,6 +1,7 @@
 package com.example.appstory88.ui.describestory
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
@@ -20,7 +21,8 @@ import com.google.gson.reflect.TypeToken
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
-    var storyDao : StoryDao?=null
+    var  checkBookmark:Boolean=false
+
 
     private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
 
@@ -71,19 +73,26 @@ class DetailStoryFragment :
             requireActivity().supportFragmentManager.popBackStack()
         }
         binding.tvReadStory.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString(
-                Constant.KEY_DETAIL_STORY,
-                Gson().toJson(story)
-            )
             (requireActivity() as MainActivity).navController?.navigate(
                 R.id.fragment_read_story,
-                bundle
+                Bundle().apply {
+                    putString(
+                        Constant.KEY_DETAIL_STORY,
+                        Gson().toJson(story)
+                    )
+                }
             )
         }
         binding.tvBookmark.setOnClickListener {
-            storyDao= AppDatabase.getInstanceDataBase(requireContext()).storyDao()
-            story?.let { it1 -> storyDao?.insertStory(it1) }
+            if (!checkBookmark){
+                checkBookmark=true
+                binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                story?.let { it1 -> viewModel.insertStory(it1,requireContext()) }
+            }else{
+                checkBookmark=false
+                binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
+                story?.let { it1 -> viewModel.deleteStory(it1.nameStory,requireContext()) }
+            }
         }
     }
 

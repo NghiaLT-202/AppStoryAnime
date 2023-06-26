@@ -35,8 +35,6 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
         storyDao= AppDatabase.getInstanceDataBase(requireContext()).storyDao()
         storyDao?.getAllStory()?.let { listBookmarkStory.addAll(it) }
         storyBookmarkAdapter?.listStory=listBookmarkStory
-
-
     }
 
     private fun initAdapter() {
@@ -44,7 +42,6 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
             binding.rcItemStory.adapter = this
             iclick = object : StoryBookmarkAdapter.IClick {
                 override fun clickItem(story: Story, position: Int) {
-                    TODO("Not yet implemented")
                 }
             }
 

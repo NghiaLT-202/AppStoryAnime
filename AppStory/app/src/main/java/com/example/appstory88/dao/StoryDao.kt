@@ -16,4 +16,11 @@ interface StoryDao {
 
     @Insert
     fun insertStory(story: Story)
+
+
+    @Query("DELETE FROM story where nameStory=:name")
+    fun deleteBookmark(name: String?)
+
+    @Query("SELECT * FROM story where checkBookmark=:check")
+    fun getAllBookmark(check: Boolean): List<Story?>?
 }

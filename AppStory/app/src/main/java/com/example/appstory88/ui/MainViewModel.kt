@@ -168,6 +168,7 @@ class MainViewModel : BaseViewModel() {
                     listContent[0],
                     listChappter[i],
                     90,
+                    false,
                 )
             listStory.add(story)
         }

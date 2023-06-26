@@ -30,7 +30,6 @@ public abstract class BaseBindingAdapter<B extends ViewDataBinding> extends Recy
 
         return new BaseHolder<B>(binding);
     }
-
     @Override
     public void onBindViewHolder(@NonNull BaseHolder<B> holder, int position) {
         holder.itemView.setOnClickListener(view -> {
@@ -38,7 +37,6 @@ public abstract class BaseBindingAdapter<B extends ViewDataBinding> extends Recy
         });
         onBindViewHolderBase(holder, holder.getAdapterPosition());
     }
-
     @Override
     public int getItemCount() {
         return getSizeItem();
