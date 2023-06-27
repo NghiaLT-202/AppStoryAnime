@@ -65,7 +65,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     private fun getSizeCategory(nameCategory: String, allStory: MutableList<Story>): Int {
-        val lisStoryOfCate = allStory.filter { it.nameCategory == nameCategory }
+        val lisStoryOfCate = allStory.filter { it.typeCategory == nameCategory }
         return lisStoryOfCate.size
     }
 
@@ -80,44 +80,44 @@ class MainViewModel : BaseViewModel() {
 
     }
     fun initlistStoryNewUpdateLiveData(list: MutableList<Story>,nameCategory: String) {
-        listStoryNewUpdateLiveData.postValue(list.filter { it.nameCategory == nameCategory }
+        listStoryNewUpdateLiveData.postValue(list.filter { it.typeCategory == nameCategory }
             .toMutableList())
    }
 
     fun initlistStoryFullAdapterLiveData(list: MutableList<Story>,nameCategory: String) {
-        listStoryFullAdapterLiveData.postValue(list.filter { it.nameCategory == nameCategory }
+        listStoryFullAdapterLiveData.postValue(list.filter { it.typeCategory == nameCategory }
             .toMutableList())
     }
 
     fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>,nameCategory: String) {
         listStoryGoodLoveLanguageLiveData.postValue(list.filter {
-            it.nameCategory == nameCategory
+            it.typeCategory == nameCategory
         }
             .toMutableList())
     }
 
     fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>,nameCategory: String) {
         listStoryGoodFairyTaleLiveData.postValue(list.filter {
-            it.nameCategory == nameCategory
+            it.typeCategory == nameCategory
         }
             .toMutableList())
     }
 
     fun initlistStoryGoodPassionLiveData(list: MutableList<Story>,nameCategory: String) {
         listStoryGoodPassionLiveData.postValue(list.filter {
-            it.nameCategory == nameCategory
+            it.typeCategory == nameCategory
         }.toMutableList())
     }
 
     fun initlistStoryLiveData(list: MutableList<Story>, type: String) {
         listStoryMoreLiveData.postValue(list.filter {
-            it.nameCategory == type
+            it.typeCategory == type
         }.toMutableList())
     }
 
     fun initlistDetailStoryLiveData(list: MutableList<Story>, type: String) {
 
-        listStoryDetailLiveData.postValue(list.filter { it.nameCategory == type }.toMutableList())
+        listStoryDetailLiveData.postValue(list.filter { it.typeCategory == type }.toMutableList())
     }
 
 
@@ -132,6 +132,7 @@ class MainViewModel : BaseViewModel() {
 
         //Size name  =200
         val listName = context.resources.getStringArray(R.array.list_name_story)
+        val listTypeCategory = context.resources.getStringArray(R.array.list_type_story)
         //size content = 1
         val listContent = context.resources.getStringArray(R.array.list_content_story)
 
@@ -162,13 +163,14 @@ class MainViewModel : BaseViewModel() {
                     listName[i],
                     numberRate,
                     listAuthor[numberAuthor],
-                    listCategory[numberCategory],
+                    listCategory[i].split(", ").map { it.trim() } as ArrayList<String>,
                     listnumberView[i].toLong(),
                     status,
                     listContent[0],
-                    listChappter[i],
+                        listChappter[i],
                     90,
                     false,
+                    listTypeCategory[i]
                 )
             listStory.add(story)
         }
@@ -178,5 +180,6 @@ class MainViewModel : BaseViewModel() {
 
 
     }
+
 
 }

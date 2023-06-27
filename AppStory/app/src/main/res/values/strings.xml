@@ -721,6 +721,17 @@ Cuối cùng, Hiro và Yumi hiểu rằng sự quyết đoán và trái tim lư�
         <item name="item">false</item>
 
     </string-array>
+    <string-array name="list_type_story">
+        <item name="item">Tiểu thuyết lịch sử</item>
+        <item name="item">Tiểu thuyết truyền kỳ</item>
+        <item name="item">Tiểu thuyết kỳ ảo</item>
+        <item name="item">Tiểu thuyết kịch tính</item>
+        <item name="item">Tiểu thuyết phiêu lưu mạo hiểm</item>
+        <item name="item">Tiểu thuyết hành động</item>
+
+
+    </string-array>
+
     <string-array name="list_name_authur_story">
         <item name="item">Hayao Miyazaki</item>
         <item name="item">Masashi Kishimoto</item>
