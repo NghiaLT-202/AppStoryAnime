@@ -19,7 +19,7 @@ class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>(
         holder: BaseHolder<ItemCategoryDetailBinding>, position: Int
     ) {
         with(listCategoryStory[position]) {
-            holder.binding.tvValueCategory.text = nameCategory
+            holder.binding.tvValueCategory.text = nameCategory[0]
         }
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)

@@ -24,7 +24,7 @@ class StoryBannerAdapter : BaseBindingAdapter<ItemStoryBannerBinding>() {
                 imStory.post { Glide.with(holder.itemView.context).asBitmap().load(imageStory).into(imStory) }
                 tvNameStory.text = nameStory
                 tvValueNameAuthor.text = nameAuthur
-                tvValueNameCategory.text = nameCategory
+                tvValueNameCategory.text = nameCategory[0]
                 viewStar.numberStar = numberStar
             }
             holder.itemView.setOnClickListener {

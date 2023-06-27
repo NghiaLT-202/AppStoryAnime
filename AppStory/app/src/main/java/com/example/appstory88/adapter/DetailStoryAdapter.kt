@@ -26,7 +26,7 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
                     tvNumberChapter.text = it.getString(R.string.chapter_sum) + chapterSum
                 }
                 tvNameStory.text = nameStory
-                tvNameCategory.text = nameCategory
+                tvNameCategory.text = nameCategory[0]
                 viewStar.numberStar = numberStar
             }
             holder.itemView.setOnClickListener {
