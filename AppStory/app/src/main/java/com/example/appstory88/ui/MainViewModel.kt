@@ -2,14 +2,11 @@ package com.example.appstory88.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
-import com.example.appstory88.database.AppDatabase.Companion.appDatabase
 import com.example.appstory88.model.ItemCategory
 import com.example.appstory88.model.ItemTopStory
-
 import com.example.appstory88.model.Story
 import java.util.Random
 
@@ -35,8 +32,18 @@ class MainViewModel : BaseViewModel() {
         val listColor = context.resources.getStringArray(R.array.colorTopStory)
         val numberColor = Random().nextInt(listColor.size - 1) + 1
         val listTopStory: MutableList<ItemTopStory> = mutableListOf()
-        listTopStory.add(ItemTopStory(context.getString(R.string.truy_n_dc), listColor[numberColor]))
-        listTopStory.add(ItemTopStory(context.getString(R.string.truy_n_hot), listColor[numberColor]))
+        listTopStory.add(
+            ItemTopStory(
+                context.getString(R.string.truy_n_dc),
+                listColor[numberColor]
+            )
+        )
+        listTopStory.add(
+            ItemTopStory(
+                context.getString(R.string.truy_n_hot),
+                listColor[numberColor]
+            )
+        )
         val listCategory = context.resources.getStringArray(R.array.list_category_story)
         for (i in listCategory.indices) {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
@@ -70,8 +77,7 @@ class MainViewModel : BaseViewModel() {
     }
 
 
-
-    fun initlistCategoryData(list: MutableList<Story>,name:String) {
+    fun initlistCategoryData(list: MutableList<Story>, name: String) {
 
 
         listCategoryData.postValue(list.filter { it.nameStory == name }
@@ -79,31 +85,32 @@ class MainViewModel : BaseViewModel() {
 
 
     }
-    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>,nameCategory: String) {
+
+    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryNewUpdateLiveData.postValue(list.filter { it.typeCategory == nameCategory }
             .toMutableList())
-   }
+    }
 
-    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>,nameCategory: String) {
+    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryFullAdapterLiveData.postValue(list.filter { it.typeCategory == nameCategory }
             .toMutableList())
     }
 
-    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>,nameCategory: String) {
+    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryGoodLoveLanguageLiveData.postValue(list.filter {
             it.typeCategory == nameCategory
         }
             .toMutableList())
     }
 
-    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>,nameCategory: String) {
+    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryGoodFairyTaleLiveData.postValue(list.filter {
             it.typeCategory == nameCategory
         }
             .toMutableList())
     }
 
-    fun initlistStoryGoodPassionLiveData(list: MutableList<Story>,nameCategory: String) {
+    fun initlistStoryGoodPassionLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryGoodPassionLiveData.postValue(list.filter {
             it.typeCategory == nameCategory
         }.toMutableList())
@@ -153,6 +160,7 @@ class MainViewModel : BaseViewModel() {
         val listStory: MutableList<Story> = mutableListOf()
         for (i in listName.indices) {
             val numberRate = Random().nextInt(5) + 1
+            val numberType = Random().nextInt(listTypeCategory.size - 1) + 1
             val numberCategory = Random().nextInt(listCategory.size - 1) + 1
             val numberAuthor = Random().nextInt(listAuthor.size - 1) + 1
             val numberImage = Random().nextInt(listPathImage.size - 1) + 1
@@ -163,14 +171,14 @@ class MainViewModel : BaseViewModel() {
                     listName[i],
                     numberRate,
                     listAuthor[numberAuthor],
-                    listCategory[i].split(", ").map { it.trim() } as ArrayList<String>,
+                    listCategory[numberCategory].split(", ").map { it.trim() } as ArrayList<String>,
                     listnumberView[i].toLong(),
                     status,
                     listContent[0],
-                        listChappter[i],
+                    listChappter[i],
                     90,
                     false,
-                    listTypeCategory[i]
+                   listTypeCategory[numberType]
                 )
             listStory.add(story)
         }

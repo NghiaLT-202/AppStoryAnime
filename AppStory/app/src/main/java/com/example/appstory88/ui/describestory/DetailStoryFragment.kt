@@ -17,19 +17,21 @@ import com.google.gson.reflect.TypeToken
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
+    private val listCategoryStory: MutableList<Story> = mutableListOf()
+
     var checkBookmark: Boolean = false
-        set(value) {
-            field = value
-            if (!checkBookmark) {
-                checkBookmark = true
-                binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-                story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
-            } else {
-                checkBookmark = false
-                binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
-                story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
-            }
-        }
+//        set(value) {
+//            field = value
+//            if (!checkBookmark) {
+//                checkBookmark = true
+//                binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+//                story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
+//            } else {
+//                checkBookmark = false
+//                binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
+//                story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
+//            }
+//        }
 
 
     private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
@@ -100,6 +102,14 @@ class DetailStoryFragment :
     }
 
     private fun initData() {
+        mainViewModel?.listStoryLiveData?.observe(viewLifecycleOwner) {
+            story?.nameStory?.let { it1 -> mainViewModel.initlistCategoryData(it, it1) }
+        }
+        mainViewModel.listCategoryData.observe(viewLifecycleOwner){
+            itemCategoryDetailAdapter?.listCategoryStory = it
+
+        }
+
         story?.let {
             with(binding) {
                 Glide.with(requireContext()).load(it.imageStory).into(imStory)

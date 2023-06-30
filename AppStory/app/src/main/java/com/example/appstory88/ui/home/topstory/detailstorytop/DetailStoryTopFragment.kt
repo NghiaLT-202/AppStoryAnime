@@ -16,7 +16,6 @@ import com.google.gson.Gson
 
 class DetailStoryTopFragment :
     BaseBindingFragment<FragmentDetailStoryTopBinding, DetailStoryTopViewModel>() {
-    private val listStory: MutableList<Story> = mutableListOf()
     private var detailStoryAdapter: DetailStoryAdapter? = null
 
     override fun getLayoutId(): Int {
@@ -36,13 +35,11 @@ class DetailStoryTopFragment :
     private fun setupData() {
         val category = arguments?.getString(Constant.CATEGORY_STORY) ?: ""
         binding.tvNameCategory.text = category
-        mainViewModel.listStoryLiveData.observe(this) {
-            listStory.clear()
-            listStory.addAll(it)
-            mainViewModel.initlistDetailStoryLiveData(listStory, category)
+        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
+            mainViewModel.initlistDetailStoryLiveData(it, category)
 
         }
-        mainViewModel.listStoryDetailLiveData.observe(this) {
+        mainViewModel.listStoryDetailLiveData.observe(viewLifecycleOwner) {
             detailStoryAdapter?.listStory = it
 
         }
@@ -69,10 +66,10 @@ class DetailStoryTopFragment :
            Bundle().let {
                it.putString(
                    Constant.KEY_DETAIL_STORY,
-                   Gson().toJson(it)
+                   Gson().toJson(story)
                )
                (requireActivity() as MainActivity).navController?.navigate(
-                   R.id.fragment_read_story,
+                   R.id.fragment_detail_story,
                    it
                )
            }

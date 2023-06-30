@@ -31,9 +31,8 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
     }
 
     fun setupData() {
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.initDataTopStory(requireContext())
-        mainViewModel.listTopStoryLiveData.observe(this) {
+        mainViewModel.listTopStoryLiveData.observe(viewLifecycleOwner) {
             listStory.clear()
             listStory.addAll(it)
             itemTopStoryAdapter?.listStory = it

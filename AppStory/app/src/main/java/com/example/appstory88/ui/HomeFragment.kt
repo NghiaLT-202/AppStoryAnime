@@ -28,9 +28,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
         initAdapter()
         initListener()
         setupView()
-           initData()
-
-
+        initData()
     }
 
     fun setupView() {
@@ -47,7 +45,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     }
 
     private fun initData() {
-        mainViewModel.listStoryLiveData.observe(this) { story ->
+        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) { story ->
             listStory.clear()
             listStoryBanner.clear()
             listStory.addAll(story)
@@ -198,17 +196,14 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
 
             override fun onClickShowMore(name: String) {
                 Toast.makeText(requireContext(), ""+getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m), Toast.LENGTH_SHORT).show()
-
                 intentActivity(R.id.fragment_view_more_story,  getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m))
             }
-
-
         }
 
     }
 
 
-    private fun intentActivityAndData(story: Story) {
+    private fun     intentActivityAndData(story: Story) {
 
         (requireActivity() as MainActivity).navController?.navigate(
             R.id.fragment_detail_story,
@@ -222,12 +217,8 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     }
 
     private fun intentActivity(id: Int,  nameCategory: String) {
+        (requireActivity() as MainActivity).navController?.navigate(id,  Bundle().apply { putString(Constant.CATEGORY_STORY, nameCategory) })
 
-
-        (requireActivity() as MainActivity).navController?.navigate(id,  Bundle().apply {
-            putString(Constant.CATEGORY_STORY, nameCategory)
-
-        })
 
     }
 

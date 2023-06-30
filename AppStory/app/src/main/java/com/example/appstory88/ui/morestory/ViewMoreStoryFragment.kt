@@ -34,13 +34,12 @@ class ViewMoreStoryFragment :
 
 
     fun setupData() {
-
         val categoryJson = arguments?.getString(Constant.CATEGORY_STORY)
         binding.nameCategory.text=categoryJson
-        mainViewModel.listStoryLiveData.observe(this) {
+        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
             categoryJson?.let { it1 -> mainViewModel.initlistStoryLiveData(it, it1) }
         }
-        mainViewModel.listStoryMoreLiveData.observe(this){
+        mainViewModel.listStoryMoreLiveData.observe(viewLifecycleOwner){
             storyAdapter?.listStory = it
 
 
@@ -65,7 +64,6 @@ class ViewMoreStoryFragment :
 
     }
     private fun intentActivityAndData(story: Story) {
-
         (requireActivity() as MainActivity).navController?.navigate(
             R.id.fragment_detail_story,
             Bundle().apply {
