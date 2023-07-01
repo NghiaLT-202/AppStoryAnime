@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="yellow">#B6A44E</color>
+    <color name="yellow">#F3DA7C</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blacks">#45ABF6</color>
     <color name="transparent">#00000000</color>
     <color name="statusbarlight">#52322C2A</color>
 

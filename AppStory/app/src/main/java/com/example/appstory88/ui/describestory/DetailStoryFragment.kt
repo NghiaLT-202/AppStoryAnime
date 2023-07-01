@@ -2,6 +2,7 @@ package com.example.appstory88.ui.describestory
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
@@ -10,28 +11,15 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
-import com.example.appstory88.utils.MakeStatusBarLight
+import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
-    private val listCategoryStory: MutableList<Story> = mutableListOf()
 
     var checkBookmark: Boolean = false
-//        set(value) {
-//            field = value
-//            if (!checkBookmark) {
-//                checkBookmark = true
-//                binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-//                story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
-//            } else {
-//                checkBookmark = false
-//                binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
-//                story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
-//            }
-//        }
 
 
     private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
@@ -41,7 +29,7 @@ class DetailStoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        MakeStatusBarLight.makeStatusBarLight(requireActivity(), R.color.statusbarlight)
+        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.statusbarlight))
         initListener()
         initAdapter()
         setupData()
@@ -89,14 +77,19 @@ class DetailStoryFragment :
             )
         }
         binding.tvBookmark.setOnClickListener {
+            with(binding){
             if (!checkBookmark) {
                 checkBookmark = true
-                binding.tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                imDone.setImageResource(R.drawable.baseline_done_24)
+                tvBookmark.setTextColor(resources.getColor(R.color.yellow))
                 story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
             } else {
                 checkBookmark = false
-                binding.tvBookmark.setTextColor(resources.getColor(R.color.white))
+                imDone.setImageResource(R.drawable.baseline_playlist_add_24)
+
+                tvBookmark.setTextColor(resources.getColor(R.color.white))
                 story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
+            }
             }
         }
     }
@@ -117,7 +110,7 @@ class DetailStoryFragment :
                 viewStar.numberStar = it.numberStar
                 tvValueView.text = it.numberView.toString()
                 tvValueChapterNumber.text = it.chapterSum.toString()
-                tvValueAuthur.text = it.nameAuthur
+                tvValueAuthur.text = it.nameAuthor
                 tvValueStatus.text = it.status.toString()
                 tvValueDescribe.text = it.describe
             }

@@ -2,6 +2,8 @@ package com.example.appstory88.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.view.View
+import androidx.core.view.isVisible
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemCategoryStoryBinding
@@ -22,14 +24,21 @@ class ItemCategoryStoryAdapter : BaseBindingAdapter<ItemCategoryStoryBinding>() 
 
         with(listCategory[position]) {
             val color = Color.parseColor(color)
-            with(holder.binding) {
-                tvName.text = name
-                viewLineVertical.setBackgroundColor(color)
-                viewBackground.setBackgroundColor(color)
-                tvName.setTextColor(color)
-                tvSumStory.text =
-                    sumStory.toString() + " " + holder.itemView.context.getString(R.string.truyen)
+            if (sumStory>0){
+                with(holder.binding) {
+                    tvName.text = name
+                    cvLineVertical.visibility=View.VISIBLE
+                    viewLineVertical.visibility= View.VISIBLE
+                    viewBackground.visibility= View.VISIBLE
+
+                    viewLineVertical.setBackgroundColor(color)
+                    viewBackground.setBackgroundColor(color)
+                    tvName.setTextColor(color)
+                    tvSumStory.text =
+                        sumStory.toString() + " " + holder.itemView.context.getString(R.string.truyen)
+                }
             }
+
 
         }
         holder.itemView.setOnClickListener {

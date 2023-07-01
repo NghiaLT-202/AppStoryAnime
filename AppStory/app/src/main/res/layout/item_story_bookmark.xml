@@ -76,6 +76,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="#7F7F7F"
+            android:layout_marginLeft="5dp"
 
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/tv_nameAuthor"

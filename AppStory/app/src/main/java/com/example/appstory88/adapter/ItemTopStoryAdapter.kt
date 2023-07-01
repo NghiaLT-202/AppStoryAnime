@@ -2,10 +2,12 @@ package com.example.appstory88.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemTopStoryBinding
 import com.example.appstory88.model.ItemTopStory
+import timber.log.Timber
 
 class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
     var listStory: MutableList<ItemTopStory> = mutableListOf()
@@ -17,14 +19,20 @@ class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
     var onItemClickListener: ItemClickListener? = null
     override fun onBindViewHolderBase(holder: BaseHolder<ItemTopStoryBinding>, position: Int) {
         with(listStory[position]){
-            val color = Color.parseColor(color)
+            val color= try {
+                Color.parseColor(color.toString())
 
-            with( holder.binding){
-              tvName.text = name
-              viewLineVertical.setBackgroundColor(color)
-              viewBackground.setBackgroundColor(color)
-              tvName.setTextColor(color)
+            } catch (e: IllegalArgumentException) {
+               Timber.e(e)
+                Color.parseColor("#000000")
             }
+            with( holder.binding){
+                tvName.text = name
+                viewLineVertical.setBackgroundColor(color)
+                viewBackground.setBackgroundColor(color)
+                tvName.setTextColor(color)
+            }
+
 
         }
 

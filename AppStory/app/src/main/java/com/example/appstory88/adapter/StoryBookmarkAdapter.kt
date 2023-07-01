@@ -24,7 +24,7 @@ class StoryBookmarkAdapter : BaseBindingAdapter<ItemStoryBookmarkBinding>() {
             with(holder.binding) {
                 imStory.post { Glide.with(holder.itemView.context).asBitmap().load(imageStory).into(imStory) }
                 tvNameStory.text = nameStory
-                tvValueNameAuthor.text = nameAuthur
+                tvValueNameAuthor.text = nameAuthor
                 tvValueTotalChapter.text = chapterSum.toString()
 //                viewStar.numberStar = numberStar
             }

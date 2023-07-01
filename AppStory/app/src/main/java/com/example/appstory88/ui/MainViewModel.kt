@@ -29,7 +29,7 @@ class MainViewModel : BaseViewModel() {
     var listTopStoryLiveData: MutableLiveData<MutableList<ItemTopStory>> = MutableLiveData()
 
     fun initDataTopStory(context: Context) {
-        val listColor = context.resources.getStringArray(R.array.colorTopStory)
+        val listColor = context.resources.getIntArray(R.array.colorTopStory)
         val numberColor = Random().nextInt(listColor.size - 1) + 1
         val listTopStory: MutableList<ItemTopStory> = mutableListOf()
         listTopStory.add(
@@ -49,6 +49,8 @@ class MainViewModel : BaseViewModel() {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
             listTopStory.add(ItemTopStory(listCategory[i], listColor[randomColor]))
         }
+        listTopStory.filter { it.name ==context.getString(R.string.truy_n_dc)|| it.name== context.getString(R.string.truy_n_hot) }.toMutableList()
+
         listTopStoryLiveData.postValue(listTopStory)
     }
 

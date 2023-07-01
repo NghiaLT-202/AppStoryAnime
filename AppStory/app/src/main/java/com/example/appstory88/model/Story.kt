@@ -11,7 +11,7 @@ class Story(
     @ColumnInfo var imageStory: String,
     @ColumnInfo var nameStory: String,
     @ColumnInfo var numberStar: Int,
-    @ColumnInfo var nameAuthur: String,
+    @ColumnInfo var nameAuthor: String,
     @ColumnInfo
     @field:TypeConverters(Converters::class)
     var nameCategory: ArrayList<String>,

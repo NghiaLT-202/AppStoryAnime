@@ -2,15 +2,12 @@ package com.example.appstory88.ui.home.ratestory
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.RateStoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentRateStoryBinding
-import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
-import com.example.appstory88.ui.MainViewModel
 import com.google.gson.Gson
 
 class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStoryViewModel>() {
@@ -26,11 +23,11 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
 
 
     private fun setupData() {
-        mainViewModel?.listStoryLiveData?.observe(viewLifecycleOwner) { story ->
+        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
 
         }
-        mainViewModel.listStoryRateLiveData.observe(viewLifecycleOwner){
+        mainViewModel.listStoryRateLiveData.observe(viewLifecycleOwner) {
             rateStoryAdapter?.listStory = it
 
         }
@@ -42,7 +39,7 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
             binding.rcItemStory.adapter = this
             onItemClickListener = object : RateStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivityAndData( position)
+                    intentActivityAndData(position)
 
                 }
             }
@@ -55,7 +52,7 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
         return RateStoryViewModel::class.java
     }
 
-    private fun intentActivityAndData( position: Int) {
+    private fun intentActivityAndData(position: Int) {
 
         Bundle().let {
             it.putString(

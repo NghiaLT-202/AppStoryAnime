@@ -1,9 +1,9 @@
 package com.example.appstory88.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryBannerAdapter
 import com.example.appstory88.base.BaseBindingFragment
@@ -12,8 +12,8 @@ import com.example.appstory88.customview.ViewListPreviewStory
 
 import com.example.appstory88.databinding.FragmentHomeStoryBinding
 import com.example.appstory88.model.Story
+import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
-import timber.log.Timber
 
 class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel>() {
     private val listStory: MutableList<Story> = mutableListOf()
@@ -25,6 +25,9 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+
+        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.white))
+
         initAdapter()
         initListener()
         setupView()

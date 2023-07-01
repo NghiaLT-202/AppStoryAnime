@@ -25,10 +25,10 @@ class CategoryStoryFragment :
 
 
     private fun initData() {
-        mainViewModel.listStoryLiveData.observe(this) {
+        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
             mainViewModel.initDataCategory(requireContext(), it)
         }
-        mainViewModel.listCategoryLiveData.observe(this) {
+        mainViewModel.listCategoryLiveData.observe(viewLifecycleOwner) {
             listCategory.clear()
             listCategory.addAll(it)
             itemCategoryStoryAdapter?.listCategory = it

@@ -15,14 +15,11 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun storyDao(): StoryDao
 
     companion object {
-        var appDatabase: AppDatabase? = null
+       private var appDatabase: AppDatabase? = null
         const val NAME_DATABASE = "appDataBase"
         fun getInstanceDataBase(context: Context): AppDatabase {
-            if (appDatabase == null) {
-                appDatabase = Room.databaseBuilder(context, AppDatabase::class.java, NAME_DATABASE)
-                    .allowMainThreadQueries().build()
-            }
-            return appDatabase as AppDatabase
+                        return appDatabase ?: Room.databaseBuilder(context, AppDatabase::class.java, NAME_DATABASE)
+                .allowMainThreadQueries().build()
 
         }
     }
