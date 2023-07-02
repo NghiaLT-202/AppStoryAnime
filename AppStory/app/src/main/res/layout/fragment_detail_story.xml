@@ -24,12 +24,21 @@
 
             app:layout_constraintTop_toTopOf="@id/im_back">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-
                 >
+
+                <ImageView
+                    android:id="@+id/bg_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:alpha="0.1"
+                    android:background="@drawable/anh_gai_xinh"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_view"
+                    />
 
                 <View
                     android:layout_width="0dp"
@@ -48,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
+
                     android:background="@drawable/custom_ripple_view"
 
                     android:src="@drawable/baseline_playlist_add_24"
@@ -63,6 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="5dp"
+                    android:layout_marginTop="10dp"
+
                     android:gravity="center"
                     android:background="@drawable/custom_ripple_view"
 

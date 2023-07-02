@@ -14,14 +14,25 @@ class ViewMenuHome : ConstraintLayout {
         set(value) {
             field = value
             with(binding) {
-
-
-             tvTop.text = value
+                tvTop.text = value
                 when (value) {
-                    "TOP TRUYỆN" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_top_story)
-                    "XẾP HẠNG" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_rate)
-                    "THỂ LOẠI" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_category)
-                    "BOOKMARK" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_bookmark)
+                    "TOP TRUYỆN" -> {
+
+                        imBg.setImageResource(R.drawable.im_bg_top_story)
+                        viewBackground.setBackgroundResource(R.drawable.custom_boder_top_story)
+                    }
+                    "XẾP HẠNG" -> {
+                        imBg.setImageResource(R.drawable.img_bg_rate)
+                        viewBackground.setBackgroundResource(R.drawable.custom_boder_rate)
+                    }
+                    "THỂ LOẠI" -> {
+                        imBg.setImageResource(R.drawable.img_bg_category)
+                        viewBackground.setBackgroundResource(R.drawable.custom_boder_category)
+                    }
+                    "BOOKMARK" -> {
+                        imBg.setImageResource(R.drawable.img_bg_book_mark)
+                        viewBackground.setBackgroundResource(R.drawable.custom_boder_bookmark)
+                    }
                 }
             }
         }

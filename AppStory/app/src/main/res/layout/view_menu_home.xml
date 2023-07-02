@@ -7,24 +7,36 @@
 
     </data>
 
-    <FrameLayout
-
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
         android:id="@+id/layout_root"
-        android:layout_height="match_parent"
-        android:foreground="@drawable/custom_ripple_view"
-        android:background="@drawable/custom_bg_tv_top_story">
+        app:cardCornerRadius="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/im_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+
+            <View
+                android:id="@+id/view_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_bg_tv_top_story" />
 
             <TextView
                 android:id="@+id/tv_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_black"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -39,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/googlesans_regular"
                 android:textColor="#ffffff"
                 android:textSize="12sp"
                 android:textStyle="normal"
@@ -49,7 +62,7 @@
                 tools:text="TOP TRUYỆN" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </layout>

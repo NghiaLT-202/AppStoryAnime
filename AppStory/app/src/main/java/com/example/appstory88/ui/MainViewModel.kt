@@ -127,7 +127,7 @@ class MainViewModel : BaseViewModel() {
 
     fun initlistDetailStoryLiveData(list: MutableList<Story>, type: String) {
 
-        listStoryDetailLiveData.postValue(list.filter { it.typeCategory == type }.toMutableList())
+        listStoryDetailLiveData.postValue(list.filter { it.typeCategory.equals(type)  }.toMutableList())
     }
 
 

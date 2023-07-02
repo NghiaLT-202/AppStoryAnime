@@ -1,9 +1,13 @@
 package com.example.appstory88.ui.describestory
 
+import android.graphics.BitmapFactory
+import android.graphics.BlurMaskFilter.Blur
+import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
 import com.example.appstory88.base.BaseBindingFragment
@@ -37,6 +41,8 @@ class DetailStoryFragment :
         initAdapter()
         setupData()
     }
+
+
 
     private fun initAdapter() {
         itemCategoryDetailAdapter = ItemCategoryDetailAdapter().apply {
@@ -113,6 +119,7 @@ class DetailStoryFragment :
         story?.let {
             with(binding) {
                 Glide.with(requireContext()).load(it.imageStory).into(imStory)
+                Glide.with(requireContext()).load(it.imageStory).into(bgView)
                 tvNameStory.text = it.nameStory
                 viewStar.numberStar = it.numberStar
                 tvValueView.text = it.numberView.toString()
@@ -125,6 +132,7 @@ class DetailStoryFragment :
         }
 
     }
+
 
     private fun intentActivity(id: Int, nameCategory: String) {
         (requireActivity() as MainActivity).navController?.navigate(

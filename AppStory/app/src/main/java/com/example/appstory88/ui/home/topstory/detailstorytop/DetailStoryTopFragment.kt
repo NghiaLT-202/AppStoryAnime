@@ -1,6 +1,7 @@
 package com.example.appstory88.ui.home.topstory.detailstorytop
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.appstory88.R
@@ -37,12 +38,16 @@ class DetailStoryTopFragment :
         (arguments?.getString(Constant.CATEGORY_STORY) ?: "").apply {
             binding.tvNameCategory.text = this
             mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
+                Log.e("tnghia",""+it.size+this)
                 mainViewModel.initlistDetailStoryLiveData(it, this)
             }
             mainViewModel.listStoryDetailLiveData.observe(viewLifecycleOwner) {
+                Log.e("tnghia",""+it.size+this)
+
                 detailStoryAdapter?.listStory = it
             }
         }
+
 
 
 
