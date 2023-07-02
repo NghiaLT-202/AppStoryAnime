@@ -40,6 +40,11 @@
         android:label="FragmentDetailStoryTop"
         tools:layout="@layout/fragment_detail_story_top" />
     <fragment
+        android:id="@+id/fragment_detail_category"
+        android:name="com.example.appstory88.ui.home.topstory.detailstorytop.DetailCategoryFragment"
+        android:label="FragmentDetailCategory"
+        tools:layout="@layout/fragment_detail_story_top" />
+    <fragment
         android:id="@+id/fragment_read_story"
         android:name="com.example.appstory88.ui.detailstory.ReadStoryFragment"
         android:label="FragmentReadStory"

@@ -3,14 +3,18 @@ package com.example.appstory88.ui.morestory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.data.model.ItemCategory
 import com.example.appstory88.databinding.FragmentShowMoreStoryBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 import com.example.appstory88.ui.MainActivity
+import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import timber.log.Timber
 
 class ViewMoreStoryFragment :
@@ -21,6 +25,8 @@ class ViewMoreStoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.white))
+
         initListener()
         initAdapter()
         setupData()
@@ -35,7 +41,6 @@ class ViewMoreStoryFragment :
 
     fun setupData() {
         val categoryJson = arguments?.getString(Constant.CATEGORY_STORY)
-        binding.nameCategory.text=categoryJson
         mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
             categoryJson?.let { it1 -> mainViewModel.initlistStoryLiveData(it, it1) }
         }

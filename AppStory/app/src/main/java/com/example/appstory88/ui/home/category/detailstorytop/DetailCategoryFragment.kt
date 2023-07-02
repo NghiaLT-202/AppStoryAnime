@@ -7,15 +7,16 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.DetailStoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.data.model.ItemCategory
 import com.example.appstory88.data.model.Story
 import com.example.appstory88.databinding.FragmentDetailStoryTopBinding
 import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-class DetailStoryTopFragment :
+class DetailCategoryFragment :
     BaseBindingFragment<FragmentDetailStoryTopBinding, DetailCategoryViewModel>() {
-    private val listStoryOfCategory: MutableList<Story> = mutableListOf()
     private var detailStoryAdapter: DetailStoryAdapter? = null
 
     override fun getLayoutId(): Int {
@@ -34,16 +35,15 @@ class DetailStoryTopFragment :
     }
 
     private fun setupData() {
-        (arguments?.getString(Constant.CATEGORY_STORY) ?: "").apply {
-            binding.tvNameCategory.text = this
-            mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
-                mainViewModel.initlistDetailStoryLiveData(it, this)
-            }
-            mainViewModel.listStoryDetailLiveData.observe(viewLifecycleOwner) {
-                detailStoryAdapter?.listStory = it
-            }
-        }
 
+        Gson().fromJson<ItemCategory>(
+            arguments?.getString(Constant.CATEGORY_STORY),
+            object : TypeToken<ItemCategory>() {}.type
+        ).let {
+            binding.tvNameCategory.text = it.name
+            detailStoryAdapter?.listStory = it.listStory
+
+        }
 
 
     }

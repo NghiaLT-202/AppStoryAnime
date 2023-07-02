@@ -8,8 +8,8 @@ import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.data.model.Story
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
-import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
@@ -29,7 +29,10 @@ class DetailStoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.statusbarlight))
+        StatusBarUtils.makeStatusBarLight(
+            requireActivity(),
+            ContextCompat.getColor(requireActivity(), R.color.statusbarlight)
+        )
         initListener()
         initAdapter()
         setupData()
@@ -40,6 +43,10 @@ class DetailStoryFragment :
             binding.rcCategory.adapter = this
             onItemClickListener = object : ItemCategoryDetailAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
+                    intentActivity(
+                        R.id.fragment_detail_story_top,
+                        listCategoryStory[position].nameCategory.toString()
+                    )
 
                 }
 
@@ -62,43 +69,43 @@ class DetailStoryFragment :
     }
 
     private fun initListener() {
-        binding.imBack.setOnClickListener {
-            (requireActivity() as MainActivity).navController?.popBackStack()
-        }
-        binding.tvReadStory.setOnClickListener {
-            (requireActivity() as MainActivity).navController?.navigate(
-                R.id.fragment_read_story,
-                Bundle().apply {
-                    putString(
-                        Constant.KEY_DETAIL_STORY,
-                        Gson().toJson(story)
-                    )
-                }
-            )
-        }
-        binding.tvBookmark.setOnClickListener {
-            with(binding){
-            if (!checkBookmark) {
-                checkBookmark = true
-                imDone.setImageResource(R.drawable.baseline_done_24)
-                tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-                story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
-            } else {
-                checkBookmark = false
-                imDone.setImageResource(R.drawable.baseline_playlist_add_24)
-
-                tvBookmark.setTextColor(resources.getColor(R.color.white))
-                story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
+        with(binding) {
+            imBack.setOnClickListener {
+                (requireActivity() as MainActivity).navController?.popBackStack()
             }
+            tvReadStory.setOnClickListener {
+                (requireActivity() as MainActivity).navController?.navigate(
+                    R.id.fragment_read_story,
+                    Bundle().apply {
+                        putString(
+                            Constant.KEY_DETAIL_STORY,
+                            Gson().toJson(story)
+                        )
+                    }
+                )
+            }
+            tvBookmark.setOnClickListener {
+                if (!checkBookmark) {
+                    checkBookmark = true
+                    imDone.setImageResource(R.drawable.baseline_done_24)
+                    tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                    story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
+                } else {
+                    checkBookmark = false
+                    imDone.setImageResource(R.drawable.baseline_playlist_add_24)
+
+                    tvBookmark.setTextColor(resources.getColor(R.color.white))
+                    story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
+                }
             }
         }
     }
 
     private fun initData() {
-        mainViewModel?.listStoryLiveData?.observe(viewLifecycleOwner) {
+        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
             story?.nameStory?.let { it1 -> mainViewModel.initlistCategoryData(it, it1) }
         }
-        mainViewModel.listCategoryData.observe(viewLifecycleOwner){
+        mainViewModel.listCategoryData.observe(viewLifecycleOwner) {
             itemCategoryDetailAdapter?.listCategoryStory = it
 
         }
@@ -119,5 +126,12 @@ class DetailStoryFragment :
 
     }
 
+    private fun intentActivity(id: Int, nameCategory: String) {
+        (requireActivity() as MainActivity).navController?.navigate(
+            id,
+            Bundle().apply { putString(Constant.CATEGORY_STORY, nameCategory) })
+
+
+    }
 
 }

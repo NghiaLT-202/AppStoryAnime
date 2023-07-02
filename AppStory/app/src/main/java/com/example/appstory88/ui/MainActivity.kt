@@ -19,7 +19,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
     override fun setupView(savedInstanceState: Bundle?) {
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
-        navController = navHostFragment!!.navController
+        navController = navHostFragment?.navController
     }
 
     override fun setupData() {

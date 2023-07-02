@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemCategoryStoryBinding
-import com.example.appstory88.model.ItemCategory
+import com.example.appstory88.data.model.ItemCategory
 
 class ItemCategoryStoryAdapter : BaseBindingAdapter<ItemCategoryStoryBinding>() {
     var listCategory: MutableList<ItemCategory> = mutableListOf()
@@ -24,7 +24,7 @@ class ItemCategoryStoryAdapter : BaseBindingAdapter<ItemCategoryStoryBinding>() 
 
         with(listCategory[position]) {
             val color = Color.parseColor(color)
-            if (sumStory>0){
+            if (listCategory[position].listStory.size>0){
                 with(holder.binding) {
                     tvName.text = name
                     cvLineVertical.visibility=View.VISIBLE
@@ -35,7 +35,7 @@ class ItemCategoryStoryAdapter : BaseBindingAdapter<ItemCategoryStoryBinding>() 
                     viewBackground.setBackgroundColor(color)
                     tvName.setTextColor(color)
                     tvSumStory.text =
-                        sumStory.toString() + " " + holder.itemView.context.getString(R.string.truyen)
+                        listCategory[position].listStory.size.toString() + " " + holder.itemView.context.getString(R.string.truyen)
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.example.appstory88.model
+package com.example.appstory88.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

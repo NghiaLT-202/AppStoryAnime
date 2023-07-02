@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.appstory88.databinding.ItemStoryBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 
 
 class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreviewHolder>() {

@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.appstory88.adapter.ListStoryPreviewAdapter
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.databinding.ViewListStoryBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 
 
 class ViewListPreviewStory : ConstraintLayout {

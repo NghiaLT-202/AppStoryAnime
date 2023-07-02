@@ -7,8 +7,10 @@ import com.example.appstory88.adapter.ItemCategoryStoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.databinding.FragmentCategoryStoryBinding
-import com.example.appstory88.model.ItemCategory
+import com.example.appstory88.data.model.ItemCategory
+import com.example.appstory88.data.model.Story
 import com.example.appstory88.ui.MainActivity
+import com.google.gson.Gson
 
 class CategoryStoryFragment :
     BaseBindingFragment<FragmentCategoryStoryBinding, CategoryStoryViewModel>() {
@@ -54,10 +56,11 @@ class CategoryStoryFragment :
         Bundle().let {
             it.putString(
                 Constant.CATEGORY_STORY,
-                story.name
+                Gson().toJson(story)
             )
+
             (requireActivity() as MainActivity).navController?.navigate(
-                R.id.fragment_detail_story_top,
+                R.id.fragment_detail_category,
                 it
             )
 

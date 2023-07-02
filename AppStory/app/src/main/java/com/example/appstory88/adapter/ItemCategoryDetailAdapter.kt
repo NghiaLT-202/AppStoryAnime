@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemCategoryDetailBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 
 class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>() {
     var listCategoryStory: MutableList<Story> = mutableListOf()

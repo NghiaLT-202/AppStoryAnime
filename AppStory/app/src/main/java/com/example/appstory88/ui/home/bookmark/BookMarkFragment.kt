@@ -2,15 +2,17 @@ package com.example.appstory88.ui.home.bookmark
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryBookmarkAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.dao.StoryDao
-import com.example.appstory88.database.AppDatabase
+import com.example.appstory88.data.dao.StoryDao
+import com.example.appstory88.data.database.AppDatabase
+import com.example.appstory88.data.model.Story
 import com.example.appstory88.databinding.FragmentBookMarkStoryBinding
-import com.example.appstory88.model.Story
 import com.example.appstory88.ui.MainActivity
+import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 
 class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, BookmarkViewModel>() {
@@ -25,6 +27,7 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.white))
 
         initAdapter()
         initData()
@@ -32,8 +35,7 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
     }
 
     private fun initData() {
-        storyDao = AppDatabase.getInstanceDataBase(requireContext()).storyDao()
-        storyDao?.getAllStory()?.let { listBookmarkStory.addAll(it) }
+        AppDatabase.getInstanceDataBase(requireContext()).storyDao().getAllStory().let { listBookmarkStory.addAll(it) }
         storyBookmarkAdapter?.listStory = listBookmarkStory
     }
 
@@ -49,7 +51,6 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
 
         }
     }
-
 
     override fun getViewModel(): Class<BookmarkViewModel> {
         return BookmarkViewModel::class.java

@@ -2,9 +2,9 @@ package com.example.appstory88.ui.describestory
 
 import android.content.Context
 import com.example.appstory88.base.BaseViewModel
-import com.example.appstory88.dao.StoryDao
-import com.example.appstory88.database.AppDatabase
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.dao.StoryDao
+import com.example.appstory88.data.database.AppDatabase
+import com.example.appstory88.data.model.Story
 
 class DetailStoryViewModel : BaseViewModel() {
     var storyDao : StoryDao?=null

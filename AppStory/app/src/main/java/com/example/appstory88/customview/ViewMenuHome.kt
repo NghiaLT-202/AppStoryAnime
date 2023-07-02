@@ -13,22 +13,15 @@ class ViewMenuHome : ConstraintLayout {
     private var textTop: String = ""
         set(value) {
             field = value
-            binding.tvTop.text = value
-            when (value) {
-                "TOP TRUYỆN" -> {
-                    binding.layoutRoot.setBackgroundResource(R.drawable.custom_boder_top_story)
-                }
+            with(binding) {
 
-                "XẾP HẠNG" -> {
-                    binding.layoutRoot.setBackgroundResource(R.drawable.custom_boder_rate)
-                }
 
-                "THỂ LOẠI" -> {
-                    binding.layoutRoot.setBackgroundResource(R.drawable.custom_boder_category)
-                }
-
-                "BOOKMARK" -> {
-                    binding.layoutRoot.setBackgroundResource(R.drawable.custom_boder_bookmark)
+             tvTop.text = value
+                when (value) {
+                    "TOP TRUYỆN" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_top_story)
+                    "XẾP HẠNG" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_rate)
+                    "THỂ LOẠI" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_category)
+                    "BOOKMARK" -> layoutRoot.setBackgroundResource(R.drawable.custom_boder_bookmark)
                 }
             }
         }

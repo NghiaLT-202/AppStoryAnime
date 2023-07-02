@@ -1,10 +1,10 @@
-package com.example.appstory88.dao
+package com.example.appstory88.data.dao
 
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 
 @Dao
 interface StoryDao {

@@ -3,10 +3,11 @@ package com.example.appstory88.adapter
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.util.Log
+import androidx.core.graphics.toColor
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemTopStoryBinding
-import com.example.appstory88.model.ItemTopStory
+import com.example.appstory88.data.model.ItemTopStory
 import timber.log.Timber
 
 class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
@@ -20,7 +21,7 @@ class ItemTopStoryAdapter : BaseBindingAdapter<ItemTopStoryBinding>() {
     override fun onBindViewHolderBase(holder: BaseHolder<ItemTopStoryBinding>, position: Int) {
         with(listStory[position]){
             val color= try {
-                Color.parseColor(color.toString())
+                Color.parseColor(color)
 
             } catch (e: IllegalArgumentException) {
                Timber.e(e)

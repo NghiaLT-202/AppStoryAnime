@@ -8,7 +8,7 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 
 import com.example.appstory88.databinding.FragmentRedStoryBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -40,9 +40,7 @@ class ReadStoryFragment :
 
     @SuppressLint("SetTextI18n")
     private fun initData() {
-        val storyJson = arguments?.getString(Constant.KEY_DETAIL_STORY)
-        story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
-        story?.let {
+        Gson().fromJson<Story>(arguments?.getString(Constant.KEY_DETAIL_STORY), object : TypeToken<Story>() {}.type).let {
             with(binding){
                 tvNameStory.text = it.nameStory
                 tvDescribeStory.text = it.describe

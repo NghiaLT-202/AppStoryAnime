@@ -1,12 +1,12 @@
-package com.example.appstory88.database
+package com.example.appstory88.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.appstory88.dao.StoryDao
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.dao.StoryDao
+import com.example.appstory88.data.model.Story
 import com.example.appstory88.utils.Converters
 
 @Database(entities = [Story::class], version = 1)

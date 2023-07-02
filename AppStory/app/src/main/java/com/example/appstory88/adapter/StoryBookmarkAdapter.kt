@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
 import com.example.appstory88.databinding.ItemStoryBookmarkBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 
 class StoryBookmarkAdapter : BaseBindingAdapter<ItemStoryBookmarkBinding>() {
     var listStory: MutableList<Story> = mutableListOf()

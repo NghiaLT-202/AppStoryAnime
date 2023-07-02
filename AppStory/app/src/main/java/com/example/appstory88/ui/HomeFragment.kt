@@ -11,7 +11,7 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.customview.ViewListPreviewStory
 
 import com.example.appstory88.databinding.FragmentHomeStoryBinding
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.Story
 import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 
@@ -111,8 +111,6 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
         storyGoodLoveLanguageAdapter()
         storyGoodFairyTaleAdapter()
         storyGoodPassionAdapter()
-
-
     }
 
     private fun storyBannerAdapter() {
@@ -121,8 +119,6 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
             iclick = object : StoryBannerAdapter.IClick {
                 override fun clickItem(story: Story, position: Int) {
                     intentActivityAndData(story)
-
-
                 }
             }
         }
@@ -158,15 +154,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
         binding.rcLoveLanguageStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
                 intentActivityAndData(story)
-
             }
-
             override fun onClickShowMore(name: String) {
                 intentActivity(R.id.fragment_view_more_story, getString(R.string.ti_u_thuy_t_k_o))
-
             }
-
-
         }
     }
 
@@ -174,15 +165,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
         binding.rcFirstHalfStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
                 intentActivityAndData(story)
-
             }
             override fun onClickShowMore(name: String) {
                 intentActivity(R.id.fragment_view_more_story,  getString(R.string.ti_u_thuy_t_k_ch_t_nh))
-
-
             }
-
-
         }
 
     }
@@ -192,11 +178,8 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
 
         binding.rcPassionStory.iClickListener = object : ViewListPreviewStory.IClickPreview {
             override fun onClick(story: Story, position: Int) {
-
                 intentActivityAndData(story)
-
             }
-
             override fun onClickShowMore(name: String) {
                 Toast.makeText(requireContext(), ""+getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m), Toast.LENGTH_SHORT).show()
                 intentActivity(R.id.fragment_view_more_story,  getString(R.string.ti_u_thuy_t_phi_u_l_u_m_o_hi_m))

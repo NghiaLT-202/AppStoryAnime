@@ -2,12 +2,13 @@ package com.example.appstory88.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import androidx.core.graphics.toColorInt
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
-import com.example.appstory88.model.ItemCategory
-import com.example.appstory88.model.ItemTopStory
-import com.example.appstory88.model.Story
+import com.example.appstory88.data.model.ItemCategory
+import com.example.appstory88.data.model.ItemTopStory
+import com.example.appstory88.data.model.Story
 import java.util.Random
 
 class MainViewModel : BaseViewModel() {
@@ -29,7 +30,7 @@ class MainViewModel : BaseViewModel() {
     var listTopStoryLiveData: MutableLiveData<MutableList<ItemTopStory>> = MutableLiveData()
 
     fun initDataTopStory(context: Context) {
-        val listColor = context.resources.getIntArray(R.array.colorTopStory)
+        val listColor = context.resources.getStringArray(R.array.colorTopStory)
         val numberColor = Random().nextInt(listColor.size - 1) + 1
         val listTopStory: MutableList<ItemTopStory> = mutableListOf()
         listTopStory.add(
@@ -49,7 +50,11 @@ class MainViewModel : BaseViewModel() {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
             listTopStory.add(ItemTopStory(listCategory[i], listColor[randomColor]))
         }
-        listTopStory.filter { it.name ==context.getString(R.string.truy_n_dc)|| it.name== context.getString(R.string.truy_n_hot) }.toMutableList()
+        listTopStory.filter {
+            it.name == context.getString(R.string.truy_n_dc) || it.name == context.getString(
+                R.string.truy_n_hot
+            )
+        }.toMutableList()
 
         listTopStoryLiveData.postValue(listTopStory)
     }
@@ -61,22 +66,18 @@ class MainViewModel : BaseViewModel() {
         val listCategory = context.resources.getStringArray(R.array.list_category_story)
         for (i in listCategory.indices) {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
-            val itemCategory = ItemCategory(
-                listCategory[i], listColor[randomColor], getSizeCategory(
-                    listCategory[i], allStory
-                )
-            )
-            listCategories.add(itemCategory)
+            ItemCategory().apply {
+                name = listCategory[i]
+                color = listColor[randomColor]
+                listStory = allStory.filter { it.typeCategory==name } as MutableList<Story>
+                listCategories.add(this)
+            }
         }
-        listCategories.sortByDescending { it.sumStory }
-        listCategories.filter { it.sumStory > 0 }.toMutableList()
+        listCategories.sortByDescending { it.listStory.size }
+        listCategories.filter { it.listStory.size > 0 }.toMutableList()
         listCategoryLiveData.postValue(listCategories)
     }
 
-    private fun getSizeCategory(nameCategory: String, allStory: MutableList<Story>): Int {
-        val lisStoryOfCate = allStory.filter { it.typeCategory == nameCategory }
-        return lisStoryOfCate.size
-    }
 
 
     fun initlistCategoryData(list: MutableList<Story>, name: String) {
@@ -180,7 +181,7 @@ class MainViewModel : BaseViewModel() {
                     listChappter[i],
                     90,
                     false,
-                   listTypeCategory[numberType]
+                    listTypeCategory[numberType]
                 )
             listStory.add(story)
         }

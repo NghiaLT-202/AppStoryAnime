@@ -52,6 +52,7 @@
             android:text="@string/delete_bookmark"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:foreground="@drawable/custom_ripple"
             android:background="@drawable/custom_bg_item_bookmark_story"
             android:textSize="12sp"
             android:paddingVertical="10dp"

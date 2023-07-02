@@ -2,15 +2,13 @@ package com.example.appstory88.ui.home.topstory
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemTopStoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
+import com.example.appstory88.data.model.ItemTopStory
 import com.example.appstory88.databinding.FragmentTopStoryBinding
-import com.example.appstory88.model.ItemTopStory
 import com.example.appstory88.ui.MainActivity
-import com.example.appstory88.ui.MainViewModel
 
 class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryViewModel>() {
     private val listStory: MutableList<ItemTopStory> = mutableListOf()
@@ -55,16 +53,16 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
     }
 
     private fun intentActivity(story: ItemTopStory) {
-        val bundle = Bundle().apply {
+        Bundle().apply {
             putString(
                 Constant.CATEGORY_STORY,
                 story.name
             )
-        }
-        (requireActivity() as MainActivity).navController?.navigate(
-            R.id.fragment_detail_story_top, bundle
+            (requireActivity() as MainActivity).navController?.navigate(
+                R.id.fragment_detail_story_top, this
 
-        )
+            )
+        }
 
 
     }
