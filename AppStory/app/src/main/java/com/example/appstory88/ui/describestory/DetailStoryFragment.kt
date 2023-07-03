@@ -114,24 +114,27 @@ class DetailStoryFragment :
             }
             tvBookmark.setOnClickListener {
                 if (!checkBookmark) {
-                    checkBook()
+
+                    checkBook(true,R.drawable.baseline_done_24,resources.getColor(R.color.yellow))
                     story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
+
+
                 } else {
-                    checkBookmark = false
-                    imDone.setImageResource(R.drawable.baseline_playlist_add_24)
-                    tvBookmark.setTextColor(resources.getColor(R.color.white))
-                    story?.checkBookmark = checkBookmark
-                    story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
+                    checkBook(false,R.drawable.baseline_playlist_add_24,resources.getColor(R.color.white))
+                    story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext())
+                    }
                 }
             }
         }
     }
+    fun checkBook(check:Boolean,image:Int, color:Int){
+        checkBookmark = check
+        with(binding){
+            imDone.setImageResource(image)
+            tvBookmark.setTextColor(color)
+        }
+        story?.checkBookmark = check
 
-    private fun FragmentDetailStoryBinding.checkBook() {
-        checkBookmark = true
-        imDone.setImageResource(R.drawable.baseline_done_24)
-        tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-        story?.checkBookmark = checkBookmark
     }
 
     private fun initData() {
