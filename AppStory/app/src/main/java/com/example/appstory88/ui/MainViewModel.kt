@@ -5,14 +5,15 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
+import com.example.appstory88.data.dao.StoryDao
 import com.example.appstory88.data.database.AppDatabase
 import com.example.appstory88.data.model.ItemCategory
 import com.example.appstory88.data.model.ItemTopStory
 import com.example.appstory88.data.model.Story
-import timber.log.Timber
 import java.util.Random
 
 class MainViewModel : BaseViewModel() {
+    var storyDao: StoryDao? = null
 
     val listStoryLiveData = MutableLiveData<MutableList<Story>>()
     val listCategoryLiveData = MutableLiveData<MutableList<ItemCategory>>()
@@ -33,7 +34,7 @@ class MainViewModel : BaseViewModel() {
 
     fun getAllBookmark(context: Context) {
         listBookmarkStory.postValue(
-            AppDatabase.getInstanceDataBase(context).storyDao().getAllStory()
+            AppDatabase.getInstanceDataBase(context).storyDao().getAllBookmark()
         )
 
 
@@ -60,7 +61,12 @@ class MainViewModel : BaseViewModel() {
         val listCategory = context.resources.getStringArray(R.array.list_category_story)
         for (i in listCategory.indices) {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
-            listTopStory.add(ItemTopStory(listCategory[i].split(",")[0].trim(), listColor[randomColor]))
+            listTopStory.add(
+                ItemTopStory(
+                    listCategory[i].split(",")[0].trim(),
+                    listColor[randomColor]
+                )
+            )
         }
         listTopStory.filter {
             it.name == context.getString(R.string.truy_n_dc) || it.name == context.getString(
@@ -83,7 +89,7 @@ class MainViewModel : BaseViewModel() {
             ItemCategory().apply {
                 name = listCategory[i]
                 color = listColor[randomColor]
-                listStory = allStory.filter { it.typeCategory==name } as MutableList<Story>
+                listStory = allStory.filter { it.typeCategory == name } as MutableList<Story>
                 listCategories.add(this)
             }
         }
@@ -91,7 +97,6 @@ class MainViewModel : BaseViewModel() {
         listCategories.filter { it.listStory.size > 0 }.toMutableList()
         listCategoryLiveData.postValue(listCategories)
     }
-
 
 
     fun initlistCategoryData(list: MutableList<Story>, name: String) {
@@ -137,7 +142,8 @@ class MainViewModel : BaseViewModel() {
 
     fun initListDetailStoryLiveData(list: MutableList<Story>, type: String) {
 
-        listStoryDetailLiveData.postValue(list.filter { it.nameCategory.contains(type)  }.toMutableList())
+        listStoryDetailLiveData.postValue(list.filter { it.nameCategory.contains(type) }
+            .toMutableList())
     }
 
 
@@ -196,6 +202,8 @@ class MainViewModel : BaseViewModel() {
             listStory.add(story)
         }
         listStoryLiveData.postValue(listStory)
+//        storyDao?.insertListStory(listStoryLiveData)
+
     }
 
 

@@ -18,6 +18,6 @@ class DetailStoryViewModel : BaseViewModel() {
 
     fun deleteStory(nameStory:String, context: Context) {
         storyDao = AppDatabase.getInstanceDataBase(context).storyDao()
-        storyDao?.deleteBookmark(nameStory)
+        storyDao?.deleteBookmarkWithName(nameStory)
     }
 }

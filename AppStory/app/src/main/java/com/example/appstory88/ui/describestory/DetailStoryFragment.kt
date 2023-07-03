@@ -23,7 +23,6 @@ import java.util.Locale
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
-    private val listBookmarkStory: MutableList<Story> = mutableListOf()
 
     var checkBookmark: Boolean = false
 
@@ -65,31 +64,30 @@ class DetailStoryFragment :
                                 listCategoryStory[position]
                             )
                         })
-
                 }
 
             }
         }
-
     }
 
     private fun setupData() {
         arguments?.getString(Constant.KEY_DETAIL_STORY)?.let { storyJson ->
             story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
+            with(binding) {
+                if (story?.checkBookmark == true) {
+                    imDone.setImageResource(R.drawable.baseline_done_24)
+                    tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                    checkBookmark=true
+
+                } else {
+                    imDone.setImageResource(R.drawable.baseline_playlist_add_24)
+                    tvBookmark.setTextColor(resources.getColor(R.color.white))
+                }
+            }
             initData()
         }
         mainViewModel.getAllBookmark(requireContext())
 
-        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner) {
-            listBookmarkStory.clear()
-            listBookmarkStory.addAll(it)
-            Timber.e("ltnghia" + listBookmarkStory.size)
-
-            Timber.e("ltnghia" + story?.nameStory + story?.nameAuthor + story?.chapterSum)
-
-            Timber.e("ltnghia" + listBookmarkStory.contains(story))
-
-        }
 
     }
 
@@ -116,18 +114,24 @@ class DetailStoryFragment :
             }
             tvBookmark.setOnClickListener {
                 if (!checkBookmark) {
-                    checkBookmark = true
-                    imDone.setImageResource(R.drawable.baseline_done_24)
-                    tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                    checkBook()
                     story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
                 } else {
                     checkBookmark = false
                     imDone.setImageResource(R.drawable.baseline_playlist_add_24)
                     tvBookmark.setTextColor(resources.getColor(R.color.white))
+                    story?.checkBookmark = checkBookmark
                     story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
                 }
             }
         }
+    }
+
+    private fun FragmentDetailStoryBinding.checkBook() {
+        checkBookmark = true
+        imDone.setImageResource(R.drawable.baseline_done_24)
+        tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+        story?.checkBookmark = checkBookmark
     }
 
     private fun initData() {
