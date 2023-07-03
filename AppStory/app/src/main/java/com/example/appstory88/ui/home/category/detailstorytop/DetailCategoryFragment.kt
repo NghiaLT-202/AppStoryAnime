@@ -10,7 +10,6 @@ import com.example.appstory88.commom.Constant
 import com.example.appstory88.data.model.ItemCategory
 import com.example.appstory88.data.model.Story
 import com.example.appstory88.databinding.FragmentDetailStoryTopBinding
-import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -24,7 +23,10 @@ class DetailCategoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.white))
+        StatusBarUtils.makeStatusBarLight(
+            requireActivity(),
+            ContextCompat.getColor(requireActivity(), R.color.white)
+        )
 
         setupViews()
         setupData()
@@ -54,32 +56,23 @@ class DetailCategoryFragment :
 
     private fun initAdapter() {
         detailStoryAdapter = DetailStoryAdapter().apply {
+            binding.rcItemStory.itemAnimator = null
+
             binding.rcItemStory.adapter = this
             onItemClickListener = object : DetailStoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+                    navigateWithBundle(R.id.fragment_detail_story, Bundle().apply {
+                        putString(
+                            Constant.KEY_DETAIL_STORY,
+                            Gson().toJson(story)
+                        )
+                    })
                 }
             }
 
         }
     }
 
-    private fun intentActivityAndData(story: Story) {
-        story.let {
-            Bundle().let {
-                it.putString(
-                    Constant.KEY_DETAIL_STORY,
-                    Gson().toJson(story)
-                )
-                (requireActivity() as MainActivity).navController?.navigate(
-                    R.id.fragment_detail_story,
-                    it
-                )
-            }
 
-        }
-
-
-    }
 
 }

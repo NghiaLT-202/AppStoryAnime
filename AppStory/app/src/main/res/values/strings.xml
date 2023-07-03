@@ -670,26 +670,26 @@
     </string-array>
     <string-array name="list_category_story">
 
-        <item name="item">Tiểu thuyết lịch sử</item>
-        <item name="item">Tiểu thuyết khoa học viễn tưởng</item>
-        <item name="item">Tiểu thuyết tình yêu</item>
-        <item name="item">Tiểu thuyết hài hước</item>
-        <item name="item">Tiểu thuyết kinh dị</item>
-        <item name="item">Tiểu thuyết phiêu lưu</item>
-        <item name="item">Tiểu thuyết trinh thám</item>
-        <item name="item">Tiểu thuyết võ hiệp</item>
-        <item name="item">Tiểu thuyết hành động</item>
-        <item name="item">Tiểu thuyết truyền kỳ</item>
-        <item name="item">Tiểu thuyết viễn tưởng</item>
-        <item name="item">Tiểu thuyết gia đình</item>
-        <item name="item">Tiểu thuyết tâm lý</item>
-        <item name="item">Tiểu thuyết học đường</item>
-        <item name="item">Tiểu thuyết kỳ ảo</item>
-        <item name="item">Tiểu thuyết kịch tính</item>
-        <item name="item">Tiểu thuyết tội phạm</item>
-        <item name="item">Tiểu thuyết hồi hộp</item>
-        <item name="item">Tiểu thuyết phiêu lưu mạo hiểm</item>
-        <item name="item">Tiểu thuyết lãng mạn</item>
+        <item name="item">Lịch sử,Khoa học viễn tưởng</item>
+        <item name="item">Khoa học viễn tưởng,Tình yêu</item>
+        <item name="item">Tình yêu,Kinh dị</item>
+        <item name="item">Hài hước,Tình yêu</item>
+        <item name="item">Kinh dị,Kịch tính</item>
+        <item name="item">Phiêu lưu,Trinh thám</item>
+        <item name="item">Trinh thám,Tội phạm</item>
+        <item name="item">Võ hiệp</item>
+        <item name="item">Hành động</item>
+        <item name="item">Truyền kỳ</item>
+        <item name="item">Viễn tưởng</item>
+        <item name="item">Gia đình</item>
+        <item name="item">Tâm lý,Kinh dị</item>
+        <item name="item">Học đường,Lãng mạn</item>
+        <item name="item">Kỳ ảo</item>
+        <item name="item">Kịch tính</item>
+        <item name="item">Tội phạm</item>
+        <item name="item">Hồi hộp</item>
+        <item name="item">Phiêu lưu mạo hiểm,Hành động</item>
+        <item name="item">Lãng mạn</item>
 
     </string-array>
     <string-array name="list_content_story">
@@ -722,12 +722,12 @@ Cuối cùng, Hiro và Yumi hiểu rằng sự quyết đoán và trái tim lư�
 
     </string-array>
     <string-array name="list_type_story">
-        <item name="item">Tiểu thuyết lịch sử</item>
-        <item name="item">Tiểu thuyết truyền kỳ</item>
-        <item name="item">Tiểu thuyết kỳ ảo</item>
-        <item name="item">Tiểu thuyết kịch tính</item>
-        <item name="item">Tiểu thuyết phiêu lưu mạo hiểm</item>
-        <item name="item">Tiểu thuyết hành động</item>
+        <item name="item">Lịch sử</item>
+        <item name="item">Truyền kỳ</item>
+        <item name="item">Kỳ ảo</item>
+        <item name="item">Kịch tính</item>
+        <item name="item">Phiêu lưu mạo hiểm</item>
+        <item name="item">Hành động</item>
 
 
     </string-array>
@@ -1016,12 +1016,14 @@ Cuối cùng, Lâm Thanh trở về ngôi làng của mình, đã trở thành m
     <string name="truy_n_dc">Truyện Đề Cử</string>
     <string name="truy_n_hot">Truyện Hot</string>
     <string name="chapter_sum">"Chapter sum: "</string>
-    <string name="ti_u_thuy_t_l_ch_s">Tiểu thuyết lịch sử</string>
-    <string name="ti_u_thuy_t_truy_n_k">Tiểu thuyết truyền kỳ</string>
-    <string name="ti_u_thuy_t_k_o">Tiểu thuyết kỳ ảo</string>
-    <string name="ti_u_thuy_t_k_ch_t_nh">Tiểu thuyết kịch tính</string>
-    <string name="ti_u_thuy_t_phi_u_l_u_m_o_hi_m">Tiểu thuyết phiêu lưu mạo hiểm</string>
-    <string name="ti_u_thuy_t_h_nh_ng">Tiểu thuyết hành động</string>
+    <string name="ti_u_thuy_t_l_ch_s">Lịch sử</string>
+    <string name="ti_u_thuy_t_truy_n_k">Truyền kỳ</string>
+    <string name="ti_u_thuy_t_k_o">Kỳ ảo</string>
+    <string name="ti_u_thuy_t_k_ch_t_nh">Kịch tính</string>
+    <string name="ti_u_thuy_t_phi_u_l_u_m_o_hi_m">Phiêu lưu mạo hiểm</string>
+    <string name="ti_u_thuy_t_h_nh_ng">Hành động</string>
+    <string name="ang_ph_t_h_nh">Đang phát hành</string>
+    <string name="ang_ra">Đang ra</string>
 
 
 </resources>

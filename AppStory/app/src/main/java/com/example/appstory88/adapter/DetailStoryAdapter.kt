@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import com.bumptech.glide.Glide
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingAdapter
-import com.example.appstory88.databinding.ItemDetailStoryBinding
 import com.example.appstory88.data.model.Story
+import com.example.appstory88.databinding.ItemDetailStoryBinding
 
 class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
     var listStory: MutableList<Story> = mutableListOf()
@@ -26,7 +26,7 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
                     tvNumberChapter.text = it.getString(R.string.chapter_sum) + chapterSum
                 }
                 tvNameStory.text = nameStory
-                tvNameCategory.text = nameCategory.toString()
+                tvNameCategory.text = nameCategory.toString().removeSurrounding("[", "]")
                 viewStar.numberStar = numberStar
             }
             holder.itemView.setOnClickListener {
@@ -53,3 +53,5 @@ class DetailStoryAdapter : BaseBindingAdapter<ItemDetailStoryBinding>() {
         fun onItemClick(story: Story, position: Int)
     }
 }
+
+

@@ -31,6 +31,18 @@
             app:layout_constraintBottom_toBottomOf="@+id/im_menu"
             app:layout_constraintLeft_toRightOf="@+id/im_menu"
             app:layout_constraintTop_toTopOf="@+id/im_menu" />
+        <TextView
+            android:id="@+id/tv_checkNoData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Không có dữ liệu "
+            android:visibility="invisible"
+
+            android:gravity="center"
+            android:textColor="@color/black"
+            />
 
         <TextView
             android:id="@+id/tv_rate_story"
@@ -52,7 +64,7 @@
             android:text="@string/delete_bookmark"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:foreground="@drawable/custom_ripple"
+            android:foreground="@drawable/custom_ripple_view"
             android:background="@drawable/custom_bg_item_bookmark_story"
             android:textSize="12sp"
             android:paddingVertical="10dp"

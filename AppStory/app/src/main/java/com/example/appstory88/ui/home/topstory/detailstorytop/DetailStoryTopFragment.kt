@@ -1,7 +1,6 @@
 package com.example.appstory88.ui.home.topstory.detailstorytop
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.appstory88.R
@@ -10,7 +9,6 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.data.model.Story
 import com.example.appstory88.databinding.FragmentDetailStoryTopBinding
-import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 
@@ -24,7 +22,10 @@ class DetailStoryTopFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
-        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.white))
+        StatusBarUtils.makeStatusBarLight(
+            requireActivity(),
+            ContextCompat.getColor(requireActivity(), R.color.white)
+        )
 
         setupViews()
         setupData()
@@ -38,17 +39,15 @@ class DetailStoryTopFragment :
         (arguments?.getString(Constant.CATEGORY_STORY) ?: "").apply {
             binding.tvNameCategory.text = this
             mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
-                Log.e("tnghia",""+it.size+this)
-                mainViewModel.initlistDetailStoryLiveData(it, this)
+                mainViewModel.initListDetailStoryLiveData(it, this)
             }
             mainViewModel.listStoryDetailLiveData.observe(viewLifecycleOwner) {
-                Log.e("tnghia",""+it.size+this)
+                binding.tvCheckNoData.visibility =
+                    if (it.size == 0) View.VISIBLE else View.INVISIBLE
 
                 detailStoryAdapter?.listStory = it
             }
         }
-
-
 
 
     }
@@ -59,32 +58,23 @@ class DetailStoryTopFragment :
 
     private fun initAdapter() {
         detailStoryAdapter = DetailStoryAdapter().apply {
+            binding.rcItemStory.itemAnimator = null
             binding.rcItemStory.adapter = this
             onItemClickListener = object : DetailStoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
+                    navigateWithBundle(
+                        R.id.fragment_detail_story_top,
+                        Bundle().apply {
+                            putString(
+                                Constant.CATEGORY_STORY,
+                                Gson().toJson(story)
+                            )
+                        })
                 }
             }
 
         }
     }
 
-    private fun intentActivityAndData(story: Story) {
-        story.let {
-            Bundle().let {
-                it.putString(
-                    Constant.KEY_DETAIL_STORY,
-                    Gson().toJson(story)
-                )
-                (requireActivity() as MainActivity).navController?.navigate(
-                    R.id.fragment_detail_story,
-                    it
-                )
-            }
-
-        }
-
-
-    }
 
 }

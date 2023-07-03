@@ -16,26 +16,19 @@ class ViewMenuHome : ConstraintLayout {
             with(binding) {
                 tvTop.text = value
                 when (value) {
-                    "TOP TRUYỆN" -> {
-
-                        imBg.setImageResource(R.drawable.im_bg_top_story)
-                        viewBackground.setBackgroundResource(R.drawable.custom_boder_top_story)
-                    }
-                    "XẾP HẠNG" -> {
-                        imBg.setImageResource(R.drawable.img_bg_rate)
-                        viewBackground.setBackgroundResource(R.drawable.custom_boder_rate)
-                    }
-                    "THỂ LOẠI" -> {
-                        imBg.setImageResource(R.drawable.img_bg_category)
-                        viewBackground.setBackgroundResource(R.drawable.custom_boder_category)
-                    }
-                    "BOOKMARK" -> {
-                        imBg.setImageResource(R.drawable.img_bg_book_mark)
-                        viewBackground.setBackgroundResource(R.drawable.custom_boder_bookmark)
-                    }
+                    "TOP TRUYỆN" -> setView(R.drawable.im_bg_top_story, R.drawable.custom_boder_top_story)
+                    "XẾP HẠNG" -> setView(R.drawable.img_bg_rate, R.drawable.custom_boder_rate)
+                    "THỂ LOẠI" -> setView(R.drawable.img_bg_category, R.drawable.custom_boder_category)
+                    "BOOKMARK" -> setView(R.drawable.img_bg_book_mark, R.drawable.custom_boder_bookmark)
                 }
             }
         }
+
+    private fun ViewMenuHomeBinding.setView(image: Int, backgroud: Int) {
+        imBg.setImageResource(image)
+        viewBackground.setBackgroundResource(backgroud)
+    }
+
     private var textBottom: String = ""
         set(value) {
             field = value

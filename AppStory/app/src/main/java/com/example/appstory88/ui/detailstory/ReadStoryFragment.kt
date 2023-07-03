@@ -3,12 +3,14 @@ package com.example.appstory88.ui.detailstory
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 
 import com.example.appstory88.databinding.FragmentRedStoryBinding
 import com.example.appstory88.data.model.Story
+import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -21,6 +23,8 @@ class ReadStoryFragment :
     }
 
     override fun onCreatedView(view: View?, savedInstanceState: Bundle?) {
+        StatusBarUtils.makeStatusBarLight(requireActivity(), ContextCompat.getColor(requireActivity(),R.color.white))
+
         initListener()
         initData()
 

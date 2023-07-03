@@ -7,7 +7,7 @@ import com.example.appstory88.databinding.ItemCategoryDetailBinding
 import com.example.appstory88.data.model.Story
 
 class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>() {
-    var listCategoryStory: MutableList<Story> = mutableListOf()
+    var listCategoryStory: ArrayList<String> = ArrayList()
         @SuppressLint("NotifyDataSetChanged") set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,7 +19,7 @@ class ItemCategoryDetailAdapter : BaseBindingAdapter<ItemCategoryDetailBinding>(
         holder: BaseHolder<ItemCategoryDetailBinding>, position: Int
     ) {
         with(listCategoryStory[position]) {
-            holder.binding.tvValueCategory.text = nameCategory[0]
+            holder.binding.tvValueCategory.text = this
         }
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(holder.adapterPosition)

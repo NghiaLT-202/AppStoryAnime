@@ -41,7 +41,7 @@ class ListStoryPreviewAdapter : Adapter<ListStoryPreviewAdapter.ListStoryPreview
             with( holder.binding){
                 Glide.with(holder.itemView.context).load(imageStory).into(imStory)
                 tvNameStory.text = nameStory
-                tvNameCategory.text = nameCategory[0]
+                tvNameCategory.text = nameCategory.toString().removeSurrounding("[", "]")
                 viewStar.numberStar = numberStar
 
             }

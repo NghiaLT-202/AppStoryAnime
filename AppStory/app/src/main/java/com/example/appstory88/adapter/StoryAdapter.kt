@@ -24,7 +24,7 @@ class StoryAdapter : BaseBindingAdapter<ItemStoryBinding>() {
                 Glide.with(holder.itemView.context).load(imageStory).into(imStory)
                 tvNameStory.text = nameStory
                 viewStar.numberStar = numberStar
-                tvNameCategory.text = nameCategory[0]
+                tvNameCategory.text = nameCategory.toString().removeSurrounding("[", "]")
             }
             holder.itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(this, holder.adapterPosition)

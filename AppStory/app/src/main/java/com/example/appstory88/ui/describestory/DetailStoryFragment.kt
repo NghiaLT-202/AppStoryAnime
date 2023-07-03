@@ -1,13 +1,9 @@
 package com.example.appstory88.ui.describestory
 
-import android.graphics.BitmapFactory
-import android.graphics.BlurMaskFilter.Blur
-import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.appstory88.R
 import com.example.appstory88.adapter.ItemCategoryDetailAdapter
 import com.example.appstory88.base.BaseBindingFragment
@@ -16,12 +12,18 @@ import com.example.appstory88.data.model.Story
 import com.example.appstory88.databinding.FragmentDetailStoryBinding
 import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.StatusBarUtils
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import timber.log.Timber
+import java.text.NumberFormat
+import java.util.Locale
 
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
+    private val listBookmarkStory: MutableList<Story> = mutableListOf()
 
     var checkBookmark: Boolean = false
 
@@ -43,16 +45,26 @@ class DetailStoryFragment :
     }
 
 
-
     private fun initAdapter() {
         itemCategoryDetailAdapter = ItemCategoryDetailAdapter().apply {
+            binding.rcCategory.itemAnimator = null
+
             binding.rcCategory.adapter = this
+            FlexboxLayoutManager(requireContext()).apply {
+                flexWrap = FlexWrap.WRAP
+                binding.rcCategory.layoutManager = this
+            }
+
             onItemClickListener = object : ItemCategoryDetailAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(
+                    navigateWithBundle(
                         R.id.fragment_detail_story_top,
-                        listCategoryStory[position].nameCategory.toString()
-                    )
+                        Bundle().apply {
+                            putString(
+                                Constant.CATEGORY_STORY,
+                                listCategoryStory[position]
+                            )
+                        })
 
                 }
 
@@ -66,7 +78,18 @@ class DetailStoryFragment :
             story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
             initData()
         }
+        mainViewModel.getAllBookmark(requireContext())
 
+        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner) {
+            listBookmarkStory.clear()
+            listBookmarkStory.addAll(it)
+            Timber.e("ltnghia" + listBookmarkStory.size)
+
+            Timber.e("ltnghia" + story?.nameStory + story?.nameAuthor + story?.chapterSum)
+
+            Timber.e("ltnghia" + listBookmarkStory.contains(story))
+
+        }
 
     }
 
@@ -75,6 +98,7 @@ class DetailStoryFragment :
     }
 
     private fun initListener() {
+
         with(binding) {
             imBack.setOnClickListener {
                 (requireActivity() as MainActivity).navController?.popBackStack()
@@ -99,7 +123,6 @@ class DetailStoryFragment :
                 } else {
                     checkBookmark = false
                     imDone.setImageResource(R.drawable.baseline_playlist_add_24)
-
                     tvBookmark.setTextColor(resources.getColor(R.color.white))
                     story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext()) }
                 }
@@ -108,13 +131,7 @@ class DetailStoryFragment :
     }
 
     private fun initData() {
-        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
-            story?.nameStory?.let { it1 -> mainViewModel.initlistCategoryData(it, it1) }
-        }
-        mainViewModel.listCategoryData.observe(viewLifecycleOwner) {
-            itemCategoryDetailAdapter?.listCategoryStory = it
 
-        }
 
         story?.let {
             with(binding) {
@@ -122,24 +139,22 @@ class DetailStoryFragment :
                 Glide.with(requireContext()).load(it.imageStory).into(bgView)
                 tvNameStory.text = it.nameStory
                 viewStar.numberStar = it.numberStar
-                tvValueView.text = it.numberView.toString()
+                tvValueView.text = NumberFormat.getNumberInstance(Locale.US).format(it.numberView)
                 tvValueChapterNumber.text = it.chapterSum.toString()
                 tvValueAuthur.text = it.nameAuthor
-                tvValueStatus.text = it.status.toString()
+                if (it.status) tvValueStatus.text =
+                    getString(R.string.ang_ph_t_h_nh) else tvValueStatus.text = getString(
+                    R.string.ang_ra
+                )
                 tvValueDescribe.text = it.describe
+                itemCategoryDetailAdapter?.listCategoryStory = it.nameCategory
+
             }
 
         }
 
-    }
-
-
-    private fun intentActivity(id: Int, nameCategory: String) {
-        (requireActivity() as MainActivity).navController?.navigate(
-            id,
-            Bundle().apply { putString(Constant.CATEGORY_STORY, nameCategory) })
-
 
     }
+
 
 }

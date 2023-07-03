@@ -24,8 +24,6 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
         initAdapter()
         setupData()
     }
-
-
     private fun setupData() {
         mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) { story ->
             mainViewModel?.initListRateStoryLiveData(story)
@@ -40,11 +38,17 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
 
     private fun initAdapter() {
         rateStoryAdapter = RateStoryAdapter().apply {
+//            rateStoryAdapter?.setHasStableIds(false)
+            binding.rcItemStory.itemAnimator=null
             binding.rcItemStory.adapter = this
             onItemClickListener = object : RateStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivityAndData(position)
-
+                    navigateWithBundle(R.id.fragment_detail_story,Bundle().apply {
+                        putString(
+                            Constant.KEY_DETAIL_STORY,
+                            Gson().toJson(rateStoryAdapter?.listStory?.get(position))
+                        )
+                    })
                 }
             }
 
@@ -56,19 +60,5 @@ class RateStoryFragment : BaseBindingFragment<FragmentRateStoryBinding, RateStor
         return RateStoryViewModel::class.java
     }
 
-    private fun intentActivityAndData(position: Int) {
 
-        Bundle().let {
-            it.putString(
-                Constant.KEY_DETAIL_STORY,
-                Gson().toJson(rateStoryAdapter?.listStory?.get(position))
-            )
-            (requireActivity() as MainActivity).navController?.navigate(
-                R.id.fragment_detail_story,
-                it
-            )
-        }
-
-
-    }
 }

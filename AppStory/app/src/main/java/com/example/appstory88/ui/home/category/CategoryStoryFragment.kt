@@ -39,10 +39,17 @@ class CategoryStoryFragment :
 
     private fun initAdapter() {
         itemCategoryStoryAdapter = ItemCategoryStoryAdapter().apply {
+            binding.rcItemStory.itemAnimator=null
+
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemCategoryStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(listCategory[position])
+                    navigateWithBundle(R.id.fragment_detail_category,Bundle().apply {
+                        putString(
+                            Constant.CATEGORY_STORY,
+                            Gson().toJson(listCategory[position])
+                        )
+                    })
                 }
             }
         }
@@ -52,20 +59,5 @@ class CategoryStoryFragment :
         return CategoryStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: ItemCategory) {
-        Bundle().let {
-            it.putString(
-                Constant.CATEGORY_STORY,
-                Gson().toJson(story)
-            )
 
-            (requireActivity() as MainActivity).navController?.navigate(
-                R.id.fragment_detail_category,
-                it
-            )
-
-        }
-
-
-    }
 }

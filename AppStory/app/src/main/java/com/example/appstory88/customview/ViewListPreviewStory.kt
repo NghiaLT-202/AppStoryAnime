@@ -37,6 +37,8 @@ class ViewListPreviewStory : ConstraintLayout {
 
     init {
         listStoryPreviewAdapter = ListStoryPreviewAdapter().apply {
+
+            binding.rcStoryPreview.itemAnimator=null
             binding.rcStoryPreview.adapter = this
             onItemClickListener = object : ListStoryPreviewAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {

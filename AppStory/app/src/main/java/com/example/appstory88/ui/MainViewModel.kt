@@ -2,13 +2,14 @@ package com.example.appstory88.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
-import androidx.core.graphics.toColorInt
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.R
 import com.example.appstory88.base.BaseViewModel
+import com.example.appstory88.data.database.AppDatabase
 import com.example.appstory88.data.model.ItemCategory
 import com.example.appstory88.data.model.ItemTopStory
 import com.example.appstory88.data.model.Story
+import timber.log.Timber
 import java.util.Random
 
 class MainViewModel : BaseViewModel() {
@@ -28,33 +29,46 @@ class MainViewModel : BaseViewModel() {
 
     //list
     var listTopStoryLiveData: MutableLiveData<MutableList<ItemTopStory>> = MutableLiveData()
+    val listBookmarkStory = MutableLiveData<MutableList<Story>>()
+
+    fun getAllBookmark(context: Context) {
+        listBookmarkStory.postValue(
+            AppDatabase.getInstanceDataBase(context).storyDao().getAllStory()
+        )
+
+
+    }
 
     fun initDataTopStory(context: Context) {
+
         val listColor = context.resources.getStringArray(R.array.colorTopStory)
         val numberColor = Random().nextInt(listColor.size - 1) + 1
+
         val listTopStory: MutableList<ItemTopStory> = mutableListOf()
-        listTopStory.add(
-            ItemTopStory(
-                context.getString(R.string.truy_n_dc),
-                listColor[numberColor]
-            )
-        )
-        listTopStory.add(
-            ItemTopStory(
-                context.getString(R.string.truy_n_hot),
-                listColor[numberColor]
-            )
-        )
+//        listTopStory.add(
+//            ItemTopStory(
+//                context.getString(R.string.truy_n_dc),
+//                listColor[numberColor]
+//            )
+//        )
+//        listTopStory.add(
+//            ItemTopStory(
+//                context.getString(R.string.truy_n_hot),
+//                listColor[numberColor]
+//            )
+//        )
         val listCategory = context.resources.getStringArray(R.array.list_category_story)
         for (i in listCategory.indices) {
             val randomColor = Random().nextInt(listColor.size - 1) + 1
-            listTopStory.add(ItemTopStory(listCategory[i], listColor[randomColor]))
+            listTopStory.add(ItemTopStory(listCategory[i].split(",")[0].trim(), listColor[randomColor]))
         }
         listTopStory.filter {
             it.name == context.getString(R.string.truy_n_dc) || it.name == context.getString(
                 R.string.truy_n_hot
             )
         }.toMutableList()
+
+
 
         listTopStoryLiveData.postValue(listTopStory)
     }
@@ -81,53 +95,49 @@ class MainViewModel : BaseViewModel() {
 
 
     fun initlistCategoryData(list: MutableList<Story>, name: String) {
-
-
         listCategoryData.postValue(list.filter { it.nameStory == name }
             .toMutableList())
-
-
     }
 
-    fun initlistStoryNewUpdateLiveData(list: MutableList<Story>, nameCategory: String) {
+    fun initListStoryNewUpdateLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryNewUpdateLiveData.postValue(list.filter { it.typeCategory == nameCategory }
             .toMutableList())
     }
 
-    fun initlistStoryFullAdapterLiveData(list: MutableList<Story>, nameCategory: String) {
+    fun initListStoryFullAdapterLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryFullAdapterLiveData.postValue(list.filter { it.typeCategory == nameCategory }
             .toMutableList())
     }
 
-    fun initlistStoryGoodLoveLanguageLiveData(list: MutableList<Story>, nameCategory: String) {
+    fun initListStoryGoodLoveLanguageLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryGoodLoveLanguageLiveData.postValue(list.filter {
             it.typeCategory == nameCategory
         }
             .toMutableList())
     }
 
-    fun initlistStoryGoodFairyTaleLiveData(list: MutableList<Story>, nameCategory: String) {
+    fun initListStoryGoodFairyTaleLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryGoodFairyTaleLiveData.postValue(list.filter {
             it.typeCategory == nameCategory
         }
             .toMutableList())
     }
 
-    fun initlistStoryGoodPassionLiveData(list: MutableList<Story>, nameCategory: String) {
+    fun initListStoryGoodPassionLiveData(list: MutableList<Story>, nameCategory: String) {
         listStoryGoodPassionLiveData.postValue(list.filter {
             it.typeCategory == nameCategory
         }.toMutableList())
     }
 
-    fun initlistStoryLiveData(list: MutableList<Story>, type: String) {
+    fun initListStoryLiveData(list: MutableList<Story>, type: String) {
         listStoryMoreLiveData.postValue(list.filter {
             it.typeCategory == type
         }.toMutableList())
     }
 
-    fun initlistDetailStoryLiveData(list: MutableList<Story>, type: String) {
+    fun initListDetailStoryLiveData(list: MutableList<Story>, type: String) {
 
-        listStoryDetailLiveData.postValue(list.filter { it.typeCategory.equals(type)  }.toMutableList())
+        listStoryDetailLiveData.postValue(list.filter { it.nameCategory.contains(type)  }.toMutableList())
     }
 
 
@@ -174,7 +184,7 @@ class MainViewModel : BaseViewModel() {
                     listName[i],
                     numberRate,
                     listAuthor[numberAuthor],
-                    listCategory[numberCategory].split(", ").map { it.trim() } as ArrayList<String>,
+                    listCategory[numberCategory].split(",").map { it.trim() } as ArrayList<String>,
                     listnumberView[i].toLong(),
                     status,
                     listContent[0],
@@ -186,10 +196,6 @@ class MainViewModel : BaseViewModel() {
             listStory.add(story)
         }
         listStoryLiveData.postValue(listStory)
-//        val storyDao = appDatabase?.storyDao()
-//        storyDao?.insertListStory(listStory)
-
-
     }
 
 

@@ -1,21 +1,17 @@
 package com.example.appstory88.ui.morestory
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.appstory88.R
 import com.example.appstory88.adapter.StoryAdapter
 import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
-import com.example.appstory88.data.model.ItemCategory
 import com.example.appstory88.databinding.FragmentShowMoreStoryBinding
 import com.example.appstory88.data.model.Story
 import com.example.appstory88.ui.MainActivity
 import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import timber.log.Timber
 
 class ViewMoreStoryFragment :
     BaseBindingFragment<FragmentShowMoreStoryBinding, ViewMoreStoryModel>() {
@@ -42,7 +38,7 @@ class ViewMoreStoryFragment :
     fun setupData() {
         val categoryJson = arguments?.getString(Constant.CATEGORY_STORY)
         mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
-            categoryJson?.let { it1 -> mainViewModel.initlistStoryLiveData(it, it1) }
+            categoryJson?.let { it1 -> mainViewModel.initListStoryLiveData(it, it1) }
         }
         mainViewModel.listStoryMoreLiveData.observe(viewLifecycleOwner){
             storyAdapter?.listStory = it
@@ -59,24 +55,19 @@ class ViewMoreStoryFragment :
 
     private fun initAdapter() {
         storyAdapter = StoryAdapter().apply {
+            binding.rcListStory.itemAnimator=null
             binding.rcListStory.adapter = this
             onItemClickListener = object : StoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
-                    intentActivityAndData(story)
-                }
+                    navigateWithBundle(R.id.fragment_detail_story, Bundle().apply {
+                        putString(
+                            Constant.KEY_DETAIL_STORY,
+                            Gson().toJson(story)
+                        )
+                    })                }
             }
         }
 
     }
-    private fun intentActivityAndData(story: Story) {
-        (requireActivity() as MainActivity).navController?.navigate(
-            R.id.fragment_detail_story,
-            Bundle().apply {
-                putString(
-                    Constant.KEY_DETAIL_STORY,
-                    Gson().toJson(story)
-                )
-            }
-        )
-    }
+
 }

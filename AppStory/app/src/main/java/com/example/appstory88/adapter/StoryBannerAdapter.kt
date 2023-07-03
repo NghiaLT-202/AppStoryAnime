@@ -18,13 +18,14 @@ class StoryBannerAdapter : BaseBindingAdapter<ItemStoryBannerBinding>() {
     var iclick: IClick? = null
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolderBase(holder: BaseHolder<ItemStoryBannerBinding>, position: Int) {
         with(listStory[position]) {
             with(holder.binding) {
                 imStory.post { Glide.with(holder.itemView.context).asBitmap().load(imageStory).into(imStory) }
                 tvNameStory.text = nameStory
                 tvValueNameAuthor.text = nameAuthor
-                tvValueNameCategory.text = nameCategory[0]
+                tvNameCategory.text =holder.itemView.context.getText(R.string.th_lo_i).toString()+" "+ nameCategory.toString().removeSurrounding("[", "]")
                 viewStar.numberStar = numberStar
             }
             holder.itemView.setOnClickListener {

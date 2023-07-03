@@ -84,10 +84,11 @@
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:layout_marginLeft="6dp"
             android:textColor="@color/white"
             android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_nameAuthor"
 
-            app:layout_constraintLeft_toLeftOf="@id/tv_valueNameCategory"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="10dp"
             app:layout_constraintTop_toBottomOf="@id/view_star" />
@@ -99,28 +100,15 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="2"
-
-
             android:text="@string/th_lo_i"
             android:textColor="@color/white"
             android:textSize="12sp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="10dp"
             app:layout_constraintLeft_toLeftOf="@+id/tv_nameStory"
             app:layout_constraintLeft_toRightOf="@+id/cv_image"
             app:layout_constraintTop_toBottomOf="@id/tv_nameAuthor" />
-        <TextView
-            android:id="@+id/tv_valueNameCategory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textColor="@color/white"
-            android:layout_marginLeft="5dp"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toRightOf="@+id/tv_nameCategory"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="10dp"
-            app:layout_constraintTop_toTopOf="@+id/tv_nameCategory"
-           />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 
+import com.example.appstory88.ui.MainActivity;
 import com.example.appstory88.ui.MainViewModel;
 
 
@@ -57,4 +59,18 @@ public abstract class BaseBindingFragment<B extends ViewDataBinding, T extends B
         super.onViewCreated(view, savedInstanceState);
         onCreatedView(view, savedInstanceState);
     }
+    public  void navigateWithBundle(int id, Bundle bundle ){
+        NavController navController=((MainActivity) requireActivity()).getNavController();
+        if(navController!=null){
+            navController.navigate(id,bundle);
+        }
+
+    }public  void navigateFragment(int id ){
+        NavController navController=((MainActivity) requireActivity()).getNavController();
+        if(navController!=null){
+            navController.navigate(id);
+        }
+
+    }
+
 }

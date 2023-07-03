@@ -67,10 +67,20 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:alpha="0.1"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="true"
+                    android:background="@drawable/im_bg_top_story"
+                    app:layout_constraintTop_toTopOf="@+id/rc_item_story_banner"
+                    app:layout_constraintBottom_toBottomOf="@+id/rc_item_story_banner"
+                    />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_item_story_banner"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -86,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/menu"
+                    android:layout_marginTop="20dp"
                     android:textAllCaps="true"
                     android:textColor="#B2202020"
                     android:textSize="16sp"

@@ -8,7 +8,6 @@ import com.example.appstory88.base.BaseBindingFragment
 import com.example.appstory88.commom.Constant
 import com.example.appstory88.data.model.ItemTopStory
 import com.example.appstory88.databinding.FragmentTopStoryBinding
-import com.example.appstory88.ui.MainActivity
 
 class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryViewModel>() {
     private val listStory: MutableList<ItemTopStory> = mutableListOf()
@@ -39,10 +38,20 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
 
     private fun initAdapter() {
         itemTopStoryAdapter = ItemTopStoryAdapter().apply {
+            binding.rcItemStory.itemAnimator = null
+
             binding.rcItemStory.adapter = this
             onItemClickListener = object : ItemTopStoryAdapter.ItemClickListener {
                 override fun onItemClick(position: Int) {
-                    intentActivity(listStory[position])
+                    navigateWithBundle(
+                        R.id.fragment_detail_story_top,
+                        Bundle().apply {
+                            putString(
+                                Constant.CATEGORY_STORY,
+                                listStory[position].name
+                            )
+                        })
+
                 }
             }
         }
@@ -52,18 +61,5 @@ class TopStoryFragment : BaseBindingFragment<FragmentTopStoryBinding, TopStoryVi
         return TopStoryViewModel::class.java
     }
 
-    private fun intentActivity(story: ItemTopStory) {
-        Bundle().apply {
-            putString(
-                Constant.CATEGORY_STORY,
-                story.name
-            )
-            (requireActivity() as MainActivity).navController?.navigate(
-                R.id.fragment_detail_story_top, this
 
-            )
-        }
-
-
-    }
 }
