@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_ripple_view"
-
-        android:layout_marginTop="15dp"
+        android:padding="8dp"
+        android:layout_marginTop="7dp"
         >
 
         <androidx.cardview.widget.CardView
@@ -21,7 +21,9 @@
             android:layout_height="0dp"
             android:background="#40000000"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@android:color/white"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardElevation="0dp"
+            android:elevation="0dp"
 
             app:layout_constraintDimensionRatio="2:2.6"
             app:layout_constraintRight_toLeftOf="@id/tv_nameStory"

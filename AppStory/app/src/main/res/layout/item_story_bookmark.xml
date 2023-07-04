@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_boder_item_bookmark"
-        android:foreground="@drawable/custom_ripple_view"
+        android:foreground="@drawable/custom_ripple_view_10"
         android:padding="15dp">
 
         <androidx.cardview.widget.CardView

@@ -14,7 +14,7 @@ import com.google.gson.Gson
 
 class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, BookmarkViewModel>() {
     private var storyBookmarkAdapter: StoryBookmarkAdapter? = null
-    private val listBookmarkStory: MutableList<Story> = mutableListOf()
+    private val listBookmarkStorys: MutableList<Story> = mutableListOf()
 
 
     override fun getLayoutId(): Int {
@@ -35,22 +35,22 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
 
     private fun initListener() {
         binding.tvDeleteBookmark.setOnClickListener {
-            listBookmarkStory.clear()
-            viewModel.deleteStory(requireContext())
+            listBookmarkStorys.clear()
+            viewModel.deleteStory()
             binding.tvCheckNoData.visibility = View.VISIBLE
 
-            storyBookmarkAdapter?.listStory = listBookmarkStory
+            storyBookmarkAdapter?.listStory = listBookmarkStorys
         }
     }
 
     private fun initData() {
-        mainViewModel.getAllBookmark(requireContext())
-        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner) {
-            listBookmarkStory.clear()
-            listBookmarkStory.addAll(it)
+        viewModel.getAllBookmark()
+        viewModel.listBookmarkStory.observe(viewLifecycleOwner) {
+            listBookmarkStorys.clear()
+            listBookmarkStorys.addAll(it)
             binding.tvCheckNoData.visibility =
-                if (listBookmarkStory.size == 0) View.VISIBLE else View.INVISIBLE
-            storyBookmarkAdapter?.listStory = listBookmarkStory
+                if (listBookmarkStorys.size == 0) View.VISIBLE else View.INVISIBLE
+            storyBookmarkAdapter?.listStory = listBookmarkStorys
 
         }
     }

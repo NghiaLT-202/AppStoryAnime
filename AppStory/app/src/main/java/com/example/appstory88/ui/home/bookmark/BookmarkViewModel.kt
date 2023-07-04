@@ -6,16 +6,26 @@ import com.example.appstory88.base.BaseViewModel
 import com.example.appstory88.data.dao.StoryDao
 import com.example.appstory88.data.database.AppDatabase
 import com.example.appstory88.data.model.Story
+import com.example.appstory88.repository.StoryRepository
+import timber.log.Timber
 
 class BookmarkViewModel : BaseViewModel() {
-    var storyDao : StoryDao?=null
+    private val storyRepository: StoryRepository?=null
+
+     val listBookmarkStory = MutableLiveData<MutableList<Story>>()
 
 
 
+    fun deleteStory() {
+        storyRepository?.deleteAllListBookmark()
+    }
+    fun getAllBookmark() {
+        Timber.e("ltnghia getAllBookmark"+storyRepository?.getAllBookmark().toString())
+        listBookmarkStory.postValue(storyRepository?.getAllBookmark())
 
-    fun deleteStory(context: Context) {
-        storyDao = AppDatabase.getInstanceDataBase(context).storyDao()
-        storyDao?.deleteAllListBookmark()
+
     }
 
 }
+
+

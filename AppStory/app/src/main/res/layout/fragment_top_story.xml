@@ -10,14 +10,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/im_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:paddingVertical="5dp"
-            android:paddingEnd="5dp"
-            android:background="@drawable/custom_ripple"
+            android:background="@drawable/custom_ripple_image"
+            android:clickable="true"
+            android:padding="5dp"
             android:src="@drawable/icon_menu_72"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,14 +41,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-
-
-            tools:listitem="@layout/item_top_story"
-            app:layout_constraintLeft_toLeftOf="@id/im_menu"
-            app:layout_constraintTop_toBottomOf="@+id/im_menu"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+
+
+            app:layout_constraintLeft_toLeftOf="@id/im_menu"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/im_menu"
+            app:spanCount="2"
+            tools:listitem="@layout/item_top_story" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

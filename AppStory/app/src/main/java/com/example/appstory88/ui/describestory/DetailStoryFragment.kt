@@ -23,6 +23,7 @@ import java.util.Locale
 class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
+    private val listBookmarkStory: MutableList<Story> = mutableListOf()
 
     var checkBookmark: Boolean = false
 
@@ -71,22 +72,44 @@ class DetailStoryFragment :
     }
 
     private fun setupData() {
-        arguments?.getString(Constant.KEY_DETAIL_STORY)?.let { storyJson ->
-            story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
-            with(binding) {
-                if (story?.checkBookmark == true) {
-                    imDone.setImageResource(R.drawable.baseline_done_24)
-                    tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-                    checkBookmark=true
+        viewModel.getAllBookmark()
+        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner){
+            listBookmarkStory.clear()
+            listBookmarkStory.addAll(it)
+            Timber.e("ltnghia listBookmarkStory " +listBookmarkStory.size)
 
-                } else {
-                    imDone.setImageResource(R.drawable.baseline_playlist_add_24)
-                    tvBookmark.setTextColor(resources.getColor(R.color.white))
+        }
+        initData()
+        with(binding) {
+            for (itemStory in listBookmarkStory){
+                Timber.e("ltnghia contains "+itemStory.nameStory +" Story  "+story?.nameStory )
+
+                if (itemStory.nameStory==story?.nameStory){
+                    Timber.e("ltnghia contains "+itemStory.nameStory  )
+
+                    checkBookmark=true
+                    break
+                }else {
+                    Timber.e("ltnghia contains false"  )
+
+                    checkBookmark=false
+
                 }
             }
-            initData()
+            if (checkBookmark){
+                Timber.e("ltnghia contains true"  )
+                imDone.setImageResource(R.drawable.baseline_done_24)
+                tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+            }else{
+                Timber.e("ltnghia contains false"  )
+
+                imDone.setImageResource(R.drawable.baseline_playlist_add_24)
+                tvBookmark.setTextColor(resources.getColor(R.color.white))
+            }
         }
-        mainViewModel.getAllBookmark(requireContext())
+
+
+
 
 
     }
@@ -116,29 +139,34 @@ class DetailStoryFragment :
                 if (!checkBookmark) {
 
                     checkBook(true,R.drawable.baseline_done_24,resources.getColor(R.color.yellow))
-                    story?.let { it1 -> viewModel.insertStory(it1, requireContext()) }
+                    Timber.e("ltnghia true " )
+
+                    story?.let { it1 -> viewModel.insertStory(it1) }
 
 
                 } else {
                     checkBook(false,R.drawable.baseline_playlist_add_24,resources.getColor(R.color.white))
-                    story?.let { it1 -> viewModel.deleteStory(it1.nameStory, requireContext())
+                    Timber.e("ltnghia false " )
+
+                    story?.let { it1 -> viewModel.deleteStory(it1.nameStory)
                     }
                 }
             }
         }
     }
-    fun checkBook(check:Boolean,image:Int, color:Int){
+    fun checkBook(check:Boolean, image:Int, color:Int){
         checkBookmark = check
         with(binding){
             imDone.setImageResource(image)
             tvBookmark.setTextColor(color)
         }
-        story?.checkBookmark = check
 
     }
 
     private fun initData() {
-
+        arguments?.getString(Constant.KEY_DETAIL_STORY)?.let { storyJson ->
+            story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
+        }
 
         story?.let {
             with(binding) {

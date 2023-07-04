@@ -20,7 +20,6 @@ class Story(
     @ColumnInfo var describe: String,
     @ColumnInfo var chapter: String,
     @ColumnInfo var chapterSum: Int,
-    @ColumnInfo var checkBookmark: Boolean,
     @ColumnInfo var typeCategory: String
 ) {
     @PrimaryKey(autoGenerate = true)

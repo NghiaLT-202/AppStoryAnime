@@ -9,16 +9,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:paddingBottom="10dp"
-        android:background="@drawable/custom_ripple_image"
+        android:padding="8dp"
+        android:background="@drawable/custom_ripple_view"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_image"
             android:layout_width="110dp"
+
             android:layout_height="0dp"
             app:cardCornerRadius="10dp"
+            android:elevation="0dp"
+
             app:cardBackgroundColor="@color/white"
             app:layout_constraintDimensionRatio="2:2.8"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -43,11 +46,11 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:padding="5dp"
             tools:text="Hoa Hồng Đen Tìm Lại Tình  Tìm Lại Tình "
             android:textColor="#48B0E3"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:layout_marginTop="5dp"
             app:layout_constraintLeft_toLeftOf="@id/cv_image"
             app:layout_constraintRight_toRightOf="@id/cv_image"
             app:layout_constraintTop_toBottomOf="@+id/cv_image" />
@@ -57,7 +60,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
             android:textColor="@color/black"
             android:ellipsize="end"
             android:maxLines="1"
@@ -71,7 +73,6 @@
             android:id="@+id/view_star"
             android:layout_width="80dp"
             android:layout_height="13dp"
-            android:paddingLeft="3dp"
             app:layout_constraintLeft_toLeftOf="@id/tv_nameStory"
             app:layout_constraintTop_toBottomOf="@id/tv_nameCategory"
             app:layout_constraintBottom_toBottomOf="parent"

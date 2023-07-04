@@ -50,6 +50,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     }
 
     private fun initData() {
+
         mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) { story ->
             listStory.clear()
             listStoryBanner.clear()
@@ -130,7 +131,6 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     private fun storyBannerAdapter() {
         storyBannerAdapter = StoryBannerAdapter().apply {
             binding.rcItemStoryBanner.itemAnimator = null
-
             binding.rcItemStoryBanner.adapter = this
             iclick = object : StoryBannerAdapter.IClick {
                 override fun clickItem(story: Story, position: Int) {

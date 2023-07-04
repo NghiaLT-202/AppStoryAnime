@@ -36,9 +36,10 @@ class ViewMoreStoryFragment :
 
 
     fun setupData() {
-        val categoryJson = arguments?.getString(Constant.CATEGORY_STORY)
-        mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
-            categoryJson?.let { it1 -> mainViewModel.initListStoryLiveData(it, it1) }
+        arguments?.getString(Constant.CATEGORY_STORY).apply {
+            mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) {
+                this?.let { it1 -> mainViewModel.initListStoryLiveData(it, it1) }
+            }
         }
         mainViewModel.listStoryMoreLiveData.observe(viewLifecycleOwner){
             storyAdapter?.listStory = it

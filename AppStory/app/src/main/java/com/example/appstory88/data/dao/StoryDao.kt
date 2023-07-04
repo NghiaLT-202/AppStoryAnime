@@ -25,6 +25,6 @@ interface StoryDao {
     @Query("DELETE FROM story ")
     fun deleteAllListBookmark()
 
-    @Query("SELECT * FROM story where checkBookmark=:check")
-    fun getAllBookmark(check: Boolean): MutableList<Story>
+//    @Query("SELECT * FROM story where checkBookmark=:check")
+//    fun getAllBookmark(check: Boolean): MutableList<Story>
 }

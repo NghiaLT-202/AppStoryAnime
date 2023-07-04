@@ -13,8 +13,7 @@ import com.example.appstory88.utils.StatusBarUtils
 import com.google.gson.Gson
 
 class DetailStoryTopFragment :
-    BaseBindingFragment<FragmentDetailStoryTopBinding, DetailCategoryViewModel>() {
-    private val listStoryOfCategory: MutableList<Story> = mutableListOf()
+    BaseBindingFragment<FragmentDetailStoryTopBinding, DetailStoryTopViewModel>() {
     private var detailStoryAdapter: DetailStoryAdapter? = null
 
     override fun getLayoutId(): Int {
@@ -52,8 +51,8 @@ class DetailStoryTopFragment :
 
     }
 
-    override fun getViewModel(): Class<DetailCategoryViewModel> {
-        return DetailCategoryViewModel::class.java
+    override fun getViewModel(): Class<DetailStoryTopViewModel> {
+        return DetailStoryTopViewModel::class.java
     }
 
     private fun initAdapter() {
@@ -63,10 +62,10 @@ class DetailStoryTopFragment :
             onItemClickListener = object : DetailStoryAdapter.ItemClickListener {
                 override fun onItemClick(story: Story, position: Int) {
                     navigateWithBundle(
-                        R.id.fragment_detail_story_top,
+                        R.id.fragment_detail_story,
                         Bundle().apply {
                             putString(
-                                Constant.CATEGORY_STORY,
+                                Constant.KEY_DETAIL_STORY,
                                 Gson().toJson(story)
                             )
                         })

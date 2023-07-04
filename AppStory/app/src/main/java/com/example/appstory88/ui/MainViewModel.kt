@@ -13,7 +13,6 @@ import com.example.appstory88.data.model.Story
 import java.util.Random
 
 class MainViewModel : BaseViewModel() {
-    var storyDao: StoryDao? = null
 
     val listStoryLiveData = MutableLiveData<MutableList<Story>>()
     val listCategoryLiveData = MutableLiveData<MutableList<ItemCategory>>()
@@ -32,13 +31,7 @@ class MainViewModel : BaseViewModel() {
     var listTopStoryLiveData: MutableLiveData<MutableList<ItemTopStory>> = MutableLiveData()
     val listBookmarkStory = MutableLiveData<MutableList<Story>>()
 
-    fun getAllBookmark(context: Context) {
-        listBookmarkStory.postValue(
-            AppDatabase.getInstanceDataBase(context).storyDao().getAllBookmark()
-        )
 
-
-    }
 
     fun initDataTopStory(context: Context) {
 
@@ -93,8 +86,9 @@ class MainViewModel : BaseViewModel() {
                 listCategories.add(this)
             }
         }
-        listCategories.sortByDescending { it.listStory.size }
         listCategories.filter { it.listStory.size > 0 }.toMutableList()
+        listCategories.sortByDescending { it.listStory.size }
+
         listCategoryLiveData.postValue(listCategories)
     }
 
@@ -136,7 +130,7 @@ class MainViewModel : BaseViewModel() {
 
     fun initListStoryLiveData(list: MutableList<Story>, type: String) {
         listStoryMoreLiveData.postValue(list.filter {
-            it.typeCategory == type
+            it.nameCategory.contains(type)
         }.toMutableList())
     }
 
@@ -196,13 +190,11 @@ class MainViewModel : BaseViewModel() {
                     listContent[0],
                     listChappter[i],
                     90,
-                    false,
                     listTypeCategory[numberType]
                 )
             listStory.add(story)
         }
         listStoryLiveData.postValue(listStory)
-//        storyDao?.insertListStory(listStoryLiveData)
 
     }
 

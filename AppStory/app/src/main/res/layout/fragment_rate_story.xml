@@ -15,9 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:paddingVertical="8dp"
-            android:paddingEnd="5dp"
-            android:background="@drawable/custom_ripple"
+            android:clickable="true"
+            android:padding="5dp"
+
+            android:background="@drawable/custom_ripple_image"
             android:src="@drawable/icon_menu_72"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
