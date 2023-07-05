@@ -102,8 +102,6 @@ class DetailStoryFragment :
     }
 
     private fun initListener() {
-
-
         with(binding) {
             imBack.setOnClickListener {
                 (requireActivity() as MainActivity).navController?.popBackStack()
