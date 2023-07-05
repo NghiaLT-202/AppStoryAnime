@@ -1,5 +1,6 @@
 package com.example.appstory88.ui.home.bookmark
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.example.appstory88.base.BaseViewModel
@@ -10,17 +11,12 @@ import com.example.appstory88.repository.StoryRepository
 import timber.log.Timber
 
 class BookmarkViewModel : BaseViewModel() {
-    private val storyRepository: StoryRepository?=null
-
+    private  var storyRepository: StoryRepository=StoryRepository()
      val listBookmarkStory = MutableLiveData<MutableList<Story>>()
-
-
-
     fun deleteStory() {
         storyRepository?.deleteAllListBookmark()
     }
     fun getAllBookmark() {
-        Timber.e("ltnghia getAllBookmark"+storyRepository?.getAllBookmark().toString())
         listBookmarkStory.postValue(storyRepository?.getAllBookmark())
 
 

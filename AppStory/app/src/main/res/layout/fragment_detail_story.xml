@@ -43,7 +43,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:foreground="@drawable/custom_ripple"
+                    android:foreground="@drawable/custom_ripple_view"
                     android:background="@drawable/custom_bg_bookmark"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_bookmark"

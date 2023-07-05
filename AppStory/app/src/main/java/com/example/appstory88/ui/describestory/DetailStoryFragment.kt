@@ -24,12 +24,8 @@ class DetailStoryFragment :
     BaseBindingFragment<FragmentDetailStoryBinding, DetailStoryViewModel>() {
     private var story: Story? = null
     private val listBookmarkStory: MutableList<Story> = mutableListOf()
-
     var checkBookmark: Boolean = false
-
-
     private var itemCategoryDetailAdapter: ItemCategoryDetailAdapter? = null
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_detail_story
     }
@@ -47,12 +43,13 @@ class DetailStoryFragment :
 
     private fun initAdapter() {
         itemCategoryDetailAdapter = ItemCategoryDetailAdapter().apply {
-            binding.rcCategory.itemAnimator = null
-
-            binding.rcCategory.adapter = this
-            FlexboxLayoutManager(requireContext()).apply {
-                flexWrap = FlexWrap.WRAP
-                binding.rcCategory.layoutManager = this
+            with(binding.rcCategory){
+                itemAnimator = null
+                adapter = this@apply
+                FlexboxLayoutManager(requireContext()).apply {
+                    flexWrap = FlexWrap.WRAP
+                    layoutManager = this
+                }
             }
 
             onItemClickListener = object : ItemCategoryDetailAdapter.ItemClickListener {
@@ -72,44 +69,30 @@ class DetailStoryFragment :
     }
 
     private fun setupData() {
+        initData()
         viewModel.getAllBookmark()
-        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner){
+        viewModel.listBookmarkStory.observe(viewLifecycleOwner){
             listBookmarkStory.clear()
             listBookmarkStory.addAll(it)
-            Timber.e("ltnghia listBookmarkStory " +listBookmarkStory.size)
-
-        }
-        initData()
-        with(binding) {
-            for (itemStory in listBookmarkStory){
-                Timber.e("ltnghia contains "+itemStory.nameStory +" Story  "+story?.nameStory )
-
-                if (itemStory.nameStory==story?.nameStory){
-                    Timber.e("ltnghia contains "+itemStory.nameStory  )
-
-                    checkBookmark=true
-                    break
-                }else {
-                    Timber.e("ltnghia contains false"  )
-
-                    checkBookmark=false
-
+            with(binding) {
+                for (itemStory in listBookmarkStory){
+                    if (itemStory.nameStory==story?.nameStory && itemStory.nameAuthor==story?.nameAuthor){
+                        checkBookmark=true
+                        break
+                    }else {
+                        checkBookmark=false
+                    }
+                }
+                if (checkBookmark){
+                    imDone.setImageResource(R.drawable.baseline_done_24)
+                    tvBookmark.setTextColor(resources.getColor(R.color.yellow))
+                }else{
+                    imDone.setImageResource(R.drawable.baseline_playlist_add_24)
+                    tvBookmark.setTextColor(resources.getColor(R.color.white))
                 }
             }
-            if (checkBookmark){
-                Timber.e("ltnghia contains true"  )
-                imDone.setImageResource(R.drawable.baseline_done_24)
-                tvBookmark.setTextColor(resources.getColor(R.color.yellow))
-            }else{
-                Timber.e("ltnghia contains false"  )
 
-                imDone.setImageResource(R.drawable.baseline_playlist_add_24)
-                tvBookmark.setTextColor(resources.getColor(R.color.white))
-            }
         }
-
-
-
 
 
     }
@@ -120,34 +103,27 @@ class DetailStoryFragment :
 
     private fun initListener() {
 
+
         with(binding) {
             imBack.setOnClickListener {
                 (requireActivity() as MainActivity).navController?.popBackStack()
             }
             tvReadStory.setOnClickListener {
-                (requireActivity() as MainActivity).navController?.navigate(
-                    R.id.fragment_read_story,
-                    Bundle().apply {
-                        putString(
-                            Constant.KEY_DETAIL_STORY,
-                            Gson().toJson(story)
-                        )
-                    }
-                )
+                navigateWithBundle(R.id.fragment_read_story,Bundle().apply {
+                    putString(
+                        Constant.KEY_DETAIL_STORY,
+                        Gson().toJson(story)
+                    )
+                })
+
             }
             tvBookmark.setOnClickListener {
                 if (!checkBookmark) {
-
                     checkBook(true,R.drawable.baseline_done_24,resources.getColor(R.color.yellow))
-                    Timber.e("ltnghia true " )
-
                     story?.let { it1 -> viewModel.insertStory(it1) }
-
 
                 } else {
                     checkBook(false,R.drawable.baseline_playlist_add_24,resources.getColor(R.color.white))
-                    Timber.e("ltnghia false " )
-
                     story?.let { it1 -> viewModel.deleteStory(it1.nameStory)
                     }
                 }
@@ -164,6 +140,7 @@ class DetailStoryFragment :
     }
 
     private fun initData() {
+
         arguments?.getString(Constant.KEY_DETAIL_STORY)?.let { storyJson ->
             story = Gson().fromJson<Story>(storyJson, object : TypeToken<Story>() {}.type)
         }

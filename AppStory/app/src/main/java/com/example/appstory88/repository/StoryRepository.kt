@@ -1,28 +1,33 @@
 package com.example.appstory88.repository
 
+import android.annotation.SuppressLint
+import android.content.Context
+import androidx.room.Database
+import com.example.appstory88.App
 import com.example.appstory88.data.database.AppDatabase
 import com.example.appstory88.data.model.Story
 import timber.log.Timber
 
 class StoryRepository {
-    private val storyDataBase: AppDatabase? = null
-    fun insertStory(story: Story?) {
+    private  var storyDataBase: AppDatabase
+    constructor(){
+        storyDataBase=AppDatabase.getInstanceDataBase(App.context)
+    }
+    fun insertStory(story: Story) {
         Timber.e("ltnghia insertStory")
-
-        story?.let { storyDataBase?.storyDao()?.insertStory(it) }
+        story.let { storyDataBase.storyDao().insertStory(it) }
     }
 
-    fun deleteBookmarkWithName(name: String?) {
-        storyDataBase?.storyDao()?.deleteBookmarkWithName(name)
+    fun deleteBookmarkWithName(name: String) {
+        storyDataBase.storyDao().deleteBookmarkWithName(name)
     }
 
     fun deleteAllListBookmark() {
-        storyDataBase?.storyDao()?.deleteAllListBookmark()
+        storyDataBase.storyDao().deleteAllListBookmark()
     }
 
-    fun getAllBookmark(): MutableList<Story>? {
-        Timber.e("ltnghia getAllBookmark")
-        return storyDataBase?.storyDao()?.getAllBookmark()
+    fun getAllBookmark(): MutableList<Story> {
+        return storyDataBase.storyDao().getAllBookmark()
     }
 
 }
