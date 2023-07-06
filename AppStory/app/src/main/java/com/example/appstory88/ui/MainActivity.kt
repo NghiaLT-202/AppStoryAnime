@@ -26,6 +26,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
         viewModel.initData(this)
 
 
+
     }
 
     override fun getViewModel(): Class<MainViewModel> {

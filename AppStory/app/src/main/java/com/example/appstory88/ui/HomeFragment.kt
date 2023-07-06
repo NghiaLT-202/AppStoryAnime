@@ -50,6 +50,8 @@ class HomeFragment : BaseBindingFragment<FragmentHomeStoryBinding, HomeViewModel
     }
 
     private fun initData() {
+        mainViewModel.getAllBookmark()
+
 
         mainViewModel.listStoryLiveData.observe(viewLifecycleOwner) { story ->
             listStory.clear()

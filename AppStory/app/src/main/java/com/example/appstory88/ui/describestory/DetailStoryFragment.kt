@@ -70,8 +70,7 @@ class DetailStoryFragment :
 
     private fun setupData() {
         initData()
-        viewModel.getAllBookmark()
-        viewModel.listBookmarkStory.observe(viewLifecycleOwner){
+        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner){
             listBookmarkStory.clear()
             listBookmarkStory.addAll(it)
             with(binding) {
@@ -79,8 +78,6 @@ class DetailStoryFragment :
                     if (itemStory.nameStory==story?.nameStory && itemStory.nameAuthor==story?.nameAuthor){
                         checkBookmark=true
                         break
-                    }else {
-                        checkBookmark=false
                     }
                 }
                 if (checkBookmark){

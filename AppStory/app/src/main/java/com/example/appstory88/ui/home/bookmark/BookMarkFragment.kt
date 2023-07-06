@@ -44,8 +44,7 @@ class BookMarkFragment : BaseBindingFragment<FragmentBookMarkStoryBinding, Bookm
     }
 
     private fun initData() {
-        viewModel.getAllBookmark()
-        viewModel.listBookmarkStory.observe(viewLifecycleOwner) {
+        mainViewModel.listBookmarkStory.observe(viewLifecycleOwner) {
             listBookmarkStorys.clear()
             listBookmarkStorys.addAll(it)
             binding.tvCheckNoData.visibility =

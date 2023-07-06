@@ -9,7 +9,6 @@ import timber.log.Timber
 class DetailStoryViewModel : BaseViewModel() {
     private var storyRepository: StoryRepository = StoryRepository()
 
-    val listBookmarkStory = MutableLiveData<MutableList<Story>>()
 
     fun insertStory(story: Story) {
         Timber.e("ltnghia insertStory")
@@ -21,10 +20,5 @@ class DetailStoryViewModel : BaseViewModel() {
         storyRepository.deleteBookmarkWithName(nameStory)
     }
 
-    fun getAllBookmark() {
 
-        listBookmarkStory.postValue(storyRepository.getAllBookmark())
-
-
-    }
 }
