@@ -12,4 +12,4 @@ View story details: User can view the full content of a particular story.
 Save bookmark stories: Allows users to save stories they like.
 
 View ranking: List of most read stories
-![Logo App Story](https://github.com/NghiaLT-202/NghiaAppStory/issues/2)
+![image](https://github.com/NghiaLT-202/NghiaAppStory/assets/68336982/b9087d5e-0ef9-43db-936d-44bf148041a4)
