@@ -1,5 +1,4 @@
 # AppStory
-Introduce
 The App Story project is an open source mobile application developed to provide a platform for users to share and read stories, short stories, or any literary content.
 
 Feature
